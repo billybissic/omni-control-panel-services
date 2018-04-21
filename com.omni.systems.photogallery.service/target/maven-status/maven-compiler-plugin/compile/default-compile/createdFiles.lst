@@ -1,0 +1,15 @@
+application\GalleryObjectTypeRepository.class
+application\GalleryObjectType.class
+application\Gallery.class
+application\GalleryItemRepository.class
+application\PhotoGalleryController.class
+application\GalleryChildrenRepository.class
+application\GalleryChildren.class
+application\GalleryItem.class
+application\PhotoGallery.class
+application\ServiceConfiguration.class
+application\GalleryGroupType.class
+application\GalleryRepository.class
+application\GalleryStat.class
+application\GalleryGroupTypeRepository.class
+application\GalleryStatRepository.class

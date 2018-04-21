@@ -1,0 +1,7 @@
+application\InterfaceMessagesRepository.class
+application\Message.class
+application\ServiceConfiguration.class
+application\ServiceMessages.class
+application\ServiceMessagesRepository.class
+application\MessageController.class
+application\InterfaceMessages.class

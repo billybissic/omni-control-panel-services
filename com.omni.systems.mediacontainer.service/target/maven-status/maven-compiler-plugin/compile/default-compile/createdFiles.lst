@@ -1,0 +1,15 @@
+application\ContainerPermissions.class
+application\ContainerController.class
+application\DisplayObject.class
+application\DisplayObjectTypeRepository.class
+application\DisplayObjectType.class
+application\MediaContainerRepository.class
+application\ContainerOrderType.class
+application\Container.class
+application\ContainerTypes.class
+application\ServiceConfiguration.class
+application\ContainerOrderTypeRepository.class
+application\ContainerTypesRepository.class
+application\ContainerPermissionsRepository.class
+application\MediaContainer.class
+application\DisplayObjectRepository.class
