@@ -1,0 +1,9 @@
+application\CustomerRelations.class
+application\CustomerBookingInquiryRepository.class
+application\CustomerMailinglist.class
+application\ServiceConfiguration.class
+application\CustomerBookingInquiry.class
+application\CustomerMailinglistRepository.class
+application\ServiceTypeRepository.class
+application\CustomerRelationsController.class
+application\ServiceType.class
