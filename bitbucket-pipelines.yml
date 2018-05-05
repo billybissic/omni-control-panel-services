@@ -12,5 +12,5 @@ pipelines:
           - maven
         script: # Modify the commands below to build your repository.
           - pwd # What is current directory.
-          - sh "ls -lt" # Directory listing
+          - sh "ls" # Directory listing
           - mvn -B verify # -B batch mode makes Maven less verbose
