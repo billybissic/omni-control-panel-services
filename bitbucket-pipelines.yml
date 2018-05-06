@@ -14,3 +14,4 @@ pipelines:
           #- mvn -B verify # -B batch mode makes Maven less verbose
           - ls -la
           - mvn -version
+          - ./build-services.sh
