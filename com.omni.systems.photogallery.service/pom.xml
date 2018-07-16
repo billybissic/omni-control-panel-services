@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>omin-photogallery-service</name>
+  <name>omni-photogallery-service</name>
   <description>Photo Gallery Data Access for photo galleries.</description>
   
   <parent>

@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>omin-file-service</name>
+  <name>omni-file-service</name>
   <description>File Data Access service for all user media</description>
   
   <parent>

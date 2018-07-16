@@ -22,7 +22,7 @@ public class ContainerPermissions {
 	private Integer able_to_hide_water_mark;
 	private Integer able_to_synchronize;
 	private Integer able_to_delete_child_container;
-	private Integer parent;
+	private Boolean is_parent_container;
 	private Integer able_to_add_album;
 	private Integer able_to_delete_album;
 	
@@ -104,11 +104,11 @@ public class ContainerPermissions {
 	public void setAble_to_delete_child_container(Integer able_to_delete_child_container) {
 		this.able_to_delete_child_container = able_to_delete_child_container;
 	}
-	public Integer getParent() {
-		return parent;
+	public Boolean getIs_parent_container() {
+		return is_parent_container;
 	}
-	public void setParent(Integer parent) {
-		this.parent = parent;
+	public void setIs_parent_container(Boolean is_parent_container) {
+		this.is_parent_container = is_parent_container;
 	}
 	public Integer getAble_to_add_album() {
 		return able_to_add_album;

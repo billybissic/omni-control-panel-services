@@ -51,7 +51,7 @@ public class ContainerController {
 	@GetMapping(path="/addNewContainerPermissions")
 	public @ResponseBody String addNewContainerPermissions(@RequestParam Integer admin,
 														   @RequestParam String permissionsname,
-														   @RequestParam Integer parent,
+														   @RequestParam Boolean is_parent_container,
 														   @RequestParam Integer abletoaddalbum,
 														   @RequestParam Integer abletoaddchildcontainer,
 														   @RequestParam Integer abletoaddmediaobject,
@@ -67,7 +67,7 @@ public class ContainerController {
 		ContainerPermissions cPermissions = new ContainerPermissions();
 		cPermissions.setContainer_admin(admin);
 		cPermissions.setContainer_permissions_name(permissionsname);
-		cPermissions.setParent(parent);
+		cPermissions.setIs_parent_container(is_parent_container);
 		cPermissions.setAble_to_add_album(abletoaddalbum);
 		cPermissions.setAble_to_add_child_container(abletoaddchildcontainer);
 		cPermissions.setAble_to_add_media_object(abletoaddmediaobject);

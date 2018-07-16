@@ -9,9 +9,16 @@ import javax.persistence.Id;
 public class ImageLinks {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer image_link_id;
 	private String image_links_from;
 	private String image_links_to;
 	
+	public Integer getImage_link_id() {
+		return image_link_id;
+	}
+	public void setImage_link_id(Integer image_link_id) {
+		this.image_link_id = image_link_id;
+	}
 	public String getImage_links_from() {
 		return image_links_from;
 	}

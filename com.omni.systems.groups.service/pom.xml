@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   
-  <name>omin-groups-service</name>
+  <name>omni-groups-service</name>
   <description>Group Data Access for user groups service</description>
   
   <parent>

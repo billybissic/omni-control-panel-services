@@ -9,16 +9,16 @@ import javax.persistence.Id;
 public class ArticleAuthor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id;
+	private Integer article_author_id;
 	private String display_name;
 	private String first_name;
 	private String last_name;
 
 	public Integer getId() {
-		return id;
+		return article_author_id;
 	}
 	public void setId(Integer id) {
-		this.id = id;
+		this.article_author_id = id;
 	}
 	public String getDisplay_name() {
 		return display_name;

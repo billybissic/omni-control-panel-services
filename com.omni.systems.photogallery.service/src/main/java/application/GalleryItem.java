@@ -11,6 +11,7 @@ public class GalleryItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer gallery_item_id;
+	private String gallery_item;
 	private String title;
 	private Integer caption_id;
 	private String description;
@@ -30,6 +31,12 @@ public class GalleryItem {
 	}
 	public void setGallery_item_id(Integer gallery_item_id) {
 		this.gallery_item_id = gallery_item_id;
+	}
+	public String getGallery_item() {
+		return gallery_item;
+	}
+	public void setGallery_item(String gallery_item) {
+		this.gallery_item = gallery_item;
 	}
 	public String getTitle() {
 		return title;

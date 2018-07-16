@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>omin-mediadata-service</name>
+  <name>omni-mediadata-service</name>
   <description>Media Data details data access for all stored media service</description>
   
   <parent>

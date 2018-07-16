@@ -115,7 +115,8 @@ public class PhotoGalleryController {
 	}
 	
 	@GetMapping(path="/addGalleryItem")
-	public @ResponseBody String addNewGalleryItem(@RequestParam Integer captionid,
+	public @ResponseBody String addNewGalleryItem(@RequestParam String gallery_item,
+												  @RequestParam Integer captionid,
 												  @RequestParam String description,
 												  @RequestParam Integer gallerycontainerid,
 												  @RequestParam Integer galleryobjecttypeid,
@@ -129,6 +130,7 @@ public class PhotoGalleryController {
 												  @RequestParam String title,
 												  @RequestParam Integer uuid) {
 		GalleryItem gItem = new GalleryItem();
+		gItem.setGallery_item(gallery_item);
 		gItem.setCaption_id(captionid);
 		gItem.setDescription(description);
 		gItem.setGallery_container_id(gallerycontainerid);

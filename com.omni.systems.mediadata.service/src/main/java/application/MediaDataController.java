@@ -111,15 +111,15 @@ public class MediaDataController {
 											   @RequestParam String topic,
 											   @RequestParam String value) {
 		MetaItem mItem = new MetaItem();
-		mItem.setDate(date);
-		mItem.setDesc(desc);
+		mItem.setMeta_item_date(date);
+		mItem.setMeta_item_desc(desc);
 		mItem.setGallery_type_id(gallerytypeid);
 		mItem.setIs_editable(iseditable);
-		mItem.setKeywords(keywords);
+		mItem.setMeta_item_keywords(keywords);
 		mItem.setMedia_id(mediaid);
 		mItem.setMedia_type_id(mediatypeid);
-		mItem.setTitle(title);
-		mItem.setValue(value);
+		mItem.setMeta_item_title(title);
+		mItem.setMeta_item_value(value);
 		metaItemRepository.save(mItem);
 		return "Saved";
 	}

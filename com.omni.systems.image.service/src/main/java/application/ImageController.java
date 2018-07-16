@@ -44,7 +44,7 @@ public class ImageController {
 	@GetMapping(path="/deleteImageEffect")
 	public @ResponseBody String deleteImageEffect(@RequestParam Integer id) {
 		ImageEffects iEffect = new ImageEffects();
-		iEffect.setImage_efects_id(id);
+		iEffect.setImage_effects_id(id);
 		return "Deleted";
 	}
 	

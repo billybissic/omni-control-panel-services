@@ -10,16 +10,16 @@ public class MetaItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer meta_item_id; 
-	private String title; 
-	private String value; 
-	private String keywords; 
-	private String desc; 
-	private String topic; 
+	private String meta_item_title; 
+	private String meta_item_value; 
+	private String meta_item_keywords; 
+	private String meta_item_desc; 
+	private String meta_item_topic; 
 	private Integer gallery_type_id; 
 	private Integer media_type_id; 
 	private Integer media_id; 
 	private Integer is_editable; 
-	private String date;
+	private String meta_item_date;
 	
 	public Integer getMeta_item_id() {
 		return meta_item_id;
@@ -27,35 +27,35 @@ public class MetaItem {
 	public void setMeta_item_id(Integer meta_item_id) {
 		this.meta_item_id = meta_item_id;
 	}
-	public String getTitle() {
-		return title;
+	public String getMeta_item_title() {
+		return meta_item_title;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setMeta_item_title(String title) {
+		this.meta_item_title = title;
 	}
-	public String getValue() {
-		return value;
+	public String getMeta_item_value() {
+		return meta_item_value;
 	}
-	public void setValue(String value) {
-		this.value = value;
+	public void setMeta_item_value(String value) {
+		this.meta_item_value = value;
 	}
-	public String getKeywords() {
-		return keywords;
+	public String getMeta_item_keywords() {
+		return meta_item_keywords;
 	}
-	public void setKeywords(String keywords) {
-		this.keywords = keywords;
+	public void setMeta_item_keywords(String keywords) {
+		this.meta_item_keywords = keywords;
 	}
-	public String getDesc() {
-		return desc;
+	public String getMeta_item_desc() {
+		return meta_item_desc;
 	}
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setMeta_item_desc(String desc) {
+		this.meta_item_desc = desc;
 	}
-	public String getTopic() {
-		return topic;
+	public String getMeta_item_topic() {
+		return meta_item_topic;
 	}
-	public void setTopic(String topic) {
-		this.topic = topic;
+	public void setMeta_item_topic(String topic) {
+		this.meta_item_topic = topic;
 	}
 	public Integer getGallery_type_id() {
 		return gallery_type_id;
@@ -81,10 +81,10 @@ public class MetaItem {
 	public void setIs_editable(Integer is_editable) {
 		this.is_editable = is_editable;
 	}
-	public String getDate() {
-		return date;
+	public String getMeta_item_date() {
+		return meta_item_date;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setMeta_item_date(String date) {
+		this.meta_item_date = date;
 	}
 }

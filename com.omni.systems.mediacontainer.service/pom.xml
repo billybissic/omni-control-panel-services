@@ -5,7 +5,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>omin-mediacontainer-service</name>
+  <name>omni-mediacontainer-service</name>
   <description>Media Container Data Access media containers service</description>
   
   <parent>
