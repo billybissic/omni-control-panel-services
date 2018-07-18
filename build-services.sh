@@ -24,19 +24,19 @@ buildAllServices()
          echo "[INFO] --Failed to Clean: " $i
          exit 1
       fi
-
-      echo "[INFO] Performing Maven Build: "
+      
+      #echo "[INFO] Performing Maven Build: "
    
-      MAVEN_BUILD_RESULTS=`mvn -B package`
+      #MAVEN_BUILD_RESULTS=`mvn -B package`
  
-      if [[ $MAVEN_BUILD_RESULTS =~ (BUILD[[:space:]]SUCCESS) ]]; then
-         echo "[INFO] --Successfully Built: " $i
-      fi
+      #if [[ $MAVEN_BUILD_RESULTS =~ (BUILD[[:space:]]SUCCESS) ]]; then
+       #  echo "[INFO] --Successfully Built: " $i
+      #fi
    
-      if [[ $MAVEN_BUILD_RESULTS =~ (BUILD[[:space:]]FAILURE) ]]; then
-         echo "[INFO] --Failed To Build: " $i
-         exit 1
-      fi
+      #if [[ $MAVEN_BUILD_RESULTS =~ (BUILD[[:space:]]FAILURE) ]]; then
+       #  echo "[INFO] --Failed To Build: " $i
+        # exit 1
+      #fi
 
       cd ..
       #echo "[INFO] Entering Into Directory:" `pwd`
