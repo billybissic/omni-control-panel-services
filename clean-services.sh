@@ -1,5 +1,5 @@
 #!/bin/bash
-buildAllServices()
+cleanAllServices()
 {
    PARENT_DIRECTORY=`pwd` 
    DIRECTORY_PREFIX="com.omni.systems."
@@ -13,23 +13,22 @@ buildAllServices()
       echo "[INFO] Entering Into Directory: " $i
       cd ${i}
    
-      echo "[INFO] Performing Maven Build: "
+      echo "[INFO] Performing Maven Clean: "
+      MAVEN_RESULTS=`mvn -B clean`
    
-      MAVEN_BUILD_RESULTS=`mvn -B package`
- 
-      if [[ $MAVEN_BUILD_RESULTS =~ (BUILD[[:space:]]SUCCESS) ]]; then
-         echo "[INFO] --Successfully Built: " $i
+      if [[ $MAVEN_RESULTS =~ (BUILD[[:space:]]SUCCESS) ]]; then
+         echo "[INFO] --Successfully Cleaned: " $i 
       fi
    
-      if [[ $MAVEN_BUILD_RESULTS =~ (BUILD[[:space:]]FAILURE) ]]; then
-         echo "[INFO] --Failed To Build: " $i
+      if [[ $MAVEN_RESULTS =~ (BUILD[[:space:]]FAILURE) ]]; then
+         echo "[INFO] --Failed to Clean: " $i
          exit 1
       fi
-
+      
       cd ..
-    done
+  done
 }
 
 echo "Starting the Build Procedure"
-buildAllServices
+cleanAllServices
 echo "End of Script"
