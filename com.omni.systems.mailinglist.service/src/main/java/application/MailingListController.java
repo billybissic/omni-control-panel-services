@@ -21,6 +21,7 @@ public class MailingListController {
 												 @RequestParam String last_name,
 												 @RequestParam String subscriber)
 	{
+		String returnMessage;
 		Subscribers newSubscriber = new Subscribers();
 		//Check to see if they have already subscribed.
 		List<Subscribers> existingSubscriber = subscribersRepository.findBySubscriberEmail(subscriber);
@@ -30,11 +31,13 @@ public class MailingListController {
 			newSubscriber.setLast_name(last_name);
 			newSubscriber.setSubscriber_email(subscriber);
 			subscribersRepository.save(newSubscriber);
-			return "Thanks for subscribing!";
+			returnMessage = "Thanks for subscribing" + first_name + " " + last_name + "!" + subscriber + " has been added to the mailing list.";
+			return returnMessage;
 		}
 		else
 		{
-			return "Already subscribed!";
+			returnMessage = "Already subscribed!";
+			return returnMessage;
 		}
 	}
 
