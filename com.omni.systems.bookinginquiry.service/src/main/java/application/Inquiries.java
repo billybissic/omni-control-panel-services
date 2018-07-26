@@ -16,7 +16,6 @@ public class Inquiries {
 	private String first_name;
 	private String last_name;
 	private String day_phone_number;
-	private String evening_phone_number;
 	private String email_address;
 	private Integer contact_time_id;
 	private Integer inquiry_type_id;
@@ -51,12 +50,6 @@ public class Inquiries {
 	}
 	public void setDay_phone_number(String day_phone_number) {
 		this.day_phone_number = day_phone_number;
-	}
-	public String getEvening_phone_number() {
-		return evening_phone_number;
-	}
-	public void setEvening_phone_number(String evening_phone_number) {
-		this.evening_phone_number = evening_phone_number;
 	}
 	public String getEmail_address() {
 		return email_address;

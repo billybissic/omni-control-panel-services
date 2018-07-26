@@ -14,15 +14,14 @@ CREATE TABLE `inquiry_types` (
 
 CREATE TABLE `inquiries` (
   `inquiry_id` int(11) NOT NULL AUTO_INCREMENT,
-  `contact_time_id` int(11) DEFAULT NULL,
+  `inquiry_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
   `day_phone_number` varchar(255) DEFAULT NULL,
   `email_address` varchar(255) DEFAULT NULL,
-  `evening_phone_number` varchar(255) DEFAULT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `inquiry_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `contact_time_id` int(11) DEFAULT NULL,
   `inquiry_type_id` int(11) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  `message` varchar(255) DEFAULT NULL,
+  `message` text,
   PRIMARY KEY (`inquiry_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

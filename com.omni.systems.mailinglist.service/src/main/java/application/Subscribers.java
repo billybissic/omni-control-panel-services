@@ -9,15 +9,15 @@ import javax.persistence.Id;
 public class Subscribers {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer subscriber_id;
+	private Long subscriber_id;
 	private String first_name;
 	private String last_name;
 	private String subscriber_email;
 	
-	public Integer getSubscriber_id() {
+	public Long getSubscriber_id() {
 		return subscriber_id;
 	}
-	public void setSubscriber_id(Integer subscriber_id) {
+	public void setSubscriber_id(Long subscriber_id) {
 		this.subscriber_id = subscriber_id;
 	}
 	public String getFirst_name() {
