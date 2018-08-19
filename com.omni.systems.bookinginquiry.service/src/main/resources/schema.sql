@@ -1,17 +1,19 @@
+DROP TABLE IF EXISTS `contact_times`;
 CREATE TABLE `contact_times` (
   `contact_timeframe_id` int(11) NOT NULL AUTO_INCREMENT,
   `contact_timeframe` varchar(255) DEFAULT NULL,
   `contact_timeframe_description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`contact_timeframe_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `inquiry_types`;
 CREATE TABLE `inquiry_types` (
   `inquiry_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `inquiry_type_name` varchar(255) DEFAULT NULL,
   `inquiry_type_description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`inquiry_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+/*
 CREATE TABLE `inquiries` (
   `inquiry_id` int(11) NOT NULL AUTO_INCREMENT,
   `inquiry_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -24,4 +26,5 @@ CREATE TABLE `inquiries` (
   `message` text,
   PRIMARY KEY (`inquiry_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+*/
 
