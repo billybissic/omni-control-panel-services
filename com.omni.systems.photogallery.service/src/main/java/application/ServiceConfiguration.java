@@ -7,10 +7,10 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-@Configuration
+//@Configuration
 public class ServiceConfiguration {
 	
-	@Bean
+	/*@Bean
 	public FilterRegistrationBean corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		CorsConfiguration config = new CorsConfiguration();
@@ -18,10 +18,12 @@ public class ServiceConfiguration {
 		config.addAllowedOrigin("http://localhost:4200");
 		config.addAllowedHeader("*");
 		config.addAllowedMethod("*");
-		source.registerCorsConfiguration("/**", config);
+		source.registerCorsConfiguration("/**").allowedO;
 		FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
 		bean.setOrder(0);
 		return bean;
-	}
+	}*/
+	
+	
 
 }

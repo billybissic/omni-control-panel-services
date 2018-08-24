@@ -13,6 +13,7 @@ public class Gallery {
 	private String gallery_name;
 	private String gallery_summary;
 	private Integer serial_number;
+	private Integer mime_type_group_id;
 	private Integer gallery_group_type_id;
 	private Integer gallery_order_type_id;
 	private Integer gallery_caption_id;
@@ -73,6 +74,18 @@ public class Gallery {
 	 */
 	public void setSerial_number(Integer serial_number) {
 		this.serial_number = serial_number;
+	}
+	/**
+	 * @return the mime_type_group_id
+	 */
+	public Integer getMime_type_group_id() {
+		return mime_type_group_id;
+	}
+	/**
+	 * @param mime_type_group_id the mime_type_group_id to set
+	 */
+	public void setMime_type_group_id(Integer mime_type_group_id) {
+		this.mime_type_group_id = mime_type_group_id;
 	}
 	/**
 	 * @return the gallery_group_type_id
@@ -194,4 +207,5 @@ public class Gallery {
 	public void setLast_changed_by_uuid(Integer last_changed_by_uuid) {
 		this.last_changed_by_uuid = last_changed_by_uuid;
 	}
+	
 }

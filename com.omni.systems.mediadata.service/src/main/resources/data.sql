@@ -1,4 +1,6 @@
 /* mime type groups */
+INSERT INTO mime_type_groups (mime_type_group_name, mime_type_group_description) VALUES ('Automatic', 'Default mime group to allow service to select the appropriate mime type group');
+INSERT INTO mime_type_groups (mime_type_group_name, mime_type_group_description) VALUES ('Mixed', 'Mime group designated for any combination of video, image, text, audio');
 INSERT INTO mime_type_groups (mime_type_group_name, mime_type_group_description) VALUES ('Videos', 'Mime group designated for video data types.');
 INSERT INTO mime_type_groups (mime_type_group_name, mime_type_group_description) VALUES ('Images', 'Mime group designated for image data types.');
 INSERT INTO mime_type_groups (mime_type_group_name, mime_type_group_description) VALUES ('Text', 'Mime group designated for text data types.');

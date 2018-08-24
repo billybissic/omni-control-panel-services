@@ -4,6 +4,7 @@ CREATE TABLE `gallery_group_type` (
   `group_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `group_type_name` varchar(255) DEFAULT NULL,
   `group_type_description` varchar(255) DEFAULT NULL,
+  `mime_type_group_id` int(11) NOT NULL,
   PRIMARY KEY (`group_type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 

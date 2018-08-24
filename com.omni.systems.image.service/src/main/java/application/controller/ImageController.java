@@ -205,6 +205,22 @@ public class ImageController {
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}*/
 	
+	
+	@RequestMapping(path="/getImageCount", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<?> getImageCount() {
+		try
+		{
+			return new ResponseEntity<Object>(imagesRepository.count(), HttpStatus.OK);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
 	@GetMapping(path="/deleteImage")
 	public @ResponseBody ResponseEntity<Object> deleteImage(@RequestBody Images image) {
 		

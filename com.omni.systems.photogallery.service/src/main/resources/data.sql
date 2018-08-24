@@ -1,33 +1,43 @@
 /* static data - gallery group type */
-INSERT INTO gallery_group_type (group_type_name, group_type_description) 
-VALUES ('Photo Thumbnail Grid', 'Photo gallery with square thumnail tiles heavy padding.');
+INSERT INTO user_media.gallery_group_type (group_type_name, group_type_description, mime_type_group_id) 
+VALUES ('Photo Thumbnail Grid', 'Photo gallery with square thumnail tiles heavy padding.',
+(SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Images" ));
 
-INSERT INTO gallery_group_type (group_type_name, group_type_description) 
-VALUES ('Photo Tiled Mosaic', 'Photo gallery with mosaic tiles, ranging in random size.');
+INSERT INTO user_media.gallery_group_type (group_type_name, group_type_description, mime_type_group_id) 
+VALUES ('Photo Tiled Mosaic', 'Photo gallery with mosaic tiles, ranging in random size.',
+(SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Images" ));
 
-INSERT INTO gallery_group_type (group_type_name, group_type_description) 
-VALUES ('Photo Square Tiles', 'Photo gallery with consistent size square tiles with elegant padding.');
+INSERT INTO user_media.gallery_group_type (group_type_name, group_type_description, mime_type_group_id) 
+VALUES ('Photo Square Tiles', 'Photo gallery with consistent size square tiles with elegant padding.',
+(SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Images" ));
 
-INSERT INTO gallery_group_type (group_type_name, group_type_description) 
-VALUES ('Photo Circles', 'Photo grallery with consistent size circles.');
+INSERT INTO user_media.gallery_group_type (group_type_name, group_type_description, mime_type_group_id) 
+VALUES ('Photo Circles', 'Photo gallery with consistent size circles.',
+(SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Images" ));
 
-INSERT INTO gallery_group_type (group_type_name, group_type_description) 
-VALUES ('Photo Slideshow', 'Timed slide show of images displaying a large size of images.');
+INSERT INTO user_media.gallery_group_type (group_type_name, group_type_description, mime_type_group_id) 
+VALUES ('Photo Slideshow', 'Timed slide show of images displaying a large size of images.',
+(SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Images" ));
 
-INSERT INTO gallery_group_type (group_type_name, group_type_description) 
-VALUES ('Video Thumbnail Grid', 'Video gallery with square thumbnail tiles and heaving padding between thumbnails for each video.');
+INSERT INTO user_media.gallery_group_type (group_type_name, group_type_description, mime_type_group_id) 
+VALUES ('Video Thumbnail Grid', 'Video gallery with square thumbnail tiles and heaving padding between thumbnails for each video.',
+(SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Videos" ));
 
-INSERT INTO gallery_group_type (group_type_name, group_type_description) 
-VALUES ('Video Tiled Mosaic', 'Video gallery with square and rectangular tiles in a mosaic pattern with minimal padding between each.');
+INSERT INTO user_media.gallery_group_type (group_type_name, group_type_description, mime_type_group_id) 
+VALUES ('Video Tiled Mosaic', 'Video gallery with square and rectangular tiles in a mosaic pattern with minimal padding between each.',
+(SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Videos" ));
 
-INSERT INTO gallery_group_type (group_type_name, group_type_description) 
-VALUES ('Video Square Tiles', 'Video gallery with square tile in a standard tile pattern with minimal padding between each tile.');
+INSERT INTO user_media.gallery_group_type (group_type_name, group_type_description, mime_type_group_id) 
+VALUES ('Video Square Tiles', 'Video gallery with square tile in a standard tile pattern with minimal padding between each tile.',
+(SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Videos" ));
 
-INSERT INTO gallery_group_type (group_type_name, group_type_description) 
-VALUES ('Video Circles', 'Video gallery with circle tiles and heavy padding between each tile.');
+INSERT INTO user_media.gallery_group_type (group_type_name, group_type_description, mime_type_group_id) 
+VALUES ('Video Circles', 'Video gallery with circle tiles and heavy padding between each tile.',
+(SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Videos" ));
 
-INSERT INTO gallery_group_type (group_type_name, group_type_description) 
-VALUES ('Video Sideshow', 'Single video group for each video file in the jumbotron.');
+INSERT INTO user_media.gallery_group_type (group_type_name, group_type_description, mime_type_group_id) 
+VALUES ('Video Sideshow', 'Single video group for each video file in the jumbotron.',
+(SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Videos" ));
 
 /* static data - gallery_object_type */
 INSERT INTO gallery_object_type (gallery_object_type_name, gallery_object_type_description) 

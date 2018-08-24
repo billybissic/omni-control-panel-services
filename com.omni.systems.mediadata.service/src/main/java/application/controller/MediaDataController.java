@@ -1,7 +1,5 @@
 package application.controller;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -20,6 +18,7 @@ import application.domain.MimeTypeGroups;
 import application.domain.MimeTypes;
 import application.objects.MimeTypesObject;
 import application.exception.CaptionTypeAlreadyExistsException;
+import application.exception.CaptionTypeNotFoundException;
 import application.exception.MediaTypeAlreadyExistsException;
 import application.exception.MediaTypeNotFoundException;
 import application.exception.MimeTypeAlreadyExistsException;
@@ -112,6 +111,29 @@ public class MediaDataController {
 			{
 				captionTypesRepository.save(captionType);
 				return new ResponseEntity<Object>(HttpStatus.CREATED);
+			}
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="/getCaptionTypeByName", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<?> getCaptionTypeByName(@RequestParam String captionTypeName) {
+		try
+		{
+			Iterable<Object> captionType;
+			if(captionTypesRepository.findByTypeName(captionTypeName).isPresent()) {
+				captionType = captionTypesRepository.getCaptionTypeByName(captionTypeName);
+				return new ResponseEntity<Object>(captionType, HttpStatus.OK);
+			}
+			else
+			{
+				throw new CaptionTypeNotFoundException(captionTypeName);
 			}
 		}
 		catch (DataAccessException ex)

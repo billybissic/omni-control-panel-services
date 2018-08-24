@@ -13,6 +13,7 @@ public class GalleryGroupType {
 	private Integer group_type_id;
 	private String group_type_name;
 	private String group_type_description;
+	private Integer mime_type_group_id;
 	
 	/**
 	 * @return the group_type_id
@@ -49,5 +50,17 @@ public class GalleryGroupType {
 	 */
 	public void setGroup_type_description(String group_type_description) {
 		this.group_type_description = group_type_description;
+	}
+	/**
+	 * @return the mime_type_group_id
+	 */
+	public Integer getMime_type_group_id() {
+		return mime_type_group_id;
+	}
+	/**
+	 * @param mime_type_group_id the mime_type_group_id to set
+	 */
+	public void setMime_type_group_id(Integer mime_type_group_id) {
+		this.mime_type_group_id = mime_type_group_id;
 	}
 }
