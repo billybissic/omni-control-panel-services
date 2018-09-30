@@ -144,7 +144,8 @@ public class ContainerController {
 		dObject.setHtml_output(htmloutput);
 		dObject.setScript_output(scriptoutput);
 		dObject.setUrl(url);
-		dObject.setView_size(viewsize);
+		/* TODO: must revisit to determine if the view size is needed */
+		//dObject.setView_size(viewsize);
 		displayObjectRepository.save(dObject);
 		return "Saved";
 	}
