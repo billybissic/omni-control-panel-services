@@ -13,14 +13,6 @@ CREATE TABLE `inquiry_types` (
   `inquiry_type_description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`inquiry_type_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `inquiry_status`;
-CREATE TABLE `inquiry_status` (
-  `inquiry_status_id` int(11) NOT NULL AUTO_INCREMENT,
-  `inquiry_status_name` varchar(255) DEFAULT NULL,
-  `inquiry_status_description` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`inquiry_status_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 /*
 CREATE TABLE `inquiries` (
   `inquiry_id` int(11) NOT NULL AUTO_INCREMENT,

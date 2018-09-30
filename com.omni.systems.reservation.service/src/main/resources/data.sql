@@ -6,7 +6,3 @@ INSERT INTO contact_times (contact_timeframe, contact_timeframe_description) VAL
 INSERT INTO inquiry_types (inquiry_type_name, inquiry_type_description) VALUES ('Digital Photography', 'Capture still images in one or photography genres.');
 INSERT INTO inquiry_types (inquiry_type_name, inquiry_type_description) VALUES ('Web Development', 'Design and development of various web technologies.');
 INSERT INTO inquiry_types (inquiry_type_name, inquiry_type_description) VALUES ('Film', 'Capturing motion photography under many genres of film.');
-
-INSERT INTO inquiry_status (inquiry_status_name, inquiry_status_description) VALUES ('Pending', 'Awaiting staff to reach out and confirm reservations with customer.');
-INSERT INTO inquiry_status (inquiry_status_name, inquiry_status_description) VALUES ('Confirmed', 'Staff has made contact with customer and confirmed reservations.');
-INSERT INTO inquiry_status (inquiry_status_name, inquiry_status_description) VALUES ('Canceled', 'Reservation Canceled.');

@@ -33,29 +33,48 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class InquiryTypes {
+public class InquiryStatus {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer inquiry_type_id;
-	private String inquiry_type_name;
-	private String inquiry_type_description;
+	private Integer inquiry_status_id;
+	private String inquiry_status_name;
+	private String inquiry_status_description;
 	
-	public Integer getInquiry_type_id() {
-		return inquiry_type_id;
+	/**
+	 * @return the inquiry_status_id
+	 */
+	public Integer getInquiry_status_id() {
+		return inquiry_status_id;
 	}
-	public void setInquiry_type_id(Integer inquiry_type_id) {
-		this.inquiry_type_id = inquiry_type_id;
+	/**
+	 * @param inquiry_status_id the inquiry_status_id to set
+	 */
+	public void setInquiry_status_id(Integer inquiry_status_id) {
+		this.inquiry_status_id = inquiry_status_id;
 	}
-	public String getInquiry_type_name() {
-		return inquiry_type_name;
+	/**
+	 * @return the inquiry_status_name
+	 */
+	public String getInquiry_status_name() {
+		return inquiry_status_name;
 	}
-	public void setInquiry_type_name(String inquiry_type_name) {
-		this.inquiry_type_name = inquiry_type_name;
+	/**
+	 * @param inquiry_status_name the inquiry_status_name to set
+	 */
+	public void setInquiry_status_name(String inquiry_status_name) {
+		this.inquiry_status_name = inquiry_status_name;
 	}
-	public String getInquiry_type_description() {
-		return inquiry_type_description;
+	/**
+	 * @return the inquiry_status_description
+	 */
+	public String getInquiry_status_description() {
+		return inquiry_status_description;
 	}
-	public void setInquiry_type_description(String inquiry_type_description) {
-		this.inquiry_type_description = inquiry_type_description;
+	/**
+	 * @param inquiry_status_description the inquiry_status_description to set
+	 */
+	public void setInquiry_status_description(String inquiry_status_description) {
+		this.inquiry_status_description = inquiry_status_description;
 	}
+	
 }

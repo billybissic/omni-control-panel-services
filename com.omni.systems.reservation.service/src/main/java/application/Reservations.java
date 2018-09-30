@@ -1,54 +1,28 @@
-/**
-*	MIT License
-*
-*	Copyright (c) 2018 Billy Bissic
-*
-*	Permission is hereby granted, free of charge, to any person obtaining a copy
-*	of this software and associated documentation files (the "Software"), to deal
-*	in the Software without restriction, including without limitation the rights
-*	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-*	copies of the Software, and to permit persons to whom the Software is
-*	furnished to do so, subject to the following conditions:
-*
-*	The above copyright notice and this permission notice shall be included in all
-*	copies or substantial portions of the Software.
-*
-*	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-*	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-*	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-*	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-*	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-*	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-*	SOFTWARE.
-**/
 package application;
 
-/**
- * @author Billy Bissic
- *
- */
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Inquiries {
+public class Reservations {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer inquiry_id;
+	private Date inquiry_time;
 	private String first_name;
 	private String last_name;
-	private String day_phone_number;
+	private String phone_number;
 	private String email_address;
-	private Integer requested_party_size;
+	private Integer partys_number_of_people;
 	private String desired_date;
 	private String desired_time;
 	private Integer contact_time_id;
 	private Integer inquiry_type_id;
-	private String inquiry_submission_timestamp;
 	private String message;
-	private Boolean confirmation_status;
 	
 	/**
 	 * @return the inquiry_id
@@ -61,6 +35,18 @@ public class Inquiries {
 	 */
 	public void setInquiry_id(Integer inquiry_id) {
 		this.inquiry_id = inquiry_id;
+	}
+	/**
+	 * @return the inquiry_time
+	 */
+	public Date getInquiry_time() {
+		return inquiry_time;
+	}
+	/**
+	 * @param inquiry_time the inquiry_time to set
+	 */
+	public void setInquiry_time(Date inquiry_time) {
+		this.inquiry_time = inquiry_time;
 	}
 	/**
 	 * @return the first_name
@@ -87,16 +73,16 @@ public class Inquiries {
 		this.last_name = last_name;
 	}
 	/**
-	 * @return the day_phone_number
+	 * @return the phone_number
 	 */
-	public String getDay_phone_number() {
-		return day_phone_number;
+	public String getPhone_number() {
+		return phone_number;
 	}
 	/**
-	 * @param day_phone_number the day_phone_number to set
+	 * @param phone_number the phone_number to set
 	 */
-	public void setDay_phone_number(String day_phone_number) {
-		this.day_phone_number = day_phone_number;
+	public void setPhone_number(String phone_number) {
+		this.phone_number = phone_number;
 	}
 	/**
 	 * @return the email_address
@@ -111,16 +97,16 @@ public class Inquiries {
 		this.email_address = email_address;
 	}
 	/**
-	 * @return the requested_party_size
+	 * @return the partys_number_of_people
 	 */
-	public Integer getRequested_party_size() {
-		return requested_party_size;
+	public Integer getPartys_number_of_people() {
+		return partys_number_of_people;
 	}
 	/**
-	 * @param requested_party_size the requested_party_size to set
+	 * @param partys_number_of_people the partys_number_of_people to set
 	 */
-	public void setRequested_party_size(Integer requested_party_size) {
-		this.requested_party_size = requested_party_size;
+	public void setPartys_number_of_people(Integer partys_number_of_people) {
+		this.partys_number_of_people = partys_number_of_people;
 	}
 	/**
 	 * @return the desired_date
@@ -171,18 +157,6 @@ public class Inquiries {
 		this.inquiry_type_id = inquiry_type_id;
 	}
 	/**
-	 * @return the inquiry_submission_timestamp
-	 */
-	public String getInquiry_submission_timestamp() {
-		return inquiry_submission_timestamp;
-	}
-	/**
-	 * @param inquiry_submission_timestamp the inquiry_submission_timestamp to set
-	 */
-	public void setInquiry_submission_timestamp(String inquiry_submission_timestamp) {
-		this.inquiry_submission_timestamp = inquiry_submission_timestamp;
-	}
-	/**
 	 * @return the message
 	 */
 	public String getMessage() {
@@ -193,17 +167,5 @@ public class Inquiries {
 	 */
 	public void setMessage(String message) {
 		this.message = message;
-	}
-	/**
-	 * @return the confirmation_status
-	 */
-	public Boolean getConfirmation_status() {
-		return confirmation_status;
-	}
-	/**
-	 * @param confirmation_status the confirmation_status to set
-	 */
-	public void setConfirmation_status(Boolean confirmation_status) {
-		this.confirmation_status = confirmation_status;
 	}
 }

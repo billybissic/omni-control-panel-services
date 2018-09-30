@@ -33,29 +33,47 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class InquiryTypes {
+public class SubscriberGroups {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer inquiry_type_id;
-	private String inquiry_type_name;
-	private String inquiry_type_description;
-	
-	public Integer getInquiry_type_id() {
-		return inquiry_type_id;
+	private Integer subscriber_group_id;
+	private String subscriber_group_name;
+	private String subscriber_group_description;
+	/**
+	 * @return the subscriber_group_id
+	 */
+	public Integer getSubscriber_group_id() {
+		return subscriber_group_id;
 	}
-	public void setInquiry_type_id(Integer inquiry_type_id) {
-		this.inquiry_type_id = inquiry_type_id;
+	/**
+	 * @param subscriber_group_id the subscriber_group_id to set
+	 */
+	public void setSubscriber_group_id(Integer subscriber_group_id) {
+		this.subscriber_group_id = subscriber_group_id;
 	}
-	public String getInquiry_type_name() {
-		return inquiry_type_name;
+	/**
+	 * @return the subscriber_group_name
+	 */
+	public String getSubscriber_group_name() {
+		return subscriber_group_name;
 	}
-	public void setInquiry_type_name(String inquiry_type_name) {
-		this.inquiry_type_name = inquiry_type_name;
+	/**
+	 * @param subscriber_group_name the subscriber_group_name to set
+	 */
+	public void setSubscriber_group_name(String subscriber_group_name) {
+		this.subscriber_group_name = subscriber_group_name;
 	}
-	public String getInquiry_type_description() {
-		return inquiry_type_description;
+	/**
+	 * @return the subscriber_group_description
+	 */
+	public String getSubscriber_group_description() {
+		return subscriber_group_description;
 	}
-	public void setInquiry_type_description(String inquiry_type_description) {
-		this.inquiry_type_description = inquiry_type_description;
+	/**
+	 * @param subscriber_group_description the subscriber_group_description to set
+	 */
+	public void setSubscriber_group_description(String subscriber_group_description) {
+		this.subscriber_group_description = subscriber_group_description;
 	}
 }

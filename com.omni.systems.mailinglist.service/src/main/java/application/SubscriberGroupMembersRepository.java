@@ -27,35 +27,23 @@ package application;
  * @author Billy Bissic
  *
  */
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
 
-@Entity
-public class InquiryTypes {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer inquiry_type_id;
-	private String inquiry_type_name;
-	private String inquiry_type_description;
-	
-	public Integer getInquiry_type_id() {
-		return inquiry_type_id;
-	}
-	public void setInquiry_type_id(Integer inquiry_type_id) {
-		this.inquiry_type_id = inquiry_type_id;
-	}
-	public String getInquiry_type_name() {
-		return inquiry_type_name;
-	}
-	public void setInquiry_type_name(String inquiry_type_name) {
-		this.inquiry_type_name = inquiry_type_name;
-	}
-	public String getInquiry_type_description() {
-		return inquiry_type_description;
-	}
-	public void setInquiry_type_description(String inquiry_type_description) {
-		this.inquiry_type_description = inquiry_type_description;
-	}
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
+
+public interface SubscriberGroupMembersRepository extends CrudRepository<SubscriberGroupMembers, Long> {
+
+	@Query("SELECT subscriber_group_id, subscriber_id FROM SubscriberGroupMembers WHERE subscriber_group_id = ?1")
+	Iterable<SubscriberGroups> subscribersOfGroup(Integer subscriber_group_id);
+
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM SubscriberGroupMembers WHERE subscriber_group_id = ?1 AND subscriber_id = ?2")
+	void deleteById(Integer subscriber_group_id, Integer subscriber_id);
+
+	@Query("SELECT subscriber_id FROM SubscriberGroupMembers") 
+	List<Integer> findMemberIds();
 }

@@ -33,29 +33,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class InquiryTypes {
+public class SubscriberGroupMembers {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer inquiry_type_id;
-	private String inquiry_type_name;
-	private String inquiry_type_description;
-	
-	public Integer getInquiry_type_id() {
-		return inquiry_type_id;
+	private Integer subscriber_group_id;
+	private Integer subscriber_id;
+	/**
+	 * @return the subscriber_group_id
+	 */
+	public Integer getSubscriber_group_id() {
+		return subscriber_group_id;
 	}
-	public void setInquiry_type_id(Integer inquiry_type_id) {
-		this.inquiry_type_id = inquiry_type_id;
+	/**
+	 * @param subscriber_group_id the subscriber_group_id to set
+	 */
+	public void setSubscriber_group_id(Integer subscriber_group_id) {
+		this.subscriber_group_id = subscriber_group_id;
 	}
-	public String getInquiry_type_name() {
-		return inquiry_type_name;
+	/**
+	 * @return the subscriber_id
+	 */
+	public Integer getSubscriber_id() {
+		return subscriber_id;
 	}
-	public void setInquiry_type_name(String inquiry_type_name) {
-		this.inquiry_type_name = inquiry_type_name;
-	}
-	public String getInquiry_type_description() {
-		return inquiry_type_description;
-	}
-	public void setInquiry_type_description(String inquiry_type_description) {
-		this.inquiry_type_description = inquiry_type_description;
+	/**
+	 * @param subscriber_id the subscriber_id to set
+	 */
+	public void setSubscriber_id(Integer subscriber_id) {
+		this.subscriber_id = subscriber_id;
 	}
 }
