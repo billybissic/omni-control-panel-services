@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import application.domain.MimeTypes;
-import application.objects.MimeTypesObject;
+import application.domain.MimeTypesObject;
 
 public interface MimeTypesRepository extends CrudRepository<MimeTypes, Long> {
 

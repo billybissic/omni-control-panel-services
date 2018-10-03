@@ -1,4 +1,4 @@
-package application.objects;
+package application.domain;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

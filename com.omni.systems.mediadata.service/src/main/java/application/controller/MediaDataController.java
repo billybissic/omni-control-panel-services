@@ -16,7 +16,7 @@ import application.domain.Captions;
 import application.domain.MediaTypes;
 import application.domain.MimeTypeGroups;
 import application.domain.MimeTypes;
-import application.objects.MimeTypesObject;
+import application.domain.MimeTypesObject;
 import application.exception.CaptionTypeAlreadyExistsException;
 import application.exception.CaptionTypeNotFoundException;
 import application.exception.MediaTypeAlreadyExistsException;
