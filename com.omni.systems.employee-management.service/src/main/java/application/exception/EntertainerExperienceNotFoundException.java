@@ -27,9 +27,8 @@ package application.exception;
  * @author Billy Bissic
  *
  */
-public class EventNotFoundException extends RuntimeException {
-
-	public EventNotFoundException() {
-		super("No event found.");
+public class EntertainerExperienceNotFoundException extends RuntimeException {
+	public EntertainerExperienceNotFoundException() {
+		super("Entertainer experience not found.");
 	}
 }

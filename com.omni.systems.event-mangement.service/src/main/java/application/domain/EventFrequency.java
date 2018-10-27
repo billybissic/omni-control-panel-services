@@ -39,6 +39,8 @@ public class EventFrequency {
 	private Integer event_frequency_id;
 	private String event_frequency_name;
 	private String event_frequency_description;
+	private Integer event_frequency_multiplier;
+	
 	/**
 	 * @return the event_frequency_id
 	 */
@@ -75,5 +77,16 @@ public class EventFrequency {
 	public void setEvent_frequency_description(String event_frequency_description) {
 		this.event_frequency_description = event_frequency_description;
 	}
-
+	/**
+	 * @return the event_frequency_multiplier
+	 */
+	public Integer getEvent_frequency_multiplier() {
+		return event_frequency_multiplier;
+	}
+	/**
+	 * @param event_frequency_multiplier the event_frequency_multiplier to set
+	 */
+	public void setEvent_frequency_multiplier(Integer event_frequency_multiplier) {
+		this.event_frequency_multiplier = event_frequency_multiplier;
+	}
 }

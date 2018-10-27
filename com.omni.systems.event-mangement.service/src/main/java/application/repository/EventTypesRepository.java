@@ -49,7 +49,8 @@ public interface EventTypesRepository extends CrudRepository<EventTypes, Integer
 	 * @param event_type_id
 	 * @return
 	 */
-	@Query("SELECT event_type_id, event_type_name, event_type_description FROM EventTypes WHERE event_type_id = ?1")
+	//@Query("SELECT event_type_id, event_type_name, event_type_description FROM EventTypes WHERE event_type_id = ?1")
+	@Query(nativeQuery=true, value="SELECT * FROM EventTypes WHERE event_type_id = ?1")
 	EventTypes findById(Integer event_type_id);
 
 	/**

@@ -33,7 +33,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import application.exception.EventDetailsNotFoundException;
 import application.exception.EventFrequencyAlreadyExistsException;
 import application.exception.EventFrequencyNotFoundException;
-import application.exception.EventNotFoundException;
 import application.exception.EventStatusAlreadyExistsException;
 import application.exception.EventStatusNotFoundException;
 import application.exception.EventTypeAlreadyExistsException;
@@ -54,13 +53,6 @@ public class EventManagementControllerAdvice {
 	@ExceptionHandler(EventDetailsNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	VndErrors eventDetailsNotFoundException(EventDetailsNotFoundException ex) {
-		return new VndErrors("error", ex.getMessage());
-	}
-	
-	@ResponseBody
-	@ExceptionHandler(EventNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors eventNotFoundException(EventNotFoundException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	

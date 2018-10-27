@@ -21,27 +21,14 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application.repository;
-
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.transaction.annotation.Transactional;
-
-import application.domain.Events;
+package application.exception;
 
 /**
  * @author Billy Bissic
  *
  */
-public interface EventsRepository extends CrudRepository<Events, Integer> {
-
-	/**
-	 * @param id
-	 */
-	@Transactional
-	@Modifying
-	@Query("DELETE FROM Events WHERE event_id = ?1")
-	void deleteById(Integer id);
-
+public class EntertainerAuditionsNotFoundException extends RuntimeException {
+	public EntertainerAuditionsNotFoundException() {
+		super("Entertainer audition not found.");
+	}
 }

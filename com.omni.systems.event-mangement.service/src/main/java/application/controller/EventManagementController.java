@@ -36,16 +36,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import application.domain.EventDetails;
 import application.domain.EventFrequency;
 import application.domain.EventStatus;
 import application.domain.EventTypes;
-import application.domain.Events;
-import application.repository.EventDetailsRepository;
 import application.repository.EventFrequencyRepository;
 import application.repository.EventStatusRepository;
 import application.repository.EventTypesRepository;
-import application.repository.EventsRepository;
 
 /**
  * @author Billy Bissic
@@ -55,45 +51,13 @@ import application.repository.EventsRepository;
 @Controller
 @RequestMapping(path="/api/EventManagementService")
 public class EventManagementController {
-	
-	@Autowired
-	private EventDetailsRepository eventDetailsRepository;
-	@Autowired
-	private EventsRepository eventRepository;
+
 	@Autowired
 	private EventStatusRepository eventStatusRepository;
 	@Autowired
 	private EventTypesRepository eventTypesRepository;
 	@Autowired
 	private EventFrequencyRepository eventFrequencyRepository;
-
-	@RequestMapping(value="/addEventDetails", method = RequestMethod.POST)
-	public ResponseEntity<?> addEventDetails(@RequestBody EventDetails eventDetails) {
-		try
-		{
-			eventDetailsRepository.save(eventDetails);
-			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
-		}
-		catch (HibernateException ex)
-		{
-			System.out.println(ex);;
-			return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
-		}
-	}
-	
-	@RequestMapping(value="/addEvent", method = RequestMethod.POST)
-	public ResponseEntity<?> addEvent(@RequestBody Events event) {
-		try
-		{
-			eventRepository.save(event);
-			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
-		}
-		catch (HibernateException ex)
-		{
-			System.out.println(ex);;
-			return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
-		}
-	}
 	
 	@RequestMapping(value="/addEventStatus", method = RequestMethod.POST)
 	public ResponseEntity<?> addEventStatus(@RequestBody EventStatus eventStatus) {
@@ -123,36 +87,6 @@ public class EventManagementController {
 		}
 	}
 	
-	@DeleteMapping(path="/deleteEventDetails/{id}")
-	public ResponseEntity<HttpStatus> deleteEventDetails(@PathVariable Integer id)
-	{
-		try
-		{
-			eventDetailsRepository.deleteById(id);
-			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
-		}
-		catch (HibernateException ex)
-		{
-			System.out.println(ex);
-			return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
-		}
-	}
-	
-	@DeleteMapping(path="/deleteEvent/{id}")
-	public ResponseEntity<HttpStatus> deleteEvent(@PathVariable Integer id)
-	{
-		try
-		{
-			eventRepository.deleteById(id);
-			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
-		}
-		catch (HibernateException ex)
-		{
-			System.out.println(ex);
-			return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
-		}
-	}
-	
 	@DeleteMapping(path="/deleteEventStatus/{id}")
 	public ResponseEntity<HttpStatus> deleteEventStatus(@PathVariable Integer id)
 	{
@@ -168,8 +102,8 @@ public class EventManagementController {
 		}
 	}
 	
-	@DeleteMapping(path="/deleteEventTypes/{id}")
-	public ResponseEntity<HttpStatus> deleteEventTypes(@PathVariable Integer id)
+	@DeleteMapping(path="/deleteEventType/{id}")
+	public ResponseEntity<HttpStatus> deleteEventType(@PathVariable Integer id)
 	{
 		try
 		{
@@ -190,37 +124,6 @@ public class EventManagementController {
 		{
 			eventFrequencyRepository.deleteById(id);
 			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
-		}
-		catch (HibernateException ex)
-		{
-			System.out.println(ex);
-			return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
-		}
-	}
-	
-	@GetMapping(path="getEvents")
-	public ResponseEntity<?> getEvents()
-	{
-		try
-		{
-			Iterable<Events> events = eventRepository.findAll();
-			return new ResponseEntity<Iterable<Events>>(events, HttpStatus.OK);
-		}
-		catch (HibernateException ex)
-		{
-			System.out.println(ex);
-			return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
-		}
-		
-	}
-	
-	@GetMapping(path="/getEventDetails")
-	public ResponseEntity<?> getEventDetails(@RequestParam Integer event_id)
-	{
-		try
-		{
-			EventDetails eventDetails = eventDetailsRepository.findById(event_id);
-			return new ResponseEntity<EventDetails>(eventDetails, HttpStatus.OK);
 		}
 		catch (HibernateException ex)
 		{

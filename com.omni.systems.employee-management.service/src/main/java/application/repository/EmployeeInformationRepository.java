@@ -23,37 +23,14 @@
 **/
 package application.repository;
 
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 
-import application.domain.EventDetails;
+import application.domain.EmployeeInformation;
 
 /**
  * @author Billy Bissic
  *
  */
-public interface EventDetailsRepository extends CrudRepository<EventDetails, Integer> {
-
-	/**
-	 * @param id
-	 */
-	@Transactional
-	@Modifying
-	@Query("DELETE FROM EventDetails WHERE event_details_id = ?1")
-	void deleteById(Integer id);
-
-	/**
-	 * @param event_id
-	 * @return
-	 */
-	@Query("SELECT event_details_id, event_id, event_type_id, "
-		 + "       event_status_id, event_host, event_location, event_date, "
-		 + "       event_start_time, event_end_time, event_image_id, "
-		 + "       last_changed_timestamp, last_updated_by "
-		 + "  FROM EventDetails WHERE event_id = ?1")
-	EventDetails findById(Integer event_id);
+public interface EmployeeInformationRepository extends CrudRepository<EmployeeInformation, Integer> {
 
 }

@@ -21,61 +21,57 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application.domain;
+package application;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+//import lombok.AllArgsConstructor;
+//import lombok.Data;
 /**
  * @author Billy Bissic
  *
  */
-@Entity
-public class Events {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	
-	private Integer event_id;
-	private String event_name;
-	private String event_description;
-	
-	/**
-	 * @return the event_id
-	 */
-	public Integer getEvent_id() {
-		return event_id;
-	}
-	/**
-	 * @param event_id the event_id to set
-	 */
-	public void setEvent_id(Integer event_id) {
-		this.event_id = event_id;
-	}
-	/**
-	 * @return the event_name
-	 */
-	public String getEvent_name() {
-		return event_name;
-	}
-	/**
-	 * @param event_name the event_name to set
-	 */
-	public void setEvent_name(String event_name) {
-		this.event_name = event_name;
-	}
-	/**
-	 * @return the event_description
-	 */
-	public String getEvent_description() {
-		return event_description;
-	}
-	/**
-	 * @param event_description the event_description to set
-	 */
-	public void setEvent_description(String event_description) {
-		this.event_description = event_description;
-	}
 
+//@AllArgsConstructor
+//@Data
+public class Colors {
+	
+	private String primary_color;
+	private String secondary_color;
+	
+	/**
+	 * @return the primary_color
+	 */
+	public String getPrimary_color() {
+		return primary_color;
+	}
+	/**
+	 * @param primary_color the primary_color to set
+	 */
+	public void setPrimary_color(String primary_color) {
+		this.primary_color = primary_color;
+	}
+	/**
+	 * @return the secondary_color
+	 */
+	public String getSecondary_color() {
+		return secondary_color;
+	}
+	/**
+	 * @param secondary_color the secondary_color to set
+	 */
+	public void setSecondary_color(String secondary_color) {
+		this.secondary_color = secondary_color;
+	}
+	
+	//protected Colors() { }
+	
+	/*public Colors (final String primary_color, final String secondary_color)
+	{
+		this.primary_color = primary_color;
+		this.secondary_color = secondary_color;
+	}*/
+	
+	/** @return the primary_color */
+	//public String getPrimary_color() { return primary_color; }
+	/** @return the secondary_color */
+	//public String getSecondary_color() { return secondary_color; }
 }
