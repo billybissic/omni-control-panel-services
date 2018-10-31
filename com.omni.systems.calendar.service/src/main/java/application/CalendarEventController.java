@@ -65,10 +65,10 @@ public class CalendarEventController {
 		return new ResponseEntity<CalendarEvent>(calendarEvent, HttpStatus.CREATED);
 	}
 	
-	@DeleteMapping(value="/deleteCalendarEvent/{id}")
-	public ResponseEntity<HttpStatus> deleteCalendarEvent(@PathVariable ObjectId id)
+	@RequestMapping(path="/deleteCalendarEvent/{_id}", method = RequestMethod.GET)
+	public ResponseEntity<HttpStatus> deleteCalendarEvent(@PathVariable String _id)
 	{
-		calendarEventRepository.delete(id);
+		calendarEventRepository.delete(calendarEventRepository.findOne(_id));
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 }

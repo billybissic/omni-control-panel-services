@@ -23,6 +23,9 @@
 **/
 package application;
 
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
+
 //import lombok.AllArgsConstructor;
 //import lombok.Data;
 
@@ -36,6 +39,7 @@ public class Details {
 	private String description;
 	private String host;
 	private String location;
+	@Indexed(name = "event_type_index", direction = IndexDirection.DESCENDING)
 	private Integer event_type_id;
 	private Integer event_status_id;
 	private Integer event_frequency_id;

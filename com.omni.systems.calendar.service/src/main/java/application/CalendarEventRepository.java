@@ -32,12 +32,18 @@ import org.springframework.stereotype.Repository;
  *
  */
 @Repository
-public interface CalendarEventRepository extends MongoRepository<CalendarEvent, ObjectId>{
+public interface CalendarEventRepository extends MongoRepository<CalendarEvent, String>{
 
 	/**
 	 * @param date
 	 * @return
 	 */
 	Iterable<CalendarEvent> findByStart(String start);
+
+	/**
+	 * @param _id
+	 * @return
+	 */
+	CalendarEvent findOne(String _id);
 
 }
