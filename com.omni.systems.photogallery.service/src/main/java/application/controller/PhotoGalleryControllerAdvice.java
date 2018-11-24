@@ -13,6 +13,8 @@ import application.exception.GalleryChildAlreadyExistsException;
 import application.exception.GalleryChildNotFoundException;
 import application.exception.GalleryGroupTypeAlreadyExistsException;
 import application.exception.GalleryGroupTypeNotFoundException;
+import application.exception.GalleryStyleTypeAlreadyExistsException;
+import application.exception.GalleryStyleTypeNotFoundException;
 import application.exception.GalleryItemAlreadyExistsException;
 import application.exception.GalleryItemNotFoundException;
 import application.exception.GalleryNotFoundException;
@@ -20,6 +22,8 @@ import application.exception.GalleryObjectTypeAlreadyExistsException;
 import application.exception.GalleryObjectTypeNotFoundException;
 import application.exception.GalleryOrderCategoryAlreadyExistsException;
 import application.exception.GalleryOrderCategoryNotFoundException;
+import application.exception.GalleryOrderDirectionNotFoundException;
+import application.exception.GalleryOrderTypeNotFoundException;
 import application.exception.NoDataAvailableException;
 
 @ControllerAdvice
@@ -41,9 +45,9 @@ public class PhotoGalleryControllerAdvice {
 	}
 	
 	@ResponseBody
-	@ExceptionHandler(GalleryGroupTypeAlreadyExistsException.class)
+	@ExceptionHandler(GalleryStyleTypeAlreadyExistsException.class)
 	@ResponseStatus(HttpStatus.CONFLICT)
-	VndErrors galleryGroupTypeAlreadyExistsException(GalleryGroupTypeAlreadyExistsException ex) {
+	VndErrors galleryGroupTypeAlreadyExistsException(GalleryStyleTypeAlreadyExistsException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	@ResponseBody
@@ -57,6 +61,13 @@ public class PhotoGalleryControllerAdvice {
 	@ExceptionHandler(GalleryObjectTypeAlreadyExistsException.class)
 	@ResponseStatus(HttpStatus.CONFLICT)
 	VndErrors galleryObjectTypeAlreadyExistsException(GalleryObjectTypeAlreadyExistsException ex) {
+		return new VndErrors("error", ex.getMessage());
+	}
+	
+	@ResponseBody
+	@ExceptionHandler(GalleryGroupTypeAlreadyExistsException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	VndErrors galleryGroupTypeAlreadyExistsException(GalleryGroupTypeAlreadyExistsException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	
@@ -89,9 +100,9 @@ public class PhotoGalleryControllerAdvice {
 	}
 	
 	@ResponseBody
-	@ExceptionHandler(GalleryGroupTypeNotFoundException.class)
+	@ExceptionHandler(GalleryStyleTypeNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors galleryGroupTypeNotFoundException(GalleryGroupTypeNotFoundException ex) {
+	VndErrors galleryGroupTypeNotFoundException(GalleryStyleTypeNotFoundException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	
@@ -110,9 +121,30 @@ public class PhotoGalleryControllerAdvice {
 	}
 	
 	@ResponseBody
+	@ExceptionHandler(GalleryGroupTypeNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	VndErrors galleryGroupTypeNotFoundException(GalleryGroupTypeNotFoundException ex) {
+		return new VndErrors("error", ex.getMessage());
+	}
+	
+	@ResponseBody
 	@ExceptionHandler(GalleryOrderCategoryNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	VndErrors galleryOrderCategoryNotFoundException(GalleryOrderCategoryNotFoundException ex) {
+		return new VndErrors("error", ex.getMessage());
+	}
+	
+	@ResponseBody
+	@ExceptionHandler(GalleryOrderTypeNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	VndErrors galleryOrderCategoryNotFoundException(GalleryOrderTypeNotFoundException ex) {
+		return new VndErrors("error", ex.getMessage());
+	}
+	
+	@ResponseBody
+	@ExceptionHandler(GalleryOrderDirectionNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	VndErrors galleryOrderDirectionNotFoundException(GalleryOrderDirectionNotFoundException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 }

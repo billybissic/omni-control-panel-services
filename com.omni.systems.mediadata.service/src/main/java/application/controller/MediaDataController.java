@@ -5,6 +5,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,7 +17,7 @@ import application.domain.Captions;
 import application.domain.MediaTypes;
 import application.domain.MimeTypeGroups;
 import application.domain.MimeTypes;
-import application.domain.MimeTypesObject;
+import application.domain.MimeTypeObjects;
 import application.exception.CaptionTypeAlreadyExistsException;
 import application.exception.CaptionTypeNotFoundException;
 import application.exception.MediaTypeAlreadyExistsException;
@@ -104,7 +105,7 @@ public class MediaDataController {
 	public @ResponseBody ResponseEntity<?> addNewCaptionType(@RequestBody CaptionTypes captionType) {
 		try
 		{
-			if(captionTypesRepository.findByTypeName(captionType.getCaption_type_name()).isPresent()) {
+			if(captionTypesRepository.findByCaptionTypeName(captionType.getCaptionTypeName()).isPresent()) {
 				throw new CaptionTypeAlreadyExistsException(captionType);
 			}
 			else
@@ -123,17 +124,17 @@ public class MediaDataController {
 	}
 	
 	@RequestMapping(path="/getCaptionTypeByName", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<?> getCaptionTypeByName(@RequestParam String captionTypeName) {
+	public @ResponseBody ResponseEntity<?> getCaptionTypeByName(@RequestParam String caption_type_name) {
 		try
 		{
-			Iterable<Object> captionType;
-			if(captionTypesRepository.findByTypeName(captionTypeName).isPresent()) {
-				captionType = captionTypesRepository.getCaptionTypeByName(captionTypeName);
+			Iterable<CaptionTypes> captionType;
+			if(captionTypesRepository.findByCaptionTypeName(caption_type_name).isPresent()) {
+				captionType = captionTypesRepository.getByCaptionTypeName(caption_type_name);
 				return new ResponseEntity<Object>(captionType, HttpStatus.OK);
 			}
 			else
 			{
-				throw new CaptionTypeNotFoundException(captionTypeName);
+				throw new CaptionTypeNotFoundException(caption_type_name);
 			}
 		}
 		catch (DataAccessException ex)
@@ -143,6 +144,14 @@ public class MediaDataController {
 			
 			/* TODO: log the exception */
 		}
+	}
+	
+	@RequestMapping(path="/getCaptionTypeById/{id}", method = RequestMethod.POST)
+	public ResponseEntity<?> getCaptionTypeById(@PathVariable Integer id)
+	{
+		CaptionTypes captionType = captionTypesRepository.findById(id);
+		
+		return new ResponseEntity<Object>(captionType, HttpStatus.OK);
 	}
 		
 	@RequestMapping(path="/getAllCaptionTypes", method = RequestMethod.GET)
@@ -174,7 +183,7 @@ public class MediaDataController {
 	public @ResponseBody ResponseEntity<?> deleteCaptionType(@RequestBody CaptionTypes captionType) {
 		try
 		{
-			if(captionTypesRepository.findByTypeName(captionType.getCaption_type_name()).isPresent()) {
+			if(captionTypesRepository.findByCaptionTypeName(captionType.getCaptionTypeName()).isPresent()) {
 				captionTypesRepository.delete(captionType);
 				return new ResponseEntity<Object>(captionType, HttpStatus.OK);
 			}

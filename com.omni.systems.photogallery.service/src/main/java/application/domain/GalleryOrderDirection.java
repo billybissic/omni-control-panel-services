@@ -1,5 +1,6 @@
 package application.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,33 +11,35 @@ public class GalleryOrderDirection {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer gallery_order_direction_id;
-	private String gallery_order_direction_name;
+	@Column(name = "gallery_order_direction_id")
+	private Integer id;
+	@Column(name = "gallery_order_direction_name")
+	private String galleryOrderDirectionName;
 	private String gallery_order_direction_description;
 	
 	/**
-	 * @return the gallery_order_direction_id
+	 * @return the id
 	 */
-	public Integer getGallery_order_direction_id() {
-		return gallery_order_direction_id;
+	public Integer getId() {
+		return id;
 	}
 	/**
-	 * @param gallery_order_direction_id the gallery_order_direction_id to set
+	 * @param id the id to set
 	 */
-	public void setGallery_order_direction_id(Integer gallery_order_direction_id) {
-		this.gallery_order_direction_id = gallery_order_direction_id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	/**
-	 * @return the gallery_order_direction_name
+	 * @return the galleryOrderDirectionName
 	 */
-	public String getGallery_order_direction_name() {
-		return gallery_order_direction_name;
+	public String getGalleryOrderDirectionName() {
+		return galleryOrderDirectionName;
 	}
 	/**
-	 * @param gallery_order_direction_name the gallery_order_direction_name to set
+	 * @param galleryOrderDirectionName the galleryOrderDirectionName to set
 	 */
-	public void setGallery_order_direction_name(String gallery_order_direction_name) {
-		this.gallery_order_direction_name = gallery_order_direction_name;
+	public void setGalleryOrderDirectionName(String galleryOrderDirectionName) {
+		this.galleryOrderDirectionName = galleryOrderDirectionName;
 	}
 	/**
 	 * @return the gallery_order_direction_description

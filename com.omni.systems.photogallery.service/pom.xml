@@ -55,7 +55,7 @@
    </dependencies>
 	
 	<build>
-		<finalName>gallery-service</finalName>
+		<finalName>photo-gallery-service</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

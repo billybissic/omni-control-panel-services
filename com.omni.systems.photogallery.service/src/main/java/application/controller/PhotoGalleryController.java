@@ -2,12 +2,14 @@ package application.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,9 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import application.domain.Gallery;
 import application.domain.GalleryChildren;
 import application.domain.GalleryGroupType;
+import application.domain.GalleryStyleType;
 import application.domain.GalleryItem;
 import application.domain.GalleryObjectType;
 import application.domain.GalleryOrderCategory;
+import application.domain.GalleryOrderDirection;
 import application.domain.GalleryOrderType;
 import application.domain.GalleryStat;
 import application.exception.GalleryAlreadyExistsException;
@@ -25,6 +29,8 @@ import application.exception.GalleryChildAlreadyExistsException;
 import application.exception.GalleryChildNotFoundException;
 import application.exception.GalleryGroupTypeAlreadyExistsException;
 import application.exception.GalleryGroupTypeNotFoundException;
+import application.exception.GalleryStyleTypeAlreadyExistsException;
+import application.exception.GalleryStyleTypeNotFoundException;
 import application.exception.GalleryItemAlreadyExistsException;
 import application.exception.GalleryItemNotFoundException;
 import application.exception.GalleryNotFoundException;
@@ -32,12 +38,17 @@ import application.exception.GalleryObjectTypeAlreadyExistsException;
 import application.exception.GalleryObjectTypeNotFoundException;
 import application.exception.GalleryOrderCategoryAlreadyExistsException;
 import application.exception.GalleryOrderCategoryNotFoundException;
+import application.exception.GalleryOrderDirectionAlreadyExistsException;
+import application.exception.GalleryOrderDirectionNotFoundException;
+import application.exception.GalleryOrderTypeNotFoundException;
 import application.exception.NoDataAvailableException;
 import application.repository.GalleryChildrenRepository;
 import application.repository.GalleryGroupTypeRepository;
+import application.repository.GalleryStyleTypeRepository;
 import application.repository.GalleryItemRepository;
 import application.repository.GalleryObjectTypeRepository;
 import application.repository.GalleryOrderCategoryRepository;
+import application.repository.GalleryOrderDirectionRepository;
 import application.repository.GalleryOrderTypeRepository;
 import application.repository.GalleryRepository;
 import application.repository.GalleryStatRepository;
@@ -46,29 +57,34 @@ import application.repository.GalleryStatRepository;
 @RequestMapping(path="/api/GalleryServices")
 public class PhotoGalleryController {
 
-	@Autowired
-	private GalleryRepository galleryRepository;
-	@Autowired
-	private GalleryChildrenRepository galleryChildrenRepository;
+	//@Autowired
+	//private GalleryRepository galleryRepository;
+	//@Autowired
+	//private GalleryChildrenRepository galleryChildrenRepository;
 	@Autowired
 	private GalleryGroupTypeRepository galleryGroupTypeRepository;
+	@Autowired
+	private GalleryStyleTypeRepository galleryStyleTypeRepository;
 	@Autowired
 	private GalleryItemRepository galleryItemRepository;
 	@Autowired
 	private GalleryObjectTypeRepository galleryObjectTypeRepository;
+	//@Autowired
+	//private GalleryStatRepository galleryStatRepository;
 	@Autowired
-	private GalleryStatRepository galleryStatRepository;
+	private GalleryOrderDirectionRepository galleryOrderDirectionRepository;
 	@Autowired
 	private GalleryOrderCategoryRepository galleryOrderCategoryRepository;
 	@Autowired
 	private GalleryOrderTypeRepository galleryOrderTypeRepository;
 	
-	@RequestMapping(path="/addGallery", method = RequestMethod.POST)
+	//TODO: Migrate over to the gallery services server
+	/*@RequestMapping(path="/addGallery", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<?> addNewGallery(@RequestBody Gallery newGallery) {
 	
 		try
 		{
-			/* check to see if the data already exists and throw exception if it does */
+			// check to see if the data already exists and throw exception if it does 
 			if(galleryRepository.findById(newGallery.getGallery_id()).isPresent()) {
 				throw new GalleryAlreadyExistsException(newGallery);
 			}
@@ -80,13 +96,15 @@ public class PhotoGalleryController {
 		}
 		catch (DataAccessException ex)
 		{
-			/* All other errors send generic message to browser */
+			// All other errors send generic message to browser 
 			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
 			
-			/* TODO: log the exception */
+			// TODO: log the exception 
 		}
-	}
-	@RequestMapping(path="/getGalleryCount", method = RequestMethod.GET)
+	}*/
+	
+	//TODO: Migrate over to the gallery services server
+	/*@RequestMapping(path="/getGalleryCount", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<?> getGalleryCount()
 	{
 		try
@@ -95,13 +113,12 @@ public class PhotoGalleryController {
 		}
 		catch (DataAccessException ex)
 		{
-			/* All other errors send generic message to browser */
 			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
-			
-			/* TODO: log the exception */
 		}
-	}
-	@RequestMapping(path="/getAllGalleries", method = RequestMethod.GET)
+	}*/
+	
+	//TODO: Migrate over to the gallery services server
+	/*@RequestMapping(path="/getAllGalleries", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<Object> getAllGalleries()
 	{
 		try
@@ -121,14 +138,12 @@ public class PhotoGalleryController {
 		}
 		catch (DataAccessException ex)
 		{
-			/* All other errors send generic message to browser */
 			return new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
-			
-			/* TODO: log the exception */
 		}
-	}
+	}*/
 	
-	@RequestMapping(path="/deleteGallery", method = RequestMethod.DELETE)
+	//TODO: Migrate over to the gallery services server
+	/*@RequestMapping(path="/deleteGallery", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseEntity<?> deleteGallery(@RequestBody Gallery gallery)
 	{
 		try
@@ -144,14 +159,12 @@ public class PhotoGalleryController {
 		}
 		catch (DataAccessException ex)
 		{
-			/* All other errors send generic message to browser */
 			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
-			
-			/* TODO: log the exception */
 		}
-	}
+	}*/
 	
-	@RequestMapping(path="/addGalleryChild", method = RequestMethod.POST)
+	//TODO: Migrate over to the gallery services server
+	/*@RequestMapping(path="/addGalleryChild", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<?> addNewGalleryChild(@RequestBody GalleryChildren galleryChild) {
 
 		try
@@ -167,14 +180,12 @@ public class PhotoGalleryController {
 		}
 		catch (DataAccessException ex)
 		{
-			/* All other errors send generic message to browser */
 			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
-			
-			/* TODO: log the exception */
 		}
-	}
+	}*/
 	
-	@RequestMapping(path="/getGalleryChildren", method = RequestMethod.GET)
+	//TODO: Migrate over to the gallery services server
+	/*@RequestMapping(path="/getGalleryChildren", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<?> getAllGalleryChildren(@RequestBody Gallery gallery)
 	{
 		try
@@ -194,14 +205,13 @@ public class PhotoGalleryController {
 		}
 		catch (DataAccessException ex)
 		{
-			/* All other errors send generic message to browser */
 			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
 			
-			/* TODO: log the exception */
 		}
-	}
+	}*/
 
-	@RequestMapping(path="/deleteGalleryChild", method = RequestMethod.DELETE)
+	//TODO: Migrate over to the gallery services server
+	/*@RequestMapping(path="/deleteGalleryChild", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseEntity<?> deleteGalleryChild(@RequestBody GalleryChildren galleryChild) {
 		
 		try
@@ -217,18 +227,23 @@ public class PhotoGalleryController {
 		}
 		catch (DataAccessException ex)
 		{
-			/* All other errors send generic message to browser */
+			
 			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
 			
-			/* TODO: log the exception */
 		}
-	}
+	}*/
 	
+	
+	/*     
+	 *     call: /addGalleryGroupType
+	 *   method: POST 
+	 */
 	@RequestMapping(path="/addGalleryGroupType", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<?> addNewGalleryGroupType(@RequestBody GalleryGroupType galleryGroupType) {
 		try
 		{
-			if(galleryGroupTypeRepository.findByGroupName(galleryGroupType.getGroup_type_name()).isPresent()) {
+			System.out.println(galleryGroupType);
+			if(galleryGroupTypeRepository.findByGalleryGroupTypeName(galleryGroupType.getGalleryGroupTypeName()).isPresent()) {
 				throw new GalleryGroupTypeAlreadyExistsException(galleryGroupType);
 			}
 			else
@@ -247,12 +262,16 @@ public class PhotoGalleryController {
 		}
 	}
 	
+    /*     
+     *     call: /getGalleryGroupTypes 
+	 *   method: GET 
+	 */
 	@RequestMapping(path="/getGalleryGroupTypes", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<?> getAllGalleryGoupTypes()
 	{
 		try
 		{
-			Long galleryGroupTypeCount = galleryGroupTypeRepository.count();
+			long galleryGroupTypeCount = galleryGroupTypeRepository.count();
 			Iterable<GalleryGroupType> galleryGroupTypes;
 			
 			if(galleryGroupTypeCount == 0) {
@@ -272,18 +291,120 @@ public class PhotoGalleryController {
 			/* TODO: log the exception */
 		}
 	}
-
-	@RequestMapping(path="/deleteGalleryGroupType", method = RequestMethod.DELETE)
-	public @ResponseBody ResponseEntity<?> deleteGalleryGroupType(@RequestBody GalleryGroupType galleryGroupType) {
+	
+	/*
+	 *    call: /countGalleryGroupTypes
+	 * 	method: GET
+	 */
+	@RequestMapping(path="/countGalleryGroupTypes", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<?> countGalleryGroupTypes()
+	{
 		try
 		{
-			if(galleryGroupTypeRepository.findByGroupName(galleryGroupType.getGroup_type_name()).isPresent()) {
-				galleryGroupTypeRepository.delete(galleryGroupType);
-				return new ResponseEntity<Object>(galleryGroupType, HttpStatus.OK);
+			long galleryGroupTypeCount = galleryGroupTypeRepository.count();
+			return new ResponseEntity<Object>(galleryGroupTypeCount, HttpStatus.OK);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	/*     
+     *     call: /getGalleryGroupTypeById/{id} 
+	 *   method: POST 
+	 */
+	@RequestMapping(path="/getGalleryGroupTypeById/{id}", method = RequestMethod.POST)
+	public ResponseEntity<?> getGalleryGroupTypeBydId(@PathVariable Integer id)
+	{
+		try
+		{
+			GalleryGroupType galleryGroupType = galleryGroupTypeRepository.findById(id);
+			return new ResponseEntity<Object>(galleryGroupType, HttpStatus.OK);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	/*     
+	 *     call: /deleteGalleryGroupType/{id}
+	 *   method: DELETE
+	 */
+	@RequestMapping(path="/deleteGalleryGroupType/{id}", method = RequestMethod.DELETE)
+	public @ResponseBody ResponseEntity<?> deleteGalleryGroupType(@PathVariable Integer id) {
+		try
+		{
+			GalleryGroupType galleryGroupType = galleryGroupTypeRepository.findById(id);
+			if (galleryGroupType == null) {
+				throw new GalleryGroupTypeNotFoundException(galleryGroupType);
+			}
+			galleryGroupTypeRepository.delete(id);
+			return new ResponseEntity<GalleryGroupType>(HttpStatus.NO_CONTENT);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	/*     
+	 *     call: /addGallerStyleType
+	 *   method: POST 
+	 */
+	@RequestMapping(path="/addGallerStyleType", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<?> addNewGalleryStyleType(@RequestBody GalleryStyleType galleryStyleType)
+	{
+		try
+		{
+			if(galleryStyleTypeRepository.findById(galleryStyleType.getId()).isPresent()) {
+				throw new GalleryStyleTypeAlreadyExistsException(galleryStyleType);
 			}
 			else
 			{
-				throw new GalleryGroupTypeNotFoundException(galleryGroupType);
+				galleryStyleTypeRepository.save(galleryStyleType);
+				return new ResponseEntity<Object>(galleryStyleType, HttpStatus.CREATED);
+			}
+			
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	/*     
+     *     call: /getGalleryStyleByMimeTypeId/{id} 
+	 *   method: POST 
+	 */
+	@RequestMapping(path="/getGalleryStyleByMimeTypeId/{id}", method = RequestMethod.POST)
+	public ResponseEntity<?> getGalleryStyleByMimeTypeId(@PathVariable Integer id)
+	{
+		try
+		{
+			Long galleryItemCount = galleryStyleTypeRepository.countGalleryStylesById(id);
+			Iterable<GalleryStyleType> galleryStyleType;
+		
+			if (galleryItemCount == 0) {
+				throw new NoDataAvailableException();
+			}
+			else
+			{
+				galleryStyleType = galleryStyleTypeRepository.findAllGalleryStylesForMimeTypeId(id);
+				return new ResponseEntity<Object>(galleryStyleType, HttpStatus.OK);
 			}
 		}
 		catch (DataAccessException ex)
@@ -295,7 +416,63 @@ public class PhotoGalleryController {
 		}
 	}
 	
-	@RequestMapping(path="/addGalleryItem", method = RequestMethod.POST)
+	/*     
+	 *     call: /getAllGalleryStyles 
+	 *   method: GET
+	 */
+	@RequestMapping(path="/getAllGalleryStyles", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<?> getAllGalleryStyles()
+	{
+		try
+		{
+			Long galleryItemCount = galleryStyleTypeRepository.count();
+			Iterable<GalleryStyleType> galleryStyleType;
+		
+			if (galleryItemCount == 0) {
+				throw new NoDataAvailableException();
+			}
+			else
+			{
+				galleryStyleType = galleryStyleTypeRepository.findAll();
+				return new ResponseEntity<Object>(galleryStyleType, HttpStatus.OK);
+			}
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	/*     
+	 *     call: /deleteGalleryStyleType/{id}
+	 *   method: DELETE 
+	 */
+	@RequestMapping(path="/deleteGalleryStyleType/{id}", method = RequestMethod.DELETE)
+	public @ResponseBody ResponseEntity<?> deleteGalleryStyleType(@PathVariable Integer id) {
+		try
+		{
+			GalleryStyleType galleryStyleType = galleryStyleTypeRepository.getById(id);
+			
+			if (galleryStyleType == null) {
+				throw new GalleryStyleTypeNotFoundException(galleryStyleType);
+			}
+			galleryStyleTypeRepository.delete(id);
+			return new ResponseEntity<GalleryStyleType>(HttpStatus.NO_CONTENT);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	/*TODO: Consider removing this. The gallery items are being migrated to mongo db */
+	/*@RequestMapping(path="/addGalleryItem", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<?> addNewGalleryItem(@RequestBody GalleryItem galleryItem) {
 		
 		try 
@@ -311,14 +488,17 @@ public class PhotoGalleryController {
 		}
 		catch (DataAccessException ex)
 		{
-			/* All other errors send generic message to browser */
+			// All other errors send generic message to browser 
 			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
 			
-			/* TODO: log the exception */
+			// TODO: log the exception 
 		}
 	}
 	
-	@RequestMapping(path="/getAllGalleryItems", method = RequestMethod.GET)
+	/*TODO: Consider removing this. The gallery items are being migrated to mongo db */
+	
+	/*TODO: Consider removing this. The gallery items are being migrated to mongo db */
+	/*@RequestMapping(path="/getAllGalleryItems", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<?> getAllGalleryItems(@RequestBody Gallery gallery)
 	{
 		try
@@ -337,14 +517,15 @@ public class PhotoGalleryController {
 		}
 		catch (DataAccessException ex)
 		{
-			/* All other errors send generic message to browser */
+			 //All other errors send generic message to browser 
 			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
 			
-			/* TODO: log the exception */
+			 //TODO: log the exception 
 		}
-	}
+	}*/
 	
-	@RequestMapping(path="/deleteGalleryItem", method = RequestMethod.DELETE)
+	/*TODO: Consider removing this. The gallery items are being migrated to mongo db */
+	/*@RequestMapping(path="/deleteGalleryItem", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseEntity<?> deleteGalleryItem(@RequestParam GalleryItem galleryItem) {
 		try
 		{
@@ -359,13 +540,17 @@ public class PhotoGalleryController {
 		}
 		catch (DataAccessException ex)
 		{
-			/* All other errors send generic message to browser */
+			// All other errors send generic message to browser 
 			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
 			
-			/* TODO: log the exception */
+			// TODO: log the exception 
 		}
-	}
+	}*/
 	
+	/*
+	 *       call: /addGalleryObjectType
+	 *     method: POST
+	 */
 	@RequestMapping(path="/addGalleryObjectType", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<?> addNewGalleryObjectType(@RequestBody GalleryObjectType galleryObjectType) {
 		try
@@ -389,7 +574,12 @@ public class PhotoGalleryController {
 		}
 	}
 	
-	@GetMapping(path="/getAllGalleryObjectTypes")
+	
+	/*
+	 *       call: /getAllGalleryObjectTypes
+	 *     method: GET
+	 */
+	@RequestMapping(path="/getAllGalleryObjectTypes", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<?> getAllGalleryObjectTypes()
 	{
 		Long galleryObjectTypeCount = galleryObjectTypeRepository.count();
@@ -414,19 +604,22 @@ public class PhotoGalleryController {
 		}
 	}
 	
-	@RequestMapping(path="/deleteGalleryObjectType", method = RequestMethod.DELETE)
-	public @ResponseBody ResponseEntity<?> deleteGalleryObjectType(@RequestBody GalleryObjectType galleryObjectType)
+	
+	/*
+	 *       call: /deleteGalleryObjectType/{id}
+	 *     method: DELETE
+	 */
+	@RequestMapping(path="/deleteGalleryObjectType/{id}", method = RequestMethod.DELETE)
+	public @ResponseBody ResponseEntity<?> deleteGalleryObjectType(@PathVariable Integer id)
 	{
 		try
 		{
-			if(galleryObjectTypeRepository.findByTypeName(galleryObjectType.getGallery_object_type_name()).isPresent()) {
-				galleryObjectTypeRepository.delete(galleryObjectType);
-				return new ResponseEntity<Object>(galleryObjectType, HttpStatus.OK);
-			}
-			else
-			{
+			GalleryObjectType galleryObjectType = galleryObjectTypeRepository.findById(id);
+			if(galleryObjectType == null) {
 				throw new GalleryObjectTypeNotFoundException(galleryObjectType);
 			}
+			galleryObjectTypeRepository.delete(galleryObjectType);
+			return new ResponseEntity<GalleryObjectType>(HttpStatus.NO_CONTENT);
 		}  
 		catch (DataAccessException ex)
 		{
@@ -437,6 +630,11 @@ public class PhotoGalleryController {
 		}
 	}
 	
+	
+	/*     
+	 *     call: /addGalleryOrderCategory
+	 *   method: POST
+	 */
 	@RequestMapping(path="/addGalleryOrderCategory", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<?> addGalleryOrderCategory(@RequestBody GalleryOrderCategory galleryOrderCategory)
 	{
@@ -460,6 +658,11 @@ public class PhotoGalleryController {
 		}
 	}
 	
+	
+	/*     
+	 *     call: /getAllGalleryOrderCategories 
+	 *   method: GET
+	 */
 	@RequestMapping(path="/getAllGalleryOrderCategories", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<?> getAllGalleryOrderCategories()
 	{
@@ -488,18 +691,53 @@ public class PhotoGalleryController {
 		}
 	}
 	
-	@RequestMapping(path="/deleteGalleryOrderCategory", method = RequestMethod.DELETE)
-	public @ResponseBody ResponseEntity<?> deleteGalleryOrderCategory(@RequestBody GalleryOrderCategory galleryOrderCategory)
+	
+	/*     
+	 *     call: /deleteGalleryOrderCategory{id} 
+	 * 	 method: DELETE
+	 */
+	@RequestMapping(path="/deleteGalleryOrderCategory{id}", method = RequestMethod.DELETE)
+	public @ResponseBody ResponseEntity<?> deleteGalleryOrderCategory(@PathVariable Integer id)
 	{
 		try
 		{
-			if(galleryOrderCategoryRepository.findByCategoryName(galleryOrderCategory.getGallery_order_category_name()).isPresent()) {
-				galleryOrderCategoryRepository.delete(galleryOrderCategory);
-				return new ResponseEntity<Object>(galleryOrderCategory, HttpStatus.OK);
+			GalleryOrderCategory galleryOrderCategory = galleryOrderCategoryRepository.findById(id);
+			if (galleryOrderCategory == null) {
+				throw new GalleryOrderCategoryNotFoundException(galleryOrderCategory);
+			}
+			galleryOrderCategoryRepository.delete(galleryOrderCategory);
+			return new ResponseEntity<GalleryOrderCategory>(HttpStatus.NO_CONTENT);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	
+	/*      
+	 *      call: /getAllGalleryOrderDirections 
+	 *    method: GET
+	 */
+	@RequestMapping(path="/getAllGalleryOrderDirections", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<?> getAllGalleryOrderDirections() 
+	{
+		try
+		{
+			Long galleryOrderDirectionCount = galleryOrderDirectionRepository.count();
+			Iterable<GalleryOrderDirection> galleryOrderDirection;
+			
+			if(galleryOrderDirectionCount == 0)
+			{
+				throw new NoDataAvailableException();
 			}
 			else
 			{
-				throw new GalleryOrderCategoryNotFoundException(galleryOrderCategory);
+				galleryOrderDirection = galleryOrderDirectionRepository.findAll();
+				return new ResponseEntity<Object>(galleryOrderDirection, HttpStatus.OK);
 			}
 		}
 		catch (DataAccessException ex)
@@ -511,6 +749,61 @@ public class PhotoGalleryController {
 		}
 	}
 	
+	
+	/*      
+	 *      call: /addGalleryOrderDirection
+	 *    method: POST
+	 */
+	@RequestMapping(path="/addGalleryOrderDirection", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<?> addGalleryOrderDirection(@RequestBody GalleryOrderDirection galleryOrderDirection)
+	{
+		try
+		{
+			if(galleryOrderDirectionRepository.findByGalleryOrderDirectionName(galleryOrderDirection.getGalleryOrderDirectionName()).isPresent())
+			{
+				throw new GalleryOrderDirectionAlreadyExistsException(galleryOrderDirection);
+			}
+			return new ResponseEntity<Object>(galleryOrderDirection, HttpStatus.CREATED);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	/*      
+	 *      call: /deleteGalleryOrderDirection
+	 *    method: DELETE
+	 */
+	@RequestMapping(path="/deleteGalleryOrderDirection", method = RequestMethod.DELETE)
+	public @ResponseBody ResponseEntity<?> deleteGalleryOrderDirection(@PathVariable Integer id)
+	{
+		try
+		{
+			GalleryOrderDirection galleryOrderDirection = galleryOrderDirectionRepository.findById(id);
+			if(galleryOrderDirection == null) {
+				throw new GalleryOrderDirectionNotFoundException(galleryOrderDirection);
+			}
+			galleryOrderDirectionRepository.delete(galleryOrderDirection);
+			return new ResponseEntity<GalleryOrderDirection>(HttpStatus.NO_CONTENT);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	
+	/*      
+	 *      call: /getAllGalleryOrderTypes 
+	 *    method: GET 
+	 */
 	@RequestMapping(path="/getAllGalleryOrderTypes", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<?> getAllGalleryOrderTypes()
 	{
@@ -537,6 +830,35 @@ public class PhotoGalleryController {
 			/* TODO: log the exception */
 		}
 	}
+	
+	
+	/*      
+	 *      call: /deleteGalleryOrderType/{id}
+	 *    method: DELETE
+	 */
+	@RequestMapping(path="/deleteGalleryOrderType/{id}", method = RequestMethod.DELETE)
+	public @ResponseBody ResponseEntity<?> deleteGalleryOrderType(@PathVariable Integer id)
+	{
+		try
+		{
+			GalleryOrderType galleryOrderType = galleryOrderTypeRepository.findById(id);
+			if (galleryOrderType == null)
+			{
+				throw new GalleryOrderTypeNotFoundException(galleryOrderType);
+			}
+			
+			galleryOrderTypeRepository.delete(galleryOrderType);
+			return new ResponseEntity<GalleryOrderType>(HttpStatus.NO_CONTENT);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
 	
 	/* TODO: Change addGalleryStats to updateGalleryStats. During the update perform an add if the stats 
 	 * do not exists for an existing gallery.
@@ -570,6 +892,4 @@ public class PhotoGalleryController {
 		galleryStatRepository.delete(gStat);
 		return "Deleted";
 	}*/
-	
-	
 }

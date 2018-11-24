@@ -1,4 +1,4 @@
-package application;
+/*package application;
 
 import java.util.Properties;
 
@@ -69,5 +69,5 @@ public class SessionConfiguration {
 		
 	}
 
-}
+}*/
 

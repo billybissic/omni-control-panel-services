@@ -39,4 +39,9 @@ public interface InquiriesRepository extends CrudRepository<Inquiries, Integer> 
 	@Query("DELETE FROM Inquiries WHERE inquiry_id = ?1")
 	void deleteById(Integer inquiry_id);
 
+	/**
+	 * @param pendingStatusCode
+	 */
+	Integer countByInquiryStatusId(Integer pendingStatusCode);
+
 }

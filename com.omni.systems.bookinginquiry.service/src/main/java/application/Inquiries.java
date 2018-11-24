@@ -23,6 +23,7 @@
 **/
 package application;
 
+import javax.persistence.Column;
 /**
  * @author Billy Bissic
  *
@@ -46,6 +47,8 @@ public class Inquiries {
 	private String desired_time;
 	private Integer contact_time_id;
 	private Integer inquiry_type_id;
+	@Column(name = "inquiry_status_id")
+	private Integer inquiryStatusId;
 	private String inquiry_submission_timestamp;
 	private String message;
 	private Boolean confirmation_status;
@@ -169,6 +172,18 @@ public class Inquiries {
 	 */
 	public void setInquiry_type_id(Integer inquiry_type_id) {
 		this.inquiry_type_id = inquiry_type_id;
+	}
+	/**
+	 * @return the inquiryStatusId
+	 */
+	public Integer getInquiryStatusId() {
+		return inquiryStatusId;
+	}
+	/**
+	 * @param inquiryStatusId the inquiryStatusId to set
+	 */
+	public void setInquiryStatusId(Integer inquiryStatusId) {
+		this.inquiryStatusId = inquiryStatusId;
 	}
 	/**
 	 * @return the inquiry_submission_timestamp

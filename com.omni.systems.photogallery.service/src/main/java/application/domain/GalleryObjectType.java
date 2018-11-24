@@ -1,5 +1,6 @@
 package application.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,21 +11,22 @@ public class GalleryObjectType {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer gallery_object_type_id;
+	@Column(name = "gallery_object_type_id")
+	private Integer id;
 	private String gallery_object_type_name;
 	private String gallery_object_type_description;
 	
 	/**
-	 * @return the gallery_object_type_id
+	 * @return the id
 	 */
-	public Integer getGallery_object_type_id() {
-		return gallery_object_type_id;
+	public Integer getId() {
+		return id;
 	}
 	/**
-	 * @param gallery_object_type_id the gallery_object_type_id to set
+	 * @param id the id to set
 	 */
-	public void setGallery_object_type_id(Integer gallery_object_type_id) {
-		this.gallery_object_type_id = gallery_object_type_id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	/**
 	 * @return the gallery_object_type_name

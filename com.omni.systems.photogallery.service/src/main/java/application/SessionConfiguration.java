@@ -1,4 +1,4 @@
-package application;
+/*package application;
 
 import java.util.Properties;
 import javax.sql.DataSource;
@@ -66,4 +66,4 @@ public class SessionConfiguration {
 		return transactionManager;
 		
 	}
-}
+}*/

@@ -1,66 +1,99 @@
+/**
+* MIT License
+*
+* Copyright (c) 2018 Billy Bissic
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* 
+* The above copyright notice and this permission notice shall be included in all
+* copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+**/
 package application.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * @author Billy Bissic
+ *
+ */
+
 @Entity
 public class GalleryGroupType {
-
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer group_type_id;
-	private String group_type_name;
-	private String group_type_description;
-	private Integer mime_type_group_id;
+	@Column(name = "group_type_id")
+	private Integer id;
+	@Column(name = "group_type_name")
+	private String galleryGroupTypeName;
+	@Column(name= "group_type_description")
+	private String galleryGroupTypeDescription;
+	@Column(name="mime_type_group_id")
+	private Integer mimeTypeGroupId;
 	
 	/**
-	 * @return the group_type_id
+	 * @return the id
 	 */
-	public Integer getGroup_type_id() {
-		return group_type_id;
+	public Integer getId() {
+		return id;
 	}
 	/**
-	 * @param group_type_id the group_type_id to set
+	 * @param id the id to set
 	 */
-	public void setGroup_type_id(Integer group_type_id) {
-		this.group_type_id = group_type_id;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	/**
-	 * @return the group_type_name
+	 * @return the galleryGroupTypeName
 	 */
-	public String getGroup_type_name() {
-		return group_type_name;
+	public String getGalleryGroupTypeName() {
+		return galleryGroupTypeName;
 	}
 	/**
-	 * @param group_type_name the group_type_name to set
+	 * @param galleryGroupTypeName the galleryGroupTypeName to set
 	 */
-	public void setGroup_type_name(String group_type_name) {
-		this.group_type_name = group_type_name;
+	public void setGalleryGroupTypeName(String galleryGroupTypeName) {
+		this.galleryGroupTypeName = galleryGroupTypeName;
 	}
 	/**
-	 * @return the group_type_description
+	 * @return the galleryGroupTypeDescription
 	 */
-	public String getGroup_type_description() {
-		return group_type_description;
+	public String getGalleryGroupTypeDescription() {
+		return galleryGroupTypeDescription;
 	}
 	/**
-	 * @param group_type_description the group_type_description to set
+	 * @param galleryGroupTypeDescription the galleryGroupTypeDescription to set
 	 */
-	public void setGroup_type_description(String group_type_description) {
-		this.group_type_description = group_type_description;
+	public void setGalleryGroupTypeDescription(String galleryGroupTypeDescription) {
+		this.galleryGroupTypeDescription = galleryGroupTypeDescription;
 	}
 	/**
-	 * @return the mime_type_group_id
+	 * @return the mimeTypeGroupId
 	 */
-	public Integer getMime_type_group_id() {
-		return mime_type_group_id;
+	public Integer getMimeTypeGroupId() {
+		return mimeTypeGroupId;
 	}
 	/**
-	 * @param mime_type_group_id the mime_type_group_id to set
+	 * @param mimeTypeGroupId the mimeTypeGroupId to set
 	 */
-	public void setMime_type_group_id(Integer mime_type_group_id) {
-		this.mime_type_group_id = mime_type_group_id;
+	public void setMimeTypeGroupId(Integer mimeTypeGroupId) {
+		this.mimeTypeGroupId = mimeTypeGroupId;
 	}
 }
