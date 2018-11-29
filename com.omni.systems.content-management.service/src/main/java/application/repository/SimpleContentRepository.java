@@ -34,15 +34,11 @@ import application.domain.SimpleContent;
 public interface SimpleContentRepository extends MongoRepository<SimpleContent, String> {
 	
 	/**
-	 * @param documentName
-	 * @return
-	 */
-	SimpleContent findByDocumentName(String documentName);
-	
-	/**
 	 * @param _id
 	 * @return
 	 */
 	SimpleContent findOne(String _id);
+
+	SimpleContent findByDocumentName(String documentName);
 
 }

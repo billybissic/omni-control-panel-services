@@ -23,6 +23,8 @@
 **/
 package application.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -32,6 +34,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import application.domain.SimpleContent;
@@ -70,9 +73,14 @@ public class ContentManagementController {
 			/* TODO: log the exception */
 		}
 	}
+	@RequestMapping(path="/getAllSimpleDocuments", method = RequestMethod.GET)
+	public @ResponseBody Iterable<SimpleContent> getAllContentById()
+	{
+		return simpleContentRepository.findAll();
+	}
 	
-	@RequestMapping(path="/getSimpleContentByDocumentName/{documentName}", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<?> getSimpleContentByDocumentName(@PathVariable String documentName)
+	@RequestMapping(path="/getSimpleContentByDocumentName", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<?> getSimpleContentByDocumentName(@RequestParam String documentName)
 	{
 		try
 		{

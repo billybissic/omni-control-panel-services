@@ -33,76 +33,42 @@ import org.springframework.data.mongodb.core.mapping.Field;
  * @author Billy Bissic
  *
  */
-@Document(collection = "site-content")
+@Document(collection = "simple-content")
 public class SimpleContent {
 
 	@Id private String _id;
-	@Field("document_name")
 	private String documentName;
-	@Field("document_content")
 	private String documentContent;
-	@Field("last_modified")
-	private Date lastModified;
-	@Field("last_modified_by")
+	private String lastModified;
 	private String lastModifiedBy;
 	
-	/**
-	 * @return the _id
-	 */
 	public String get_id() {
 		return _id;
 	}
-	/**
-	 * @param _id the _id to set
-	 */
 	public void set_id(String _id) {
 		this._id = _id;
 	}
-	/**
-	 * @return the documentName
-	 */
 	public String getDocumentName() {
 		return documentName;
 	}
-	/**
-	 * @param documentName the documentName to set
-	 */
 	public void setDocumentName(String documentName) {
 		this.documentName = documentName;
 	}
-	/**
-	 * @return the documentContent
-	 */
 	public String getDocumentContent() {
 		return documentContent;
 	}
-	/**
-	 * @param documentContent the documentContent to set
-	 */
 	public void setDocumentContent(String documentContent) {
 		this.documentContent = documentContent;
 	}
-	/**
-	 * @return the lastModified
-	 */
-	public Date getLastModified() {
+	public String getLastModified() {
 		return lastModified;
 	}
-	/**
-	 * @param lastModified the lastModified to set
-	 */
-	public void setLastModified(Date lastModified) {
+	public void setLastModified(String lastModified) {
 		this.lastModified = lastModified;
 	}
-	/**
-	 * @return the lastModifiedBy
-	 */
 	public String getLastModifiedBy() {
 		return lastModifiedBy;
 	}
-	/**
-	 * @param lastModifiedBy the lastModifiedBy to set
-	 */
 	public void setLastModifiedBy(String lastModifiedBy) {
 		this.lastModifiedBy = lastModifiedBy;
 	}
