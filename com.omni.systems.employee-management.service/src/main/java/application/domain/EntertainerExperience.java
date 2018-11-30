@@ -23,64 +23,30 @@
 **/
 package application.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
  * @author Billy Bissic
  *
  */
 
-@Entity
 public class EntertainerExperience {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer entertainer_experience_id;
-	private Integer entertainer_id;
-	private String name_of_venue;
+	private String nameOfVenue;
 	private String city;
 	private String state;
-	private Integer length_of_employment_years;
-	private Integer length_of_employment_months;
+	private Integer lengthOfEmploymentYears;
+	private Integer lengthOfEmploymentMonths;
 	
 	/**
-	 * @return the entertainer_experience_id
+	 * @return the nameOfVenue
 	 */
-	public Integer getEntertainer_experience_id() {
-		return entertainer_experience_id;
+	public String getNameOfVenue() {
+		return nameOfVenue;
 	}
 	/**
-	 * @param entertainer_experience_id the entertainer_experience_id to set
+	 * @param nameOfVenue the nameOfVenue to set
 	 */
-	public void setEntertainer_experience_id(Integer entertainer_experience_id) {
-		this.entertainer_experience_id = entertainer_experience_id;
-	}
-	/**
-	 * @return the entertainer_id
-	 */
-	public Integer getEntertainer_id() {
-		return entertainer_id;
-	}
-	/**
-	 * @param entertainer_id the entertainer_id to set
-	 */
-	public void setEntertainer_id(Integer entertainer_id) {
-		this.entertainer_id = entertainer_id;
-	}
-	/**
-	 * @return the name_of_venue
-	 */
-	public String getName_of_venue() {
-		return name_of_venue;
-	}
-	/**
-	 * @param name_of_venue the name_of_venue to set
-	 */
-	public void setName_of_venue(String name_of_venue) {
-		this.name_of_venue = name_of_venue;
+	public void setNameOfVenue(String nameOfVenue) {
+		this.nameOfVenue = nameOfVenue;
 	}
 	/**
 	 * @return the city
@@ -107,27 +73,27 @@ public class EntertainerExperience {
 		this.state = state;
 	}
 	/**
-	 * @return the length_of_employment_years
+	 * @return the lengthOfEmploymentYears
 	 */
-	public Integer getLength_of_employment_years() {
-		return length_of_employment_years;
+	public Integer getLengthOfEmploymentYears() {
+		return lengthOfEmploymentYears;
 	}
 	/**
-	 * @param length_of_employment_years the length_of_employment_years to set
+	 * @param lengthOfEmploymentYears the lengthOfEmploymentYears to set
 	 */
-	public void setLength_of_employment_years(Integer length_of_employment_years) {
-		this.length_of_employment_years = length_of_employment_years;
+	public void setLengthOfEmploymentYears(Integer lengthOfEmploymentYears) {
+		this.lengthOfEmploymentYears = lengthOfEmploymentYears;
 	}
 	/**
-	 * @return the length_of_employment_months
+	 * @return the lengthOfEmploymentMonths
 	 */
-	public Integer getLength_of_employment_months() {
-		return length_of_employment_months;
+	public Integer getLengthOfEmploymentMonths() {
+		return lengthOfEmploymentMonths;
 	}
 	/**
-	 * @param length_of_employment_months the length_of_employment_months to set
+	 * @param lengthOfEmploymentMonths the lengthOfEmploymentMonths to set
 	 */
-	public void setLength_of_employment_months(Integer length_of_employment_months) {
-		this.length_of_employment_months = length_of_employment_months;
+	public void setLengthOfEmploymentMonths(Integer lengthOfEmploymentMonths) {
+		this.lengthOfEmploymentMonths = lengthOfEmploymentMonths;
 	}
 }

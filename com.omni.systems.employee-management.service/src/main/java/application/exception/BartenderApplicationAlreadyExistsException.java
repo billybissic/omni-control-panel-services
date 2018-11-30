@@ -23,12 +23,16 @@
 **/
 package application.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 /**
  * @author Billy Bissic
  *
  */
-public class EmployeeEducationNotFoundException extends RuntimeException {
-	public EmployeeEducationNotFoundException() {
-		super("Employee education not found.");
+@ResponseStatus(HttpStatus.CONFLICT)
+public class BartenderApplicationAlreadyExistsException extends RuntimeException {
+	public BartenderApplicationAlreadyExistsException() {
+		super("Bar tender appliction already exists.");
 	}
 }

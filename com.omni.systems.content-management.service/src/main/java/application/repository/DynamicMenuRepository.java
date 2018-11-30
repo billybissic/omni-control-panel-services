@@ -23,14 +23,20 @@
 **/
 package application.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import application.domain.EntertainerAuditions;
+import application.domain.DynamicMenu;
 
 /**
  * @author Billy Bissic
  *
  */
-public interface EntertainerAuditionsRepository extends CrudRepository<EntertainerAuditions, Integer> {
+public interface DynamicMenuRepository extends MongoRepository<DynamicMenu, String>{
+
+	/**
+	 * @param _id
+	 * @return
+	 */
+	DynamicMenu findOne(String _id);
 
 }

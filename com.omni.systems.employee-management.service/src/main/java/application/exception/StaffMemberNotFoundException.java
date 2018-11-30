@@ -23,12 +23,17 @@
 **/
 package application.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 /**
  * @author Billy Bissic
  *
  */
-public class EmployeeEmploymentPositionNotFoundException extends RuntimeException {
-	public EmployeeEmploymentPositionNotFoundException() {
-		super("Employee employment position not found.");
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class StaffMemberNotFoundException extends RuntimeException {
+	public StaffMemberNotFoundException() {
+		super("Staff member not found");
 	}
+
 }

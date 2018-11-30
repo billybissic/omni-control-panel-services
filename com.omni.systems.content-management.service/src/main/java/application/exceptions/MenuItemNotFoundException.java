@@ -21,14 +21,20 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application.exception;
+package application.exceptions;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * @author Billy Bissic
  *
  */
-public class EntertainerExperienceNotFoundException extends RuntimeException {
-	public EntertainerExperienceNotFoundException() {
-		super("Entertainer experience not found.");
+
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class MenuItemNotFoundException extends RuntimeException {
+	public MenuItemNotFoundException() {
+		super("Menu item not found.");
 	}
+
 }

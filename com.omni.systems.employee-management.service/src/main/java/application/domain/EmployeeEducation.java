@@ -23,62 +23,29 @@
 **/
 package application.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
  * @author Billy Bissic
  *
  */
-@Entity
+
 public class EmployeeEducation {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer employment_education_id;
-	private Integer employee_id;
-	private String school_name;
+
+	private String schoolName;
 	private String location;
-	private Integer years_attended;
+	private Integer yearsAttended;
 	private String major;
-	private String degree_recieved;
-	
+	private String degreeRecieved;
 	/**
-	 * @return the employment_education_id
+	 * @return the schoolName
 	 */
-	public Integer getEmployment_education_id() {
-		return employment_education_id;
+	public String getSchoolName() {
+		return schoolName;
 	}
 	/**
-	 * @param employment_education_id the employment_education_id to set
+	 * @param schoolName the schoolName to set
 	 */
-	public void setEmployment_education_id(Integer employment_education_id) {
-		this.employment_education_id = employment_education_id;
-	}
-	/**
-	 * @return the employee_id
-	 */
-	public Integer getEmployee_id() {
-		return employee_id;
-	}
-	/**
-	 * @param employee_id the employee_id to set
-	 */
-	public void setEmployee_id(Integer employee_id) {
-		this.employee_id = employee_id;
-	}
-	/**
-	 * @return the school_name
-	 */
-	public String getSchool_name() {
-		return school_name;
-	}
-	/**
-	 * @param school_name the school_name to set
-	 */
-	public void setSchool_name(String school_name) {
-		this.school_name = school_name;
+	public void setSchoolName(String schoolName) {
+		this.schoolName = schoolName;
 	}
 	/**
 	 * @return the location
@@ -93,16 +60,16 @@ public class EmployeeEducation {
 		this.location = location;
 	}
 	/**
-	 * @return the years_attended
+	 * @return the yearsAttended
 	 */
-	public Integer getYears_attended() {
-		return years_attended;
+	public Integer getYearsAttended() {
+		return yearsAttended;
 	}
 	/**
-	 * @param years_attended the years_attended to set
+	 * @param yearsAttended the yearsAttended to set
 	 */
-	public void setYears_attended(Integer years_attended) {
-		this.years_attended = years_attended;
+	public void setYearsAttended(Integer yearsAttended) {
+		this.yearsAttended = yearsAttended;
 	}
 	/**
 	 * @return the major
@@ -117,15 +84,15 @@ public class EmployeeEducation {
 		this.major = major;
 	}
 	/**
-	 * @return the degree_recieved
+	 * @return the degreeRecieved
 	 */
-	public String getDegree_recieved() {
-		return degree_recieved;
+	public String getDegreeRecieved() {
+		return degreeRecieved;
 	}
 	/**
-	 * @param degree_recieved the degree_recieved to set
+	 * @param degreeRecieved the degreeRecieved to set
 	 */
-	public void setDegree_recieved(String degree_recieved) {
-		this.degree_recieved = degree_recieved;
+	public void setDegreeRecieved(String degreeRecieved) {
+		this.degreeRecieved = degreeRecieved;
 	}
 }

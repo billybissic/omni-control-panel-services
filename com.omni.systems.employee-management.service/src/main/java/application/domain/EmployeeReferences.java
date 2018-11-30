@@ -23,98 +23,64 @@
 **/
 package application.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
  * @author Billy Bissic
  *
  */
 
-@Entity
 public class EmployeeReferences {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer employee_reference_id;
-	private Integer employee_id;
-	private String reference_employer_name;
-	private String reference_position_title;
-	private String reference_company_name;
-	private String reference_company_phone;
+
+	private String referenceEmployerName;
+	private String referencePositionTitle;
+	private String referenceCompanyName;
+	private String referenceCompanyPhone;
 	
 	/**
-	 * @return the employee_reference_id
+	 * @return the referenceEmployerName
 	 */
-	public Integer getEmployee_reference_id() {
-		return employee_reference_id;
+	public String getReferenceEmployerName() {
+		return referenceEmployerName;
 	}
 	/**
-	 * @param employee_reference_id the employee_reference_id to set
+	 * @param referenceEmployerName the referenceEmployerName to set
 	 */
-	public void setEmployee_reference_id(Integer employee_reference_id) {
-		this.employee_reference_id = employee_reference_id;
+	public void setReferenceEmployerName(String referenceEmployerName) {
+		this.referenceEmployerName = referenceEmployerName;
 	}
 	/**
-	 * @return the employee_id
+	 * @return the referencePositionTitle
 	 */
-	public Integer getEmployee_id() {
-		return employee_id;
+	public String getReferencePositionTitle() {
+		return referencePositionTitle;
 	}
 	/**
-	 * @param employee_id the employee_id to set
+	 * @param referencePositionTitle the referencePositionTitle to set
 	 */
-	public void setEmployee_id(Integer employee_id) {
-		this.employee_id = employee_id;
+	public void setReferencePositionTitle(String referencePositionTitle) {
+		this.referencePositionTitle = referencePositionTitle;
 	}
 	/**
-	 * @return the reference_employer_name
+	 * @return the referenceCompanyName
 	 */
-	public String getReference_employer_name() {
-		return reference_employer_name;
+	public String getReferenceCompanyName() {
+		return referenceCompanyName;
 	}
 	/**
-	 * @param reference_employer_name the reference_employer_name to set
+	 * @param referenceCompanyName the referenceCompanyName to set
 	 */
-	public void setReference_employer_name(String reference_employer_name) {
-		this.reference_employer_name = reference_employer_name;
+	public void setReferenceCompanyName(String referenceCompanyName) {
+		this.referenceCompanyName = referenceCompanyName;
 	}
 	/**
-	 * @return the reference_position_title
+	 * @return the referenceCompanyPhone
 	 */
-	public String getReference_position_title() {
-		return reference_position_title;
+	public String getReferenceCompanyPhone() {
+		return referenceCompanyPhone;
 	}
 	/**
-	 * @param reference_position_title the reference_position_title to set
+	 * @param referenceCompanyPhone the referenceCompanyPhone to set
 	 */
-	public void setReference_position_title(String reference_position_title) {
-		this.reference_position_title = reference_position_title;
-	}
-	/**
-	 * @return the reference_company_name
-	 */
-	public String getReference_company_name() {
-		return reference_company_name;
-	}
-	/**
-	 * @param reference_company_name the reference_company_name to set
-	 */
-	public void setReference_company_name(String reference_company_name) {
-		this.reference_company_name = reference_company_name;
-	}
-	/**
-	 * @return the reference_company_phone
-	 */
-	public String getReference_company_phone() {
-		return reference_company_phone;
-	}
-	/**
-	 * @param reference_company_phone the reference_company_phone to set
-	 */
-	public void setReference_company_phone(String reference_company_phone) {
-		this.reference_company_phone = reference_company_phone;
+	public void setReferenceCompanyPhone(String referenceCompanyPhone) {
+		this.referenceCompanyPhone = referenceCompanyPhone;
 	}
 }

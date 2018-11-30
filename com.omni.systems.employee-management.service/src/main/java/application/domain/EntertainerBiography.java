@@ -1,5 +1,4 @@
 /**
-
 * MIT License
 *
 * Copyright (c) 2018 Billy Bissic
@@ -24,24 +23,18 @@
 **/
 package application.domain;
 
-import java.sql.Date;
-
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  * @author Billy Bissic
  *
  */
-@Document(collection = "simple-content")
-public class SimpleContent {
-
-	@Id private String _id;
-	private String documentName;
-	private String documentContent;
-	private String lastModified;
-	private String lastModifiedBy;
+@Document(collection="entertainer_biographies")
+public class EntertainerBiography {
+	private String _id;
+	private String entertainerStageName;
+	private String bigoraphicalContent;
+	private String profileImage;
 	
 	/**
 	 * @return the _id
@@ -56,51 +49,39 @@ public class SimpleContent {
 		this._id = _id;
 	}
 	/**
-	 * @return the documentName
+	 * @return the entertainerStageName
 	 */
-	public String getDocumentName() {
-		return documentName;
+	public String getEntertainerStageName() {
+		return entertainerStageName;
 	}
 	/**
-	 * @param documentName the documentName to set
+	 * @param entertainerStageName the entertainerStageName to set
 	 */
-	public void setDocumentName(String documentName) {
-		this.documentName = documentName;
+	public void setEntertainerStageName(String entertainerStageName) {
+		this.entertainerStageName = entertainerStageName;
 	}
 	/**
-	 * @return the documentContent
+	 * @return the bigoraphicalContent
 	 */
-	public String getDocumentContent() {
-		return documentContent;
+	public String getBigoraphicalContent() {
+		return bigoraphicalContent;
 	}
 	/**
-	 * @param documentContent the documentContent to set
+	 * @param bigoraphicalContent the bigoraphicalContent to set
 	 */
-	public void setDocumentContent(String documentContent) {
-		this.documentContent = documentContent;
+	public void setBigoraphicalContent(String bigoraphicalContent) {
+		this.bigoraphicalContent = bigoraphicalContent;
 	}
 	/**
-	 * @return the lastModified
+	 * @return the profileImage
 	 */
-	public String getLastModified() {
-		return lastModified;
+	public String getProfileImage() {
+		return profileImage;
 	}
 	/**
-	 * @param lastModified the lastModified to set
+	 * @param profileImage the profileImage to set
 	 */
-	public void setLastModified(String lastModified) {
-		this.lastModified = lastModified;
-	}
-	/**
-	 * @return the lastModifiedBy
-	 */
-	public String getLastModifiedBy() {
-		return lastModifiedBy;
-	}
-	/**
-	 * @param lastModifiedBy the lastModifiedBy to set
-	 */
-	public void setLastModifiedBy(String lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
 }

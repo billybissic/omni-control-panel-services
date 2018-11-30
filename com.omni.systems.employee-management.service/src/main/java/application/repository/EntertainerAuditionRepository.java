@@ -21,14 +21,16 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application.exception;
+package application.repository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import application.domain.EntertainerAudition;
 
 /**
  * @author Billy Bissic
  *
  */
-public class EntertainerInformationNotFoundException extends RuntimeException {
-	public EntertainerInformationNotFoundException() {
-		super("Entertainer information not found.");
-	}
+public interface EntertainerAuditionRepository extends MongoRepository<EntertainerAudition, String>{
+
 }

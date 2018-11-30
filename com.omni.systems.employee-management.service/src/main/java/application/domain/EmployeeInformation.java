@@ -23,174 +23,103 @@
 **/
 package application.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
  * @author Billy Bissic
  *
  */
-@Entity
+
 public class EmployeeInformation {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer employee_id;
-	private String first_name;
-	private String last_name;
-	private String address;
-	private String city;
-	private String state;
-	private String zip;
-	private String phone_number;
-	private String email_address;
-	private boolean us_employement_eligility;
-	private boolean us_veteran;
-	private boolean background_check_agreement;
+	
+	private String cellPhoneNumber;
+	private String homePhoneNumber;
+	private String dateOfBirth;
+	private String emailAddress;
+	private boolean elgibleForEmployment;
+	private boolean isUsVeteran;
+	private boolean backgrounCheckAgreement;
 	
 	/**
-	 * @return the employee_id
+	 * @return the cellPhoneNumber
 	 */
-	public Integer getEmployee_id() {
-		return employee_id;
+	public String getCellPhoneNumber() {
+		return cellPhoneNumber;
 	}
 	/**
-	 * @param employee_id the employee_id to set
+	 * @param cellPhoneNumber the cellPhoneNumber to set
 	 */
-	public void setEmployee_id(Integer employee_id) {
-		this.employee_id = employee_id;
+	public void setCellPhoneNumber(String cellPhoneNumber) {
+		this.cellPhoneNumber = cellPhoneNumber;
 	}
 	/**
-	 * @return the first_name
+	 * @return the homePhoneNumber
 	 */
-	public String getFirst_name() {
-		return first_name;
+	public String getHomePhoneNumber() {
+		return homePhoneNumber;
 	}
 	/**
-	 * @param first_name the first_name to set
+	 * @param homePhoneNumber the homePhoneNumber to set
 	 */
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+	public void setHomePhoneNumber(String homePhoneNumber) {
+		this.homePhoneNumber = homePhoneNumber;
 	}
 	/**
-	 * @return the last_name
+	 * @return the dateOfBirth
 	 */
-	public String getLast_name() {
-		return last_name;
+	public String getDateOfBirth() {
+		return dateOfBirth;
 	}
 	/**
-	 * @param last_name the last_name to set
+	 * @param dateOfBirth the dateOfBirth to set
 	 */
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 	/**
-	 * @return the address
+	 * @return the emailAddress
 	 */
-	public String getAddress() {
-		return address;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 	/**
-	 * @param address the address to set
+	 * @param emailAddress the emailAddress to set
 	 */
-	public void setAddress(String address) {
-		this.address = address;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 	/**
-	 * @return the city
+	 * @return the elgibleForEmployment
 	 */
-	public String getCity() {
-		return city;
+	public boolean isElgibleForEmployment() {
+		return elgibleForEmployment;
 	}
 	/**
-	 * @param city the city to set
+	 * @param elgibleForEmployment the elgibleForEmployment to set
 	 */
-	public void setCity(String city) {
-		this.city = city;
+	public void setElgibleForEmployment(boolean elgibleForEmployment) {
+		this.elgibleForEmployment = elgibleForEmployment;
 	}
 	/**
-	 * @return the state
+	 * @return the isUsVeteran
 	 */
-	public String getState() {
-		return state;
+	public boolean isUsVeteran() {
+		return isUsVeteran;
 	}
 	/**
-	 * @param state the state to set
+	 * @param isUsVeteran the isUsVeteran to set
 	 */
-	public void setState(String state) {
-		this.state = state;
+	public void setUsVeteran(boolean isUsVeteran) {
+		this.isUsVeteran = isUsVeteran;
 	}
 	/**
-	 * @return the zip
+	 * @return the backgrounCheckAgreement
 	 */
-	public String getZip() {
-		return zip;
+	public boolean isBackgrounCheckAgreement() {
+		return backgrounCheckAgreement;
 	}
 	/**
-	 * @param zip the zip to set
+	 * @param backgrounCheckAgreement the backgrounCheckAgreement to set
 	 */
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
-	/**
-	 * @return the phone_number
-	 */
-	public String getPhone_number() {
-		return phone_number;
-	}
-	/**
-	 * @param phone_number the phone_number to set
-	 */
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
-	}
-	/**
-	 * @return the email_address
-	 */
-	public String getEmail_address() {
-		return email_address;
-	}
-	/**
-	 * @param email_address the email_address to set
-	 */
-	public void setEmail_address(String email_address) {
-		this.email_address = email_address;
-	}
-	/**
-	 * @return the us_employement_eligility
-	 */
-	public boolean isUs_employement_eligility() {
-		return us_employement_eligility;
-	}
-	/**
-	 * @param us_employement_eligility the us_employement_eligility to set
-	 */
-	public void setUs_employement_eligility(boolean us_employement_eligility) {
-		this.us_employement_eligility = us_employement_eligility;
-	}
-	/**
-	 * @return the us_veteran
-	 */
-	public boolean isUs_veteran() {
-		return us_veteran;
-	}
-	/**
-	 * @param us_veteran the us_veteran to set
-	 */
-	public void setUs_veteran(boolean us_veteran) {
-		this.us_veteran = us_veteran;
-	}
-	/**
-	 * @return the background_check_agreement
-	 */
-	public boolean isBackground_check_agreement() {
-		return background_check_agreement;
-	}
-	/**
-	 * @param background_check_agreement the background_check_agreement to set
-	 */
-	public void setBackground_check_agreement(boolean background_check_agreement) {
-		this.background_check_agreement = background_check_agreement;
+	public void setBackgrounCheckAgreement(boolean backgrounCheckAgreement) {
+		this.backgrounCheckAgreement = backgrounCheckAgreement;
 	}
 }

@@ -37,9 +37,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import application.domain.DynamicMenu;
 import application.domain.SimpleContent;
 import application.exceptions.DocumentAlreadyExistsException;
 import application.exceptions.DocumentNotFoundException;
+import application.exceptions.MenuItemNotFoundException;
+import application.repository.DynamicMenuRepository;
 import application.repository.SimpleContentRepository;
 
 /**
@@ -53,6 +56,9 @@ public class ContentManagementController {
 
 	@Autowired
 	private SimpleContentRepository simpleContentRepository;
+	
+	@Autowired
+	private DynamicMenuRepository dynamicMenuRepository;
 	
 	@RequestMapping(path="/getSimpleContentById/{_id}", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<?> getSimpleContentById(@PathVariable String _id)
@@ -162,6 +168,108 @@ public class ContentManagementController {
 			else
 			{
 				simpleContentRepository.delete(simpleContent);
+				return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+			}
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+		
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="/getAllMenuItems", method = RequestMethod.GET)
+	public ResponseEntity<?> getAllMenuItems()
+	{
+		try
+		{
+			Iterable<DynamicMenu> menuItems = dynamicMenuRepository.findAll();
+			if( menuItems == null )
+			{
+				throw new MenuItemNotFoundException();
+			}
+			return new ResponseEntity<Iterable<DynamicMenu>>(menuItems, HttpStatus.OK);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+		
+			/* TODO: log the exception */
+		}
+		
+	}
+	
+	@RequestMapping(path="/updateMenuItem", method = RequestMethod.POST)
+	public ResponseEntity<?> updateMenuItem(@RequestBody DynamicMenu menuItem)
+	{
+		try
+		{
+			dynamicMenuRepository.save(menuItem);
+			return new ResponseEntity<DynamicMenu>(menuItem, HttpStatus.OK);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+		
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="getMenuItemById/{_id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getMenuItemById(@PathVariable String _id)
+	{
+		try
+		{
+			DynamicMenu dynamicMenuItem = dynamicMenuRepository.findOne(_id);
+			if (dynamicMenuItem == null)
+			{
+				throw new MenuItemNotFoundException();
+			}
+			return new ResponseEntity<DynamicMenu>(dynamicMenuItem, HttpStatus.OK);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+		
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="addNewMenuItem", method = RequestMethod.POST)
+	public ResponseEntity<?> addNewMenuItem(@RequestBody DynamicMenu menuItem)
+	{
+		try
+		{
+			dynamicMenuRepository.save(menuItem);
+			return new ResponseEntity<DynamicMenu>(menuItem, HttpStatus.OK);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+		
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="/deleteMenuItemById/{_id}", method = RequestMethod.DELETE)
+	public ResponseEntity<HttpStatus> deleteMenuItemById(@PathVariable String _id)
+	{
+		try
+		{
+			DynamicMenu dynamicMenuItem = dynamicMenuRepository.findOne(_id);
+			if (dynamicMenuItem == null)
+			{
+				throw new MenuItemNotFoundException();
+			}
+			else
+			{
+				dynamicMenuRepository.delete(dynamicMenuItem);
 				return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 			}
 		}

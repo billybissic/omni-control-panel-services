@@ -23,14 +23,14 @@
 **/
 package application.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import application.domain.EmploymentPositionType;
+import application.domain.BartenderApplication;
 
 /**
  * @author Billy Bissic
  *
  */
-public interface EmploymentPositionTypeRepository extends CrudRepository<EmploymentPositionType, Integer>{
+public interface BartenderApplicationRepository extends MongoRepository<BartenderApplication, String> {
 
 }

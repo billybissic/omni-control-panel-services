@@ -21,16 +21,19 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application.repository;
+package application.exception;
 
-import org.springframework.data.repository.CrudRepository;
-
-import application.domain.EmployeeEducation;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * @author Billy Bissic
  *
  */
-public interface EmployeeEducationRepository extends CrudRepository<EmployeeEducation, Integer>{
+@ResponseStatus(HttpStatus.CONFLICT)
+public class EntertainerApplicationAlreadyExistsException extends RuntimeException {
+	public EntertainerApplicationAlreadyExistsException() {
+		super("Entertainer already has an existing application");
+	}
 
 }

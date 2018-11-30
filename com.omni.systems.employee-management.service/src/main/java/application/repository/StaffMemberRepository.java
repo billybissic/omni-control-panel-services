@@ -23,14 +23,14 @@
 **/
 package application.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import application.domain.EmployeeInformation;
+import application.domain.StaffMember;
 
 /**
  * @author Billy Bissic
  *
  */
-public interface EmployeeInformationRepository extends CrudRepository<EmployeeInformation, Integer> {
+public interface StaffMemberRepository extends MongoRepository<StaffMember, String> {
 
 }

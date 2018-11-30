@@ -21,16 +21,19 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application.repository;
+package application.exception;
 
-import org.springframework.data.repository.CrudRepository;
-
-import application.domain.EmployeeEmploymentPosition;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * @author Billy Bissic
  *
  */
-public interface EmployeeEmploymentPositionRepository extends CrudRepository<EmployeeEmploymentPosition, Integer> {
+@ResponseStatus(HttpStatus.CONFLICT)
+public class EntertainerAuditionAlreadyExistsException extends RuntimeException {
+	public EntertainerAuditionAlreadyExistsException() {
+		super("Entertainer audition already exists");
+	}
 
 }

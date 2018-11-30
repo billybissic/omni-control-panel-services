@@ -23,143 +23,107 @@
 **/
 package application.domain;
 
-import javax.annotation.Generated;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
  * @author Billy Bissic
  *
  */
 
-@Entity
 public class EmployeeHistory {
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer employee_history_id;
-	private Integer employee_id;
-	private String employer_name;
-	private String job_title;
-	private String start_date;
-	private String end_date;
-	private String work_phone;
-	private String starting_pay_rate;
-	private String ending_pay_rate;
+	private String employerName;
+	private String jobTitle;
+	private String startDate;
+	private String endDate;
+	private String workPhone;
+	private String startingPayRate;
+	private String endingPayRate;
 	private String address;
 	private String city;
 	private String state;
 	private String zip;
 	
 	/**
-	 * @return the employee_history_id
+	 * @return the employerName
 	 */
-	public Integer getEmployee_history_id() {
-		return employee_history_id;
+	public String getEmployerName() {
+		return employerName;
 	}
 	/**
-	 * @param employee_history_id the employee_history_id to set
+	 * @param employerName the employerName to set
 	 */
-	public void setEmployee_history_id(Integer employee_history_id) {
-		this.employee_history_id = employee_history_id;
+	public void setEmployerName(String employerName) {
+		this.employerName = employerName;
 	}
 	/**
-	 * @return the employee_id
+	 * @return the jobTitle
 	 */
-	public Integer getEmployee_id() {
-		return employee_id;
+	public String getJobTitle() {
+		return jobTitle;
 	}
 	/**
-	 * @param employee_id the employee_id to set
+	 * @param jobTitle the jobTitle to set
 	 */
-	public void setEmployee_id(Integer employee_id) {
-		this.employee_id = employee_id;
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
 	}
 	/**
-	 * @return the employer_name
+	 * @return the startDate
 	 */
-	public String getEmployer_name() {
-		return employer_name;
+	public String getStartDate() {
+		return startDate;
 	}
 	/**
-	 * @param employer_name the employer_name to set
+	 * @param startDate the startDate to set
 	 */
-	public void setEmployer_name(String employer_name) {
-		this.employer_name = employer_name;
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
 	/**
-	 * @return the job_title
+	 * @return the endDate
 	 */
-	public String getJob_title() {
-		return job_title;
+	public String getEndDate() {
+		return endDate;
 	}
 	/**
-	 * @param job_title the job_title to set
+	 * @param endDate the endDate to set
 	 */
-	public void setJob_title(String job_title) {
-		this.job_title = job_title;
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 	/**
-	 * @return the start_date
+	 * @return the workPhone
 	 */
-	public String getStart_date() {
-		return start_date;
+	public String getWorkPhone() {
+		return workPhone;
 	}
 	/**
-	 * @param start_date the start_date to set
+	 * @param workPhone the workPhone to set
 	 */
-	public void setStart_date(String start_date) {
-		this.start_date = start_date;
+	public void setWorkPhone(String workPhone) {
+		this.workPhone = workPhone;
 	}
 	/**
-	 * @return the end_date
+	 * @return the startingPayRate
 	 */
-	public String getEnd_date() {
-		return end_date;
+	public String getStartingPayRate() {
+		return startingPayRate;
 	}
 	/**
-	 * @param end_date the end_date to set
+	 * @param startingPayRate the startingPayRate to set
 	 */
-	public void setEnd_date(String end_date) {
-		this.end_date = end_date;
+	public void setStartingPayRate(String startingPayRate) {
+		this.startingPayRate = startingPayRate;
 	}
 	/**
-	 * @return the work_phone
+	 * @return the endingPayRate
 	 */
-	public String getWork_phone() {
-		return work_phone;
+	public String getEndingPayRate() {
+		return endingPayRate;
 	}
 	/**
-	 * @param work_phone the work_phone to set
+	 * @param endingPayRate the endingPayRate to set
 	 */
-	public void setWork_phone(String work_phone) {
-		this.work_phone = work_phone;
-	}
-	/**
-	 * @return the starting_pay_rate
-	 */
-	public String getStarting_pay_rate() {
-		return starting_pay_rate;
-	}
-	/**
-	 * @param starting_pay_rate the starting_pay_rate to set
-	 */
-	public void setStarting_pay_rate(String starting_pay_rate) {
-		this.starting_pay_rate = starting_pay_rate;
-	}
-	/**
-	 * @return the ending_pay_rate
-	 */
-	public String getEnding_pay_rate() {
-		return ending_pay_rate;
-	}
-	/**
-	 * @param ending_pay_rate the ending_pay_rate to set
-	 */
-	public void setEnding_pay_rate(String ending_pay_rate) {
-		this.ending_pay_rate = ending_pay_rate;
+	public void setEndingPayRate(String endingPayRate) {
+		this.endingPayRate = endingPayRate;
 	}
 	/**
 	 * @return the address
@@ -209,5 +173,4 @@ public class EmployeeHistory {
 	public void setZip(String zip) {
 		this.zip = zip;
 	}
-
 }

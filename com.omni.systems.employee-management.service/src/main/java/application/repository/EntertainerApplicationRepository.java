@@ -21,14 +21,16 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application.exception;
+package application.repository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import application.domain.EntertainerApplication;
 
 /**
  * @author Billy Bissic
  *
  */
-public class EmployeeInformationNotFoundException extends RuntimeException {
-	public EmployeeInformationNotFoundException() {
-		super("Employee information not found.");
-	}
+public interface EntertainerApplicationRepository extends MongoRepository<EntertainerApplication, String> {
+
 }

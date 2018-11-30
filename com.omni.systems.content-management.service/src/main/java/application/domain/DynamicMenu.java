@@ -1,5 +1,4 @@
 /**
-
 * MIT License
 *
 * Copyright (c) 2018 Billy Bissic
@@ -24,24 +23,22 @@
 **/
 package application.domain;
 
-import java.sql.Date;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  * @author Billy Bissic
  *
  */
-@Document(collection = "simple-content")
-public class SimpleContent {
+
+@Document(collection = "menu-items")
+public class DynamicMenu {
 
 	@Id private String _id;
-	private String documentName;
-	private String documentContent;
-	private String lastModified;
-	private String lastModifiedBy;
+	private String menuItemName;
+	private String menuItemType;
+	private String menuItemDocumentName;
+	private String menuItemDocumentType;
 	
 	/**
 	 * @return the _id
@@ -56,51 +53,51 @@ public class SimpleContent {
 		this._id = _id;
 	}
 	/**
-	 * @return the documentName
+	 * @return the menuItemName
 	 */
-	public String getDocumentName() {
-		return documentName;
+	public String getMenuItemName() {
+		return menuItemName;
 	}
 	/**
-	 * @param documentName the documentName to set
+	 * @param menuItemName the menuItemName to set
 	 */
-	public void setDocumentName(String documentName) {
-		this.documentName = documentName;
+	public void setMenuItemName(String menuItemName) {
+		this.menuItemName = menuItemName;
 	}
 	/**
-	 * @return the documentContent
+	 * @return the menuItemType
 	 */
-	public String getDocumentContent() {
-		return documentContent;
+	public String getMenuItemType() {
+		return menuItemType;
 	}
 	/**
-	 * @param documentContent the documentContent to set
+	 * @param menuItemType the menuItemType to set
 	 */
-	public void setDocumentContent(String documentContent) {
-		this.documentContent = documentContent;
+	public void setMenuItemType(String menuItemType) {
+		this.menuItemType = menuItemType;
 	}
 	/**
-	 * @return the lastModified
+	 * @return the menuItemDocumentName
 	 */
-	public String getLastModified() {
-		return lastModified;
+	public String getMenuItemDocumentName() {
+		return menuItemDocumentName;
 	}
 	/**
-	 * @param lastModified the lastModified to set
+	 * @param menuItemDocumentName the menuItemDocumentName to set
 	 */
-	public void setLastModified(String lastModified) {
-		this.lastModified = lastModified;
+	public void setMenuItemDocumentName(String menuItemDocumentName) {
+		this.menuItemDocumentName = menuItemDocumentName;
 	}
 	/**
-	 * @return the lastModifiedBy
+	 * @return the menuItemDocumentType
 	 */
-	public String getLastModifiedBy() {
-		return lastModifiedBy;
+	public String getMenuItemDocumentType() {
+		return menuItemDocumentType;
 	}
 	/**
-	 * @param lastModifiedBy the lastModifiedBy to set
+	 * @param menuItemDocumentType the menuItemDocumentType to set
 	 */
-	public void setLastModifiedBy(String lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
+	public void setMenuItemDocumentType(String menuItemDocumentType) {
+		this.menuItemDocumentType = menuItemDocumentType;
 	}
 }

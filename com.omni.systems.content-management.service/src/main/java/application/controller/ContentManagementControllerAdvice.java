@@ -33,6 +33,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import application.exceptions.DocumentAlreadyExistsException;
 import application.exceptions.DocumentNotFoundException;
+import application.exceptions.MenuItemAlreadyExistsException;
+import application.exceptions.MenuItemNotFoundException;
 import application.exceptions.NoDataAvailableException;
 
 /**
@@ -49,6 +51,13 @@ public class ContentManagementControllerAdvice {
 	VndErrors documentAlreadyExistsException(DocumentAlreadyExistsException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
+	
+	@ResponseBody
+	@ExceptionHandler(MenuItemAlreadyExistsException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	VndErrors menuItemAlreadyExistsException(MenuItemAlreadyExistsException ex) {
+		return new VndErrors("error", ex.getMessage());
+	}
 
 	@ResponseBody
 	@ExceptionHandler(NoDataAvailableException.class)
@@ -61,6 +70,13 @@ public class ContentManagementControllerAdvice {
 	@ExceptionHandler(DocumentNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	VndErrors documentAlreadyExistsException(DocumentNotFoundException ex) {
+		return new VndErrors("error", ex.getMessage());
+	}
+	
+	@ResponseBody
+	@ExceptionHandler(MenuItemNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	VndErrors menuItemNotFoundException(MenuItemNotFoundException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 }

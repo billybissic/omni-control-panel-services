@@ -21,14 +21,19 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application.exception;
+package application.exceptions;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * @author Billy Bissic
  *
  */
-public class EmploymentArrangementTypeNotFoundException extends RuntimeException {
-	public EmploymentArrangementTypeNotFoundException() {
-		super("Employment arrangement type not found.");
+
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class MenuItemAlreadyExistsException extends RuntimeException {
+	public MenuItemAlreadyExistsException() {
+		super("Menu item already exists.");
 	}
 }

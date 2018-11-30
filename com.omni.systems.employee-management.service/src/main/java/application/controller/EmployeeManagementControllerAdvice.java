@@ -28,23 +28,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import application.exception.EmployeeEducationNotFoundException;
-import application.exception.EmployeeEmploymentPositionNotFoundException;
-import application.exception.EmployeeHistoryNotFoundException;
-import application.exception.EmployeeInformationNotFoundException;
-import application.exception.EmployeeReferencesNotFoundException;
-import application.exception.EmployeeSignatureNotFoundException;
-import application.exception.EmploymentArrangementTypeAlreadyExistsException;
-import application.exception.EmploymentArrangementTypeNotFoundException;
-import application.exception.EmploymentPositionTypeAlreadyExistsException;
-import application.exception.EmploymentPositionTypeNotFoundException;
-import application.exception.EntertainerAuditionsNotFoundException;
-import application.exception.EntertainerExperienceNotFoundException;
-import application.exception.EntertainerInformationNotFoundException;
+import application.exception.BartenderApplicationAlreadyExistsException;
+import application.exception.BartenderApplicationNotFoundException;
+import application.exception.EntertainerApplicationAlreadyExistsException;
+import application.exception.EntertainerApplicationNotFoundException;
+import application.exception.EntertainerAuditionAlreadyExistsException;
+import application.exception.EntertainerAuditionNotFoundException;
 import application.exception.NoDataAvailableException;
+import application.exception.StaffMemberAlreadyExistsException;
+import application.exception.StaffMemberNotFoundException;
 
 /**
  * @author Billy Bissic
@@ -54,95 +48,59 @@ import application.exception.NoDataAvailableException;
 @ControllerAdvice
 @RequestMapping(produces = "application/vnd.error")
 public class EmployeeManagementControllerAdvice {
-	
-	@ResponseBody
-	@ExceptionHandler(EmployeeEducationNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors empoyeeEducationNotFoundException(EmployeeEducationNotFoundException ex) {
+
+	@ExceptionHandler(BartenderApplicationAlreadyExistsException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	VndErrors barTenderApplicationAlreadyExistsException(BartenderApplicationAlreadyExistsException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	
-	@ResponseBody
-	@ExceptionHandler(EmployeeEmploymentPositionNotFoundException.class)
+	@ExceptionHandler(BartenderApplicationNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors employeeEmploymentPositionNotFoundException(EmployeeEmploymentPositionNotFoundException ex) {
+	VndErrors barTenderApplicationNotFoundException(BartenderApplicationNotFoundException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	
-	@ResponseBody
-	@ExceptionHandler(EmployeeHistoryNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors employeeHistoryNotFoundException(EmployeeHistoryNotFoundException ex) {
+	@ExceptionHandler(EntertainerApplicationAlreadyExistsException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	VndErrors entertainerApplicationAlreadyExistsException(EntertainerApplicationAlreadyExistsException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	
-	@ResponseBody
-	@ExceptionHandler(EmployeeInformationNotFoundException.class)
+	@ExceptionHandler(EntertainerApplicationNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors employeeInformationNotFoundException(EmployeeInformationNotFoundException ex) {
+	VndErrors entertainerApplicationNotFoundException(EntertainerApplicationNotFoundException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	
-	@ResponseBody
-	@ExceptionHandler(EmployeeReferencesNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors employeeReferencesNotFoundException(EmployeeReferencesNotFoundException ex) {
+	@ExceptionHandler(EntertainerAuditionAlreadyExistsException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	VndErrors entertainerAuditionAlreadyExistsException(EntertainerAuditionAlreadyExistsException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	
-	@ResponseBody
-	@ExceptionHandler(EmployeeSignatureNotFoundException.class)
+	@ExceptionHandler(EntertainerAuditionNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors employeeSignatureNotFoundException(EmployeeSignatureNotFoundException ex) {
+	VndErrors entertainerAuditionNotFoundException(EntertainerAuditionNotFoundException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	
-	@ResponseBody
-	@ExceptionHandler(EmploymentArrangementTypeNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors employmentArrangementTypeNotFoundException(EmploymentArrangementTypeNotFoundException ex) {
+	@ExceptionHandler(StaffMemberAlreadyExistsException.class)
+	@ResponseStatus(HttpStatus.CONFLICT)
+	VndErrors staffMemberAlreadyExistsException(StaffMemberAlreadyExistsException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	
-	@ExceptionHandler(EmploymentPositionTypeNotFoundException.class)
+	@ExceptionHandler(StaffMemberNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors employmentPositionTypeNotFoundException(EmploymentPositionTypeNotFoundException ex) {
+	VndErrors staffMemberNotFoundException(StaffMemberNotFoundException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	
-	@ExceptionHandler(EntertainerAuditionsNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors entertainerAuditionsNotFoundException(EntertainerAuditionsNotFoundException ex) {
-		return new VndErrors("error", ex.getMessage());
-	}
-	
-	@ExceptionHandler(EntertainerExperienceNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors entertainerExperienceNotFoundException(EntertainerExperienceNotFoundException ex) {
-		return new VndErrors("error", ex.getMessage());
-	}
-	
-	@ExceptionHandler(EntertainerInformationNotFoundException.class)
-	@ResponseStatus(HttpStatus.NOT_FOUND)
-	VndErrors entertainerInformationNotFoundException(EntertainerInformationNotFoundException ex) {
-		return new VndErrors("error", ex.getMessage());
-	}
 	
 	@ExceptionHandler(NoDataAvailableException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	VndErrors noDataAvailableException(NoDataAvailableException ex) {
-		return new VndErrors("error", ex.getMessage());
-	}
-	
-	@ExceptionHandler(EmploymentArrangementTypeAlreadyExistsException.class)
-	@ResponseStatus(HttpStatus.CONFLICT)
-	VndErrors employmentArrangementTypeAlreadyExists(EmploymentArrangementTypeAlreadyExistsException ex) {
-		return new VndErrors("error", ex.getMessage());
-	}
-	
-	@ExceptionHandler(EmploymentPositionTypeAlreadyExistsException.class)
-	@ResponseStatus(HttpStatus.CONFLICT)
-	VndErrors employmentPositionTypeAlreadyExistsException(EmploymentPositionTypeAlreadyExistsException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 }

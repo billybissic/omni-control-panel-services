@@ -23,12 +23,17 @@
 **/
 package application.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 /**
  * @author Billy Bissic
  *
  */
-public class EmployeeHistoryNotFoundException extends RuntimeException {
-	public EmployeeHistoryNotFoundException() {
-		super("Employee history not found.");
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class BartenderApplicationNotFoundException extends RuntimeException {
+	public BartenderApplicationNotFoundException() {
+		super("Bar tender application not found");
 	}
+
 }

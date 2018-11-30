@@ -1,5 +1,4 @@
 /**
-
 * MIT License
 *
 * Copyright (c) 2018 Billy Bissic
@@ -24,24 +23,21 @@
 **/
 package application.domain;
 
-import java.sql.Date;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  * @author Billy Bissic
  *
  */
-@Document(collection = "simple-content")
-public class SimpleContent {
 
-	@Id private String _id;
-	private String documentName;
-	private String documentContent;
-	private String lastModified;
-	private String lastModifiedBy;
+@Document(collection="staff_members")
+public class StaffMember {
+	@Id
+	private String _id;
+	private String firstName;
+	private String lastName;
+	private EmployeeDetails employeeDetails;
 	
 	/**
 	 * @return the _id
@@ -56,51 +52,39 @@ public class SimpleContent {
 		this._id = _id;
 	}
 	/**
-	 * @return the documentName
+	 * @return the firstName
 	 */
-	public String getDocumentName() {
-		return documentName;
+	public String getFirstName() {
+		return firstName;
 	}
 	/**
-	 * @param documentName the documentName to set
+	 * @param firstName the firstName to set
 	 */
-	public void setDocumentName(String documentName) {
-		this.documentName = documentName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 	/**
-	 * @return the documentContent
+	 * @return the lastName
 	 */
-	public String getDocumentContent() {
-		return documentContent;
+	public String getLastName() {
+		return lastName;
 	}
 	/**
-	 * @param documentContent the documentContent to set
+	 * @param lastName the lastName to set
 	 */
-	public void setDocumentContent(String documentContent) {
-		this.documentContent = documentContent;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	/**
-	 * @return the lastModified
+	 * @return the employeeDetails
 	 */
-	public String getLastModified() {
-		return lastModified;
+	public EmployeeDetails getEmployeeDetails() {
+		return employeeDetails;
 	}
 	/**
-	 * @param lastModified the lastModified to set
+	 * @param employeeDetails the employeeDetails to set
 	 */
-	public void setLastModified(String lastModified) {
-		this.lastModified = lastModified;
-	}
-	/**
-	 * @return the lastModifiedBy
-	 */
-	public String getLastModifiedBy() {
-		return lastModifiedBy;
-	}
-	/**
-	 * @param lastModifiedBy the lastModifiedBy to set
-	 */
-	public void setLastModifiedBy(String lastModifiedBy) {
-		this.lastModifiedBy = lastModifiedBy;
+	public void setEmployeeDetails(EmployeeDetails employeeDetails) {
+		this.employeeDetails = employeeDetails;
 	}
 }

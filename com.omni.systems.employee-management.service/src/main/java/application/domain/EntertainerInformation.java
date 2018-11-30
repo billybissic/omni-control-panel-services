@@ -23,124 +23,38 @@
 **/
 package application.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
  * @author Billy Bissic
  *
  */
 
-@Entity
 public class EntertainerInformation {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer entertainer_id;
-	private String first_name;
-	private String last_name;
-	private String stage_name;
-	private String home_address;
-	private String cell_phone_number;
-	private String date_of_birth;
-	private boolean has_danced_before;
+	private String stageName;
+	private boolean hasDancedBefore;
 	
 	/**
-	 * @return the entertainer_id
+	 * @return the stageName
 	 */
-	public Integer getEntertainer_id() {
-		return entertainer_id;
+	public String getStageName() {
+		return stageName;
 	}
 	/**
-	 * @param entertainer_id the entertainer_id to set
+	 * @param stageName the stageName to set
 	 */
-	public void setEntertainer_id(Integer entertainer_id) {
-		this.entertainer_id = entertainer_id;
+	public void setStageName(String stageName) {
+		this.stageName = stageName;
 	}
 	/**
-	 * @return the first_name
+	 * @return the hasDancedBefore
 	 */
-	public String getFirst_name() {
-		return first_name;
+	public boolean isHasDancedBefore() {
+		return hasDancedBefore;
 	}
 	/**
-	 * @param first_name the first_name to set
+	 * @param hasDancedBefore the hasDancedBefore to set
 	 */
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
-	}
-	/**
-	 * @return the last_name
-	 */
-	public String getLast_name() {
-		return last_name;
-	}
-	/**
-	 * @param last_name the last_name to set
-	 */
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
-	}
-	/**
-	 * @return the stage_name
-	 */
-	public String getStage_name() {
-		return stage_name;
-	}
-	/**
-	 * @param stage_name the stage_name to set
-	 */
-	public void setStage_name(String stage_name) {
-		this.stage_name = stage_name;
-	}
-	/**
-	 * @return the home_address
-	 */
-	public String getHome_address() {
-		return home_address;
-	}
-	/**
-	 * @param home_address the home_address to set
-	 */
-	public void setHome_address(String home_address) {
-		this.home_address = home_address;
-	}
-	/**
-	 * @return the cell_phone_number
-	 */
-	public String getCell_phone_number() {
-		return cell_phone_number;
-	}
-	/**
-	 * @param cell_phone_number the cell_phone_number to set
-	 */
-	public void setCell_phone_number(String cell_phone_number) {
-		this.cell_phone_number = cell_phone_number;
-	}
-	/**
-	 * @return the date_of_birth
-	 */
-	public String getDate_of_birth() {
-		return date_of_birth;
-	}
-	/**
-	 * @param date_of_birth the date_of_birth to set
-	 */
-	public void setDate_of_birth(String date_of_birth) {
-		this.date_of_birth = date_of_birth;
-	}
-	/**
-	 * @return the has_danced_before
-	 */
-	public boolean isHas_danced_before() {
-		return has_danced_before;
-	}
-	/**
-	 * @param has_danced_before the has_danced_before to set
-	 */
-	public void setHas_danced_before(boolean has_danced_before) {
-		this.has_danced_before = has_danced_before;
+	public void setHasDancedBefore(boolean hasDancedBefore) {
+		this.hasDancedBefore = hasDancedBefore;
 	}
 }

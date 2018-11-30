@@ -21,16 +21,20 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application.repository;
+package application.exception;
 
-import org.springframework.data.repository.CrudRepository;
-
-import application.domain.EmployeeHistory;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * @author Billy Bissic
  *
  */
-public interface EmployeeHistoryRepository extends CrudRepository<EmployeeHistory, Integer> {
+
+@ResponseStatus(HttpStatus.CONFLICT)
+public class StaffMemberAlreadyExistsException extends RuntimeException {
+	public StaffMemberAlreadyExistsException() {
+		super("Staff member already exists.");
+	}
 
 }

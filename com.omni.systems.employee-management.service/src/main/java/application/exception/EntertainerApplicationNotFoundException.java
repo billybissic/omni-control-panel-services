@@ -23,12 +23,17 @@
 **/
 package application.exception;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 /**
  * @author Billy Bissic
  *
  */
-public class EntertainerAuditionsNotFoundException extends RuntimeException {
-	public EntertainerAuditionsNotFoundException() {
-		super("Entertainer audition not found.");
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class EntertainerApplicationNotFoundException extends RuntimeException {
+	public EntertainerApplicationNotFoundException() {
+		super("Entertainer application not found.");
 	}
+
 }

@@ -23,71 +23,38 @@
 **/
 package application.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 /**
  * @author Billy Bissic
  *
  */
-@Entity
+
 public class EmployeeSignature {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer employee_signature_id;
-	private String employee_id;
-	private String employee_signature;
-	private String employee_signature_date;
+	private String employeeSignature;
+	private String employeeSignatureDate;
 	
 	/**
-	 * @return the employee_signature_id
+	 * @return the employeeSignature
 	 */
-	public Integer getEmployee_signature_id() {
-		return employee_signature_id;
+	public String getEmployeeSignature() {
+		return employeeSignature;
 	}
 	/**
-	 * @param employee_signature_id the employee_signature_id to set
+	 * @param employeeSignature the employeeSignature to set
 	 */
-	public void setEmployee_signature_id(Integer employee_signature_id) {
-		this.employee_signature_id = employee_signature_id;
+	public void setEmployeeSignature(String employeeSignature) {
+		this.employeeSignature = employeeSignature;
 	}
 	/**
-	 * @return the employee_id
+	 * @return the employeeSignatureDate
 	 */
-	public String getEmployee_id() {
-		return employee_id;
+	public String getEmployeeSignatureDate() {
+		return employeeSignatureDate;
 	}
 	/**
-	 * @param employee_id the employee_id to set
+	 * @param employeeSignatureDate the employeeSignatureDate to set
 	 */
-	public void setEmployee_id(String employee_id) {
-		this.employee_id = employee_id;
-	}
-	/**
-	 * @return the employee_signature
-	 */
-	public String getEmployee_signature() {
-		return employee_signature;
-	}
-	/**
-	 * @param employee_signature the employee_signature to set
-	 */
-	public void setEmployee_signature(String employee_signature) {
-		this.employee_signature = employee_signature;
-	}
-	/**
-	 * @return the employee_signature_date
-	 */
-	public String getEmployee_signature_date() {
-		return employee_signature_date;
-	}
-	/**
-	 * @param employee_signature_date the employee_signature_date to set
-	 */
-	public void setEmployee_signature_date(String employee_signature_date) {
-		this.employee_signature_date = employee_signature_date;
+	public void setEmployeeSignatureDate(String employeeSignatureDate) {
+		this.employeeSignatureDate = employeeSignatureDate;
 	}
 }

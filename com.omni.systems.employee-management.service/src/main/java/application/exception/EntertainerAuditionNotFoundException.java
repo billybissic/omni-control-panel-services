@@ -21,16 +21,19 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application.repository;
+package application.exception;
 
-import org.springframework.data.repository.CrudRepository;
-
-import application.domain.EmployeeSignature;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * @author Billy Bissic
  *
  */
-public interface EmployeeSignatureRepository extends CrudRepository<EmployeeSignature, Integer> {
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class EntertainerAuditionNotFoundException extends RuntimeException {
+	public EntertainerAuditionNotFoundException() {
+		super("Entertainer audition not found.");
+	}
 
 }
