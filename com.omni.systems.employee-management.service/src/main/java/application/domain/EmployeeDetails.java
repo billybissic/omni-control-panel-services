@@ -31,7 +31,7 @@ public class EmployeeDetails {
 
 	private String emailAddress;
 	private String phoneNumber;
-	private String staff_position;
+	private String staffPosition;
 	private String employeeSummary;
 	private String profileImage;
 	
@@ -60,16 +60,16 @@ public class EmployeeDetails {
 		this.phoneNumber = phoneNumber;
 	}
 	/**
-	 * @return the staff_position
+	 * @return the staffPosition
 	 */
-	public String getStaff_position() {
-		return staff_position;
+	public String getStaffPosition() {
+		return staffPosition;
 	}
 	/**
-	 * @param staff_position the staff_position to set
+	 * @param staffPosition the staffPosition to set
 	 */
-	public void setStaff_position(String staff_position) {
-		this.staff_position = staff_position;
+	public void setStaffPosition(String staffPosition) {
+		this.staffPosition = staffPosition;
 	}
 	/**
 	 * @return the employeeSummary

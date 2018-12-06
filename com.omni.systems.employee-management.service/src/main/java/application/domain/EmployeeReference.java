@@ -28,7 +28,7 @@ package application.domain;
  *
  */
 
-public class EmployeeReferences {
+public class EmployeeReference {
 
 	private String referenceEmployerName;
 	private String referencePositionTitle;

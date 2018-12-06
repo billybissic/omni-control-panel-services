@@ -27,60 +27,46 @@ package application.domain;
  * @author Billy Bissic
  *
  */
+public class EmergencyContact {
 
-public class EmployeeEmploymentPosition {
-
-	private String desiredPosition;
-	private String availableStartDate;
-	private String desiredPay;
-	private String desiredEmploymentType;
+	private String firstName;
+	private String lastName;
+	private String phone;
 	
 	/**
-	 * @return the desiredPosition
+	 * @return the firstName
 	 */
-	public String getDesiredPosition() {
-		return desiredPosition;
+	public String getFirstName() {
+		return firstName;
 	}
 	/**
-	 * @param desiredPosition the desiredPosition to set
+	 * @param firstName the firstName to set
 	 */
-	public void setDesiredPosition(String desiredPosition) {
-		this.desiredPosition = desiredPosition;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 	/**
-	 * @return the availableStartDate
+	 * @return the lastName
 	 */
-	public String getAvailableStartDate() {
-		return availableStartDate;
+	public String getLastName() {
+		return lastName;
 	}
 	/**
-	 * @param availableStartDate the availableStartDate to set
+	 * @param lastName the lastName to set
 	 */
-	public void setAvailableStartDate(String availableStartDate) {
-		this.availableStartDate = availableStartDate;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	/**
-	 * @return the desiredPay
+	 * @return the phone
 	 */
-	public String getDesiredPay() {
-		return desiredPay;
+	public String getPhone() {
+		return phone;
 	}
 	/**
-	 * @param desiredPay the desiredPay to set
+	 * @param phone the phone to set
 	 */
-	public void setDesiredPay(String desiredPay) {
-		this.desiredPay = desiredPay;
-	}
-	/**
-	 * @return the desiredEmploymentType
-	 */
-	public String getDesiredEmploymentType() {
-		return desiredEmploymentType;
-	}
-	/**
-	 * @param desiredEmploymentType the desiredEmploymentType to set
-	 */
-	public void setDesiredEmploymentType(String desiredEmploymentType) {
-		this.desiredEmploymentType = desiredEmploymentType;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 }

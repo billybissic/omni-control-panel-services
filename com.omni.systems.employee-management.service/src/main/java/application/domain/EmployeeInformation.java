@@ -30,49 +30,23 @@ package application.domain;
 
 public class EmployeeInformation {
 	
-	private String cellPhoneNumber;
-	private String homePhoneNumber;
-	private String dateOfBirth;
+	private String phone;
 	private String emailAddress;
 	private boolean elgibleForEmployment;
 	private boolean isUsVeteran;
 	private boolean backgrounCheckAgreement;
 	
 	/**
-	 * @return the cellPhoneNumber
+	 * @return the phone
 	 */
-	public String getCellPhoneNumber() {
-		return cellPhoneNumber;
+	public String getPhone() {
+		return phone;
 	}
 	/**
-	 * @param cellPhoneNumber the cellPhoneNumber to set
+	 * @param phone the phone to set
 	 */
-	public void setCellPhoneNumber(String cellPhoneNumber) {
-		this.cellPhoneNumber = cellPhoneNumber;
-	}
-	/**
-	 * @return the homePhoneNumber
-	 */
-	public String getHomePhoneNumber() {
-		return homePhoneNumber;
-	}
-	/**
-	 * @param homePhoneNumber the homePhoneNumber to set
-	 */
-	public void setHomePhoneNumber(String homePhoneNumber) {
-		this.homePhoneNumber = homePhoneNumber;
-	}
-	/**
-	 * @return the dateOfBirth
-	 */
-	public String getDateOfBirth() {
-		return dateOfBirth;
-	}
-	/**
-	 * @param dateOfBirth the dateOfBirth to set
-	 */
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	/**
 	 * @return the emailAddress

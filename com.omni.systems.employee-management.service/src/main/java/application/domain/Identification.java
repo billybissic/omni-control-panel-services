@@ -23,64 +23,51 @@
 **/
 package application.domain;
 
+import java.sql.Date;
+
 /**
  * @author Billy Bissic
  *
  */
-
-public class EmployeeEmploymentPosition {
-
-	private String desiredPosition;
-	private String availableStartDate;
-	private String desiredPay;
-	private String desiredEmploymentType;
+public class Identification {
+	private String driversLicenseNumber;
+	private Date birthday;
+	private Integer age;
 	
 	/**
-	 * @return the desiredPosition
+	 * @return the driversLicenseNumber
 	 */
-	public String getDesiredPosition() {
-		return desiredPosition;
+	public String getDriversLicenseNumber() {
+		return driversLicenseNumber;
 	}
 	/**
-	 * @param desiredPosition the desiredPosition to set
+	 * @param driversLicenseNumber the driversLicenseNumber to set
 	 */
-	public void setDesiredPosition(String desiredPosition) {
-		this.desiredPosition = desiredPosition;
+	public void setDriversLicenseNumber(String driversLicenseNumber) {
+		this.driversLicenseNumber = driversLicenseNumber;
 	}
 	/**
-	 * @return the availableStartDate
+	 * @return the birthday
 	 */
-	public String getAvailableStartDate() {
-		return availableStartDate;
+	public Date getBirthday() {
+		return birthday;
 	}
 	/**
-	 * @param availableStartDate the availableStartDate to set
+	 * @param birthday the birthday to set
 	 */
-	public void setAvailableStartDate(String availableStartDate) {
-		this.availableStartDate = availableStartDate;
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 	/**
-	 * @return the desiredPay
+	 * @return the age
 	 */
-	public String getDesiredPay() {
-		return desiredPay;
+	public Integer getAge() {
+		return age;
 	}
 	/**
-	 * @param desiredPay the desiredPay to set
+	 * @param age the age to set
 	 */
-	public void setDesiredPay(String desiredPay) {
-		this.desiredPay = desiredPay;
-	}
-	/**
-	 * @return the desiredEmploymentType
-	 */
-	public String getDesiredEmploymentType() {
-		return desiredEmploymentType;
-	}
-	/**
-	 * @param desiredEmploymentType the desiredEmploymentType to set
-	 */
-	public void setDesiredEmploymentType(String desiredEmploymentType) {
-		this.desiredEmploymentType = desiredEmploymentType;
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 }

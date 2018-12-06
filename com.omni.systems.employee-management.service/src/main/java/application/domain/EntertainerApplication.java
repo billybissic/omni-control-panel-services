@@ -36,14 +36,11 @@ public class EntertainerApplication {
 	private String _id;
 	private String firstName;
 	private String lastName;
+	private String hireDate;
 	private EmployeeAddress employeeAddress;
-	private EmployeeInformation employeeInformation;
 	private EntertainerInformation entertainerInformation;
-	private String employmentArrangementType;
-	private String employmentPositionType;
 	private Iterable<EntertainerExperience> entertainerExperiences;
-	private Iterable<EmployeeReferences> employeeReferences;
-	private EmployeeSignature employeeSignatures;
+	private EmployeeSignature employeeSignature;
 	
 	/**
 	 * @return the _id
@@ -82,6 +79,18 @@ public class EntertainerApplication {
 		this.lastName = lastName;
 	}
 	/**
+	 * @return the hireDate
+	 */
+	public String getHireDate() {
+		return hireDate;
+	}
+	/**
+	 * @param hireDate the hireDate to set
+	 */
+	public void setHireDate(String hireDate) {
+		this.hireDate = hireDate;
+	}
+	/**
 	 * @return the employeeAddress
 	 */
 	public EmployeeAddress getEmployeeAddress() {
@@ -92,18 +101,6 @@ public class EntertainerApplication {
 	 */
 	public void setEmployeeAddress(EmployeeAddress employeeAddress) {
 		this.employeeAddress = employeeAddress;
-	}
-	/**
-	 * @return the employeeInformation
-	 */
-	public EmployeeInformation getEmployeeInformation() {
-		return employeeInformation;
-	}
-	/**
-	 * @param employeeInformation the employeeInformation to set
-	 */
-	public void setEmployeeInformation(EmployeeInformation employeeInformation) {
-		this.employeeInformation = employeeInformation;
 	}
 	/**
 	 * @return the entertainerInformation
@@ -118,30 +115,6 @@ public class EntertainerApplication {
 		this.entertainerInformation = entertainerInformation;
 	}
 	/**
-	 * @return the employmentArrangementType
-	 */
-	public String getEmploymentArrangementType() {
-		return employmentArrangementType;
-	}
-	/**
-	 * @param employmentArrangementType the employmentArrangementType to set
-	 */
-	public void setEmploymentArrangementType(String employmentArrangementType) {
-		this.employmentArrangementType = employmentArrangementType;
-	}
-	/**
-	 * @return the employmentPositionType
-	 */
-	public String getEmploymentPositionType() {
-		return employmentPositionType;
-	}
-	/**
-	 * @param employmentPositionType the employmentPositionType to set
-	 */
-	public void setEmploymentPositionType(String employmentPositionType) {
-		this.employmentPositionType = employmentPositionType;
-	}
-	/**
 	 * @return the entertainerExperiences
 	 */
 	public Iterable<EntertainerExperience> getEntertainerExperiences() {
@@ -154,27 +127,15 @@ public class EntertainerApplication {
 		this.entertainerExperiences = entertainerExperiences;
 	}
 	/**
-	 * @return the employeeReferences
+	 * @return the employeeSignature
 	 */
-	public Iterable<EmployeeReferences> getEmployeeReferences() {
-		return employeeReferences;
+	public EmployeeSignature getEmployeeSignature() {
+		return employeeSignature;
 	}
 	/**
-	 * @param employeeReferences the employeeReferences to set
+	 * @param employeeSignature the employeeSignature to set
 	 */
-	public void setEmployeeReferences(Iterable<EmployeeReferences> employeeReferences) {
-		this.employeeReferences = employeeReferences;
-	}
-	/**
-	 * @return the employeeSignatures
-	 */
-	public EmployeeSignature getEmployeeSignatures() {
-		return employeeSignatures;
-	}
-	/**
-	 * @param employeeSignatures the employeeSignatures to set
-	 */
-	public void setEmployeeSignatures(EmployeeSignature employeeSignatures) {
-		this.employeeSignatures = employeeSignatures;
+	public void setEmployeeSignature(EmployeeSignature employeeSignature) {
+		this.employeeSignature = employeeSignature;
 	}
 }

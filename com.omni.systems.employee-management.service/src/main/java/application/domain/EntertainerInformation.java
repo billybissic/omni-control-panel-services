@@ -29,8 +29,12 @@ package application.domain;
  */
 
 public class EntertainerInformation {
-	
+	private String phone;
+	private String hireDate;
+	private EmergencyContact emergencyContacts;
+	private Identification identification;
 	private String stageName;
+	private String highestLevelOfEducation;
 	private boolean hasDancedBefore;
 	
 	/**

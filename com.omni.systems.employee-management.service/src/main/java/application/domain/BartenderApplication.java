@@ -43,7 +43,7 @@ public class BartenderApplication {
 	private EmployeeEmploymentPosition employeeEmploymentPosition;
 	private Iterable<EmployeeEducation> employeeEducation;
 	private Iterable<EmployeeHistory> employeeHistory;
-	private Iterable<EmployeeReferences> employeeReferences;
+	private Iterable<EmployeeReference> employeeReferences;
 	private EmployeeSignature employeeSignature;
 	/**
 	 * @return the _id
@@ -144,13 +144,13 @@ public class BartenderApplication {
 	/**
 	 * @return the employeeReferences
 	 */
-	public Iterable<EmployeeReferences> getEmployeeReferences() {
+	public Iterable<EmployeeReference> getEmployeeReferences() {
 		return employeeReferences;
 	}
 	/**
 	 * @param employeeReferences the employeeReferences to set
 	 */
-	public void setEmployeeReferences(Iterable<EmployeeReferences> employeeReferences) {
+	public void setEmployeeReferences(Iterable<EmployeeReference> employeeReferences) {
 		this.employeeReferences = employeeReferences;
 	}
 	/**
