@@ -37,8 +37,8 @@ public class StaffMember {
 	private String _id;
 	private String firstName;
 	private String lastName;
+	private String alias;
 	private EmployeeDetails employeeDetails;
-	
 	/**
 	 * @return the _id
 	 */
@@ -74,6 +74,18 @@ public class StaffMember {
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	/**
+	 * @return the alias
+	 */
+	public String getAlias() {
+		return alias;
+	}
+	/**
+	 * @param alias the alias to set
+	 */
+	public void setAlias(String alias) {
+		this.alias = alias;
 	}
 	/**
 	 * @return the employeeDetails
