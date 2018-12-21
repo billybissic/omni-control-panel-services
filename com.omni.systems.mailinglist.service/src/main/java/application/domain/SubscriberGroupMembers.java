@@ -21,20 +21,49 @@
 *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 *	SOFTWARE.
 **/
-package application;
+package application.domain;
 
+import javax.persistence.Column;
 /**
  * @author Billy Bissic
  *
  */
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-@ResponseStatus(HttpStatus.CONFLICT)
-public class DuplicateSubscriberException extends RuntimeException {
-
-	public DuplicateSubscriberException(String exception) {
-		super(exception);
+@Entity
+public class SubscriberGroupMembers {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="subscriber_group_id")
+	private Integer subscriberGroupId;
+	@Column(name="subscriber_id")
+	private Integer subscriberId;
+	/**
+	 * @return the subscriberGroupId
+	 */
+	public Integer getSubscriberGroupId() {
+		return subscriberGroupId;
+	}
+	/**
+	 * @param subscriberGroupId the subscriberGroupId to set
+	 */
+	public void setSubscriberGroupId(Integer subscriberGroupId) {
+		this.subscriberGroupId = subscriberGroupId;
+	}
+	/**
+	 * @return the subscriberId
+	 */
+	public Integer getSubscriberId() {
+		return subscriberId;
+	}
+	/**
+	 * @param subscriberId the subscriberId to set
+	 */
+	public void setSubscriberId(Integer subscriberId) {
+		this.subscriberId = subscriberId;
 	}
 }

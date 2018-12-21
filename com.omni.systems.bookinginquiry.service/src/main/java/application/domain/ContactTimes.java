@@ -21,34 +21,41 @@
 *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 *	SOFTWARE.
 **/
-package application;
+package application.domain;
 
 /**
  * @author Billy Bissic
  *
  */
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Configuration
-public class ServiceConfiguration {
+@Entity
+public class ContactTimes {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer contact_timeframe_id;
+	private String contact_timeframe;
+	private String contact_timeframe_description;
 	
-	@Bean
-	public FilterRegistrationBean corsFilter() {
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		CorsConfiguration config = new CorsConfiguration();
-		config.setAllowCredentials(true);
-		config.addAllowedOrigin("*");
-		config.addAllowedHeader("*");
-		config.addAllowedMethod("*");
-		source.registerCorsConfiguration("/**", config);
-		FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
-		bean.setOrder(0);
-		return bean;
+	public Integer getContact_timeframe_id() {
+		return contact_timeframe_id;
 	}
-
+	public void setContact_timeframe_id(Integer contact_timeframe_id) {
+		this.contact_timeframe_id = contact_timeframe_id;
+	}
+	public String getContact_timeframe() {
+		return contact_timeframe;
+	}
+	public void setContact_timeframe(String contact_timeframe) {
+		this.contact_timeframe = contact_timeframe;
+	}
+	public String getContact_timeframe_description() {
+		return contact_timeframe_description;
+	}
+	public void setContact_timeframe_description(String contact_timeframe_description) {
+		this.contact_timeframe_description = contact_timeframe_description;
+	}
 }

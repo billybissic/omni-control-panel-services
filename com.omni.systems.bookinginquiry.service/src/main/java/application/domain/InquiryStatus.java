@@ -21,7 +21,7 @@
 *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 *	SOFTWARE.
 **/
-package application;
+package application.domain;
 
 /**
  * @author Billy Bissic
@@ -33,29 +33,48 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class ContactTimes {
+public class InquiryStatus {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer contact_timeframe_id;
-	private String contact_timeframe;
-	private String contact_timeframe_description;
+	private Integer inquiry_status_id;
+	private String inquiry_status_name;
+	private String inquiry_status_description;
 	
-	public Integer getContact_timeframe_id() {
-		return contact_timeframe_id;
+	/**
+	 * @return the inquiry_status_id
+	 */
+	public Integer getInquiry_status_id() {
+		return inquiry_status_id;
 	}
-	public void setContact_timeframe_id(Integer contact_timeframe_id) {
-		this.contact_timeframe_id = contact_timeframe_id;
+	/**
+	 * @param inquiry_status_id the inquiry_status_id to set
+	 */
+	public void setInquiry_status_id(Integer inquiry_status_id) {
+		this.inquiry_status_id = inquiry_status_id;
 	}
-	public String getContact_timeframe() {
-		return contact_timeframe;
+	/**
+	 * @return the inquiry_status_name
+	 */
+	public String getInquiry_status_name() {
+		return inquiry_status_name;
 	}
-	public void setContact_timeframe(String contact_timeframe) {
-		this.contact_timeframe = contact_timeframe;
+	/**
+	 * @param inquiry_status_name the inquiry_status_name to set
+	 */
+	public void setInquiry_status_name(String inquiry_status_name) {
+		this.inquiry_status_name = inquiry_status_name;
 	}
-	public String getContact_timeframe_description() {
-		return contact_timeframe_description;
+	/**
+	 * @return the inquiry_status_description
+	 */
+	public String getInquiry_status_description() {
+		return inquiry_status_description;
 	}
-	public void setContact_timeframe_description(String contact_timeframe_description) {
-		this.contact_timeframe_description = contact_timeframe_description;
+	/**
+	 * @param inquiry_status_description the inquiry_status_description to set
+	 */
+	public void setInquiry_status_description(String inquiry_status_description) {
+		this.inquiry_status_description = inquiry_status_description;
 	}
+	
 }

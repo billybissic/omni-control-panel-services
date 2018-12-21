@@ -21,7 +21,7 @@
 *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 *	SOFTWARE.
 **/
-package application;
+package application.repository;
 
 /**
  * @author Billy Bissic
@@ -29,30 +29,39 @@ package application;
  */
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import application.domain.Subscriber;
 
-public interface SubscribersRepository extends CrudRepository<Subscribers, Long> {
+
+public interface SubscriberRepository extends CrudRepository<Subscriber, Integer> {
 
 	/* set entity manager */
 	
 	
-	@Query("SELECT s.subscriber_email FROM Subscribers s WHERE s.subscriber_email = ?1")
-	List<Subscribers> findBySubscriberEmail(String email);
+	@Query("SELECT s.subscriberEmail FROM Subscriber s WHERE s.subscriberEmail = ?1")
+	List<Subscriber> findBySubscriberEmail(String email);
 
-	@Query("SELECT s.subscriber_id, s.first_name, s.last_name, s.subscriber_email, s.birth_day FROM Subscribers s WHERE s.subscriber_id = ?1")
-	Subscribers findById(Long subscriber_id);
+	@Query("SELECT s.subscriberId, s.firstName, s.lastName, s.subscriberEmail, s.birthDay FROM Subscriber s WHERE s.subscriberId = ?1")
+	Subscriber findById(Integer subscriber_id);
 
 	@Transactional
 	@Modifying
-	@Query("DELETE FROM Subscribers WHERE subscriber_id = ?1")
+	@Query("DELETE FROM Subscriber WHERE subscriberId = ?1")
 	void deleteById(Integer id);
 
-	@Query("SELECT s.subscriber_id, s.first_name, s.last_name, s.subscriber_email, s.birth_day FROM Subscribers s WHERE s.subscriber_id NOT IN ( ?1 ) ")
-	Iterable<Subscribers> findUnAssignedSubscribers(List<Integer> memberIds);
+	@Query("SELECT s.subscriberId, s.firstName, s.lastName, s.subscriberEmail, s.birthDay "
+			+ "FROM Subscriber s WHERE s.subscriberId NOT IN ( SELECT subscriberId FROM SubscriberGroupMembers)")
+	Iterable<Subscriber> findUnAssignedSubscribers();
 
 	/* TODO: needs more research on the named query to allow for NOT IN clause support */
 	/*@Query( value = "SELECT s.subscriber_id, s.first_name, s.last_name, s.subscriber_email, s.birth_day  "
@@ -70,6 +79,12 @@ public interface SubscribersRepository extends CrudRepository<Subscribers, Long>
 		
 		//TypedQuery<Subscribers> query = em.createQuery(q);
 		//Iterable<Subscribers> subscribers = query.getResultList();
-
+	
+	@Query("SELECT s.subscriberId, s.firstName, s.lastName, s.birthDay, s.subscriberEmail "
+			+ "FROM Subscriber s,"
+			+ " SubscriberGroupMembers sgm"
+			+ " WHERE s.subscriberId = sgm.subscriberId"
+			+ " AND sgm.subscriberGroupId = ?1")
+	Iterable<Subscriber> subscribersOfGroup(Integer subscriberGroupId);
 }
 

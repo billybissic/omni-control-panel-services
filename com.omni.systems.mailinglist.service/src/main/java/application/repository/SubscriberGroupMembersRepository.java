@@ -21,7 +21,7 @@
 *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 *	SOFTWARE.
 **/
-package application;
+package application.repository;
 
 /**
  * @author Billy Bissic
@@ -34,13 +34,27 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface SubscriberGroupsRepository extends CrudRepository<SubscriberGroups, Long> {
+import application.domain.SubscriberGroupMembers;
+import application.domain.SubscriberGroups;
+import application.domain.Subscriber;
 
-	@Query("SELECT sg.subscriber_group_id, sg.subscriber_group_name, sg.subscriber_group_description FROM SubscriberGroups as sg WHERE sg.subscriber_group_id = ?1")
-	List<SubscriberGroups> findById(Integer subscriber_group_id);
+public interface SubscriberGroupMembersRepository extends CrudRepository<SubscriberGroupMembers, Integer> {
+
+	/*@Query("SELECT s.subscriberId, s.subscriberEmail, s.firstName, s.lastName, s.birthDay "
+			+ "FROM Subscribers s,"
+			+ " SubscriberGroupMembers sgm"
+			+ " WHERE s.subscriberId = sgm.subscriberId"
+			+ " AND sgm.subscriberGroupId = ?1")
+	Iterable<Subscribers> subscribersOfGroup(Integer subscriberGroupId);*/
+	
+	/*@Query("SELECT subscriberGroupId, subscriberId FROM SubscriberGroupMembers WHERE subscriberGroupId = ?1")
+	Iterable<SubscriberGroupMembers> subscribersOfGroup(Integer subscriberGroupId);*/
 
 	@Transactional
 	@Modifying
-	@Query("DELETE FROM SubscriberGroups WHERE subscriber_group_id = ?1")
-	void deleteById(Integer id);
+	@Query("DELETE FROM SubscriberGroupMembers WHERE subscriberGroupId = ?1 AND subscriberId = ?2")
+	void deleteById(Integer subscriberGroupId, Integer subscriberId);
+
+	@Query("SELECT subscriberId FROM SubscriberGroupMembers") 
+	Iterable<Integer> findMemberIds();
 }

@@ -21,30 +21,28 @@
 *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 *	SOFTWARE.
 **/
-package application;
+package application.repository;
 
 /**
  * @author Billy Bissic
  *
  */
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface InquiryStatusRepository extends CrudRepository<InquiryStatus, Integer> {
+import application.domain.SubscriberGroups;
 
-	@Query("SELECT inquiry_status_id, inquiry_status_name, inquiry_status_description FROM InquiryStatus WHERE inquiry_status_id = ?1")
-	Optional<InquiryStatus> findById(Integer inquiry_status_id);
-	
-	@Query("SELECT inquiry_status_id, inquiry_status_name, inquiry_status_description FROM InquiryStatus WHERE inquiry_status_id = ?1")
-	InquiryStatus getById(Integer inquiry_status_id);
+public interface SubscriberGroupsRepository extends CrudRepository<SubscriberGroups, Long> {
+
+	@Query("SELECT sg.subscriber_group_id, sg.subscriber_group_name, sg.subscriber_group_description FROM SubscriberGroups as sg WHERE sg.subscriber_group_id = ?1")
+	List<SubscriberGroups> findById(Integer subscriber_group_id);
 
 	@Transactional
 	@Modifying
-	@Query("DELETE FROM InquiryStatus WHERE inquiry_status_id = ?1")
-	void deleteById(Integer inquiry_status_id);
-
+	@Query("DELETE FROM SubscriberGroups WHERE subscriber_group_id = ?1")
+	void deleteById(Integer id);
 }

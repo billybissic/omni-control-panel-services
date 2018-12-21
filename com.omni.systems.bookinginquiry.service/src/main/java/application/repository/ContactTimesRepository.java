@@ -21,47 +21,23 @@
 *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 *	SOFTWARE.
 **/
-package application;
+package application.repository;
 
 /**
  * @author Billy Bissic
  *
  */
-import java.util.Date;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.transaction.annotation.Transactional;
 
-public class ErrorDetails {
-private Date timestamp;
-private String message;
-private String details;
+import application.domain.ContactTimes;
 
-	public ErrorDetails(Date timestamp, String message, String details) {
-		super();
-		this.timestamp = timestamp;
-		this.message = message;
-		this.details = details;
-	}
-	
-	public Date getTimestamp() {
-		return timestamp;
-	}
+public interface ContactTimesRepository extends CrudRepository<ContactTimes, Integer> {
 
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public String getDetails() {
-		return details;
-	}
-
-	public void setDetails(String details) {
-		this.details = details;
-	}
+	@Transactional
+	@Modifying
+	@Query("DELETE FROM ContactTimes WHERE contact_timeframe_id = ?1")
+	void deleteById(Integer contact_timeframe_id);
 }

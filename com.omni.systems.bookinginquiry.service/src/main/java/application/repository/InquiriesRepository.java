@@ -21,29 +21,29 @@
 *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 *	SOFTWARE.
 **/
-package application;
+package application.repository;
 
 /**
  * @author Billy Bissic
  *
  */
-import java.util.List;
-
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface SubscriberGroupMembersRepository extends CrudRepository<SubscriberGroupMembers, Long> {
+import application.domain.Inquiries;
 
-	@Query("SELECT subscriber_group_id, subscriber_id FROM SubscriberGroupMembers WHERE subscriber_group_id = ?1")
-	Iterable<SubscriberGroups> subscribersOfGroup(Integer subscriber_group_id);
+public interface InquiriesRepository extends CrudRepository<Inquiries, Integer> {
 
 	@Transactional
 	@Modifying
-	@Query("DELETE FROM SubscriberGroupMembers WHERE subscriber_group_id = ?1 AND subscriber_id = ?2")
-	void deleteById(Integer subscriber_group_id, Integer subscriber_id);
+	@Query("DELETE FROM Inquiries WHERE inquiry_id = ?1")
+	void deleteById(Integer inquiry_id);
 
-	@Query("SELECT subscriber_id FROM SubscriberGroupMembers") 
-	List<Integer> findMemberIds();
+	/**
+	 * @param pendingStatusCode
+	 */
+	Integer countByInquiryStatusId(Integer pendingStatusCode);
+
 }

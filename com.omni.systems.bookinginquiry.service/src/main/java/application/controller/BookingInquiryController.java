@@ -40,15 +40,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import application.ContactTimes;
-import application.ContactTimesRepository;
-import application.Inquiries;
-import application.InquiriesRepository;
-import application.InquiryStatus;
-import application.InquiryStatusRepository;
-import application.InquiryTypes;
-import application.InquiryTypesRepository;
+import application.domain.ContactTimes;
+import application.domain.Inquiries;
+import application.domain.InquiryStatus;
+import application.domain.InquiryTypes;
 import application.exception.InquiryStatusCodesNotFoundException;
+import application.repository.ContactTimesRepository;
+import application.repository.InquiriesRepository;
+import application.repository.InquiryStatusRepository;
+import application.repository.InquiryTypesRepository;
 
 @Controller
 @RequestMapping(path="/BookingInquiryServices")

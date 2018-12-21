@@ -21,8 +21,9 @@
 *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 *	SOFTWARE.
 **/
-package application;
+package application.controller;
 
+import java.util.Arrays;
 /**
  * @author Billy Bissic
  *
@@ -42,6 +43,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import application.domain.SubscriberGroupMembers;
+import application.domain.SubscriberGroups;
+import application.domain.Subscriber;
+import application.exception.DuplicateSubscriberException;
+import application.exception.DuplicateSubscriberGroupException;
+import application.exception.NoDataAvailableException;
+import application.exception.NoUnassignedSubscribersFoundException;
+import application.exception.SubscriberNotFoundException;
+import application.repository.SubscriberGroupMembersRepository;
+import application.repository.SubscriberGroupsRepository;
+import application.repository.SubscriberRepository;
+
 /**
  * @author Billy Bissic
  *
@@ -51,25 +64,25 @@ import org.springframework.web.bind.annotation.RestController;
 public class MailingListController {
 	
 	@Autowired
-	private SubscribersRepository subscribersRepository;
+	private SubscriberRepository subscribersRepository;
 	@Autowired
 	private SubscriberGroupsRepository subscriberGroupsRepository;
 	@Autowired
 	private SubscriberGroupMembersRepository subscriberGroupMembersRepository;
 	
 	@RequestMapping(value="/subscribe", method = RequestMethod.POST)
-	public ResponseEntity<Subscribers> addNewSubscriber(@RequestBody Subscribers subscriber)
+	public ResponseEntity<Subscriber> addNewSubscriber(@RequestBody Subscriber subscriber)
 	{
 		//Check to see if they have already subscribed.
-		List<Subscribers> existingSubscriber = subscribersRepository.findBySubscriberEmail(subscriber.getSubscriber_email());
+		List<Subscriber> existingSubscriber = subscribersRepository.findBySubscriberEmail(subscriber.getSubscriberEmail());
 		if (existingSubscriber.isEmpty())
 		{
 			subscribersRepository.save(subscriber);
-			return new ResponseEntity<Subscribers>(subscriber, HttpStatus.OK);
+			return new ResponseEntity<Subscriber>(subscriber, HttpStatus.OK);
 		}
 		else
 		{
-			throw new DuplicateSubscriberException("Subscriber_email:" + subscriber.getSubscriber_email());
+			throw new DuplicateSubscriberException("Subscriber_email:" + subscriber.getSubscriberEmail());
 		}
 	}
 
@@ -110,22 +123,22 @@ public class MailingListController {
 	}
 	
 	@GetMapping(path="/seeAllSubscribers")
-	public @ResponseBody Iterable<Subscribers> getAllSubscribers() 
+	public @ResponseBody Iterable<Subscriber> getAllSubscribers() 
 	{
 		return subscribersRepository.findAll();
 	}
 	
 	@GetMapping(path="/findSubscriberById")
-	public ResponseEntity<Subscribers> getSubscriberById(@RequestBody Subscribers subscriber)
+	public ResponseEntity<Subscriber> getSubscriberById(@RequestBody Subscriber subscriber)
 	{
-		Subscribers existingSubscriber = subscribersRepository.findById(subscriber.getSubscriber_id());
+		Subscriber existingSubscriber = subscribersRepository.findById(subscriber.getSubscriberId());
 		if (existingSubscriber.equals(subscriber))
 		{
-			return new ResponseEntity<Subscribers>(subscriber, HttpStatus.OK);
+			return new ResponseEntity<Subscriber>(subscriber, HttpStatus.OK);
 		}
 		else
 		{
-			throw new SubscriberNotFoundException(subscriber.getSubscriber_email() + ", not found");
+			throw new SubscriberNotFoundException();
 		}
 	}
 	
@@ -135,38 +148,75 @@ public class MailingListController {
 		return subscriberGroupsRepository.findAll();
 	}
 	
-	/* TODO: Query needs to be fixed */
-	/*
 	@GetMapping(path="/getUnAssignedSubscribers")
-	public @ResponseBody Iterable<Subscribers> getUnAssignedSubscribers()
+	public @ResponseBody ResponseEntity<?> getUnAssignedSubscribers()
 	{
-		List<Integer> memberIds = subscriberGroupMembersRepository.findMemberIds();
-		return subscribersRepository.findUnAssignedSubscribers(memberIds);
-		//return subscribersRepository.findUnAssignedSubscribers();
-	}*/
-	
-	@GetMapping(path="/getAllSubscriberGroupMembers")
-	public @ResponseBody Iterable<SubscriberGroups> getAllSubscriberGroupMembers(Integer groupId)
-	{
-		return subscriberGroupMembersRepository.subscribersOfGroup(groupId);
+		/** Get All Group Members */
+		Iterable<Integer> subscriberIds = subscriberGroupMembersRepository.findMemberIds();
+		if (subscriberIds == null )
+		{
+			/** If nothing returns for subscriber group members, return all subscribers. */
+			Iterable<Subscriber> subscribers = subscribersRepository.findAll();
+			
+			/** if no subscribers are found from subscribers repository throw error */
+			if (subscribers == null) {
+				throw new NoDataAvailableException();
+			}
+			
+			/** otherwise return all subscribers found */
+			return new ResponseEntity<Iterable<Subscriber>>(subscribers, HttpStatus.OK);
+		}
+		
+		/** Find Members With No Group */
+		Iterable<Subscriber> unassignedSubscribers = subscribersRepository.findUnAssignedSubscribers();
+		/** If nothing returns for unassigned subscribers, throw error */
+		if (unassignedSubscribers == null)
+		{
+			/** Throw null exception */
+			throw new NoUnassignedSubscribersFoundException();
+		}
+		
+		/** otherwise return all unassigned subscribers found */
+		return new ResponseEntity<Iterable<Subscriber>>(unassignedSubscribers, HttpStatus.OK);
 	}
 	
-	@DeleteMapping(path="/deleteSubscriber/{id}")
-	public ResponseEntity<HttpStatus> deleteSubscriber(@PathVariable Integer id)
+	@RequestMapping(path="/getAllSubscriberGroupMembers/{groupId}", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<?> getAllSubscriberGroupMembers(@PathVariable Integer groupId)
+	{
+		Iterable<Subscriber> subscribers = subscribersRepository.subscribersOfGroup(groupId);
+		
+		/** if no subscribers are found from subscribers repository throw error */
+		if (subscribers == null )
+		{
+			throw new NoDataAvailableException();
+		}
+		
+		
+		/** otherwise return all subscribers found */
+		return new ResponseEntity<Iterable<Subscriber>>(subscribers, HttpStatus.OK);
+	}
+	
+	@RequestMapping(path="/deleteSubscriber/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> deleteSubscriber(@PathVariable Integer id)
 	{
 		try
 		{
-			subscribersRepository.deleteById(id);
-			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+			Subscriber subscriber = subscribersRepository.findOne(id);
+			if ( subscriber == null )
+			{
+				throw new SubscriberNotFoundException();
+			}
+			subscribersRepository.delete(subscriber);
+			return new ResponseEntity<Subscriber>(subscriber, HttpStatus.OK);
 		}
 		catch (HibernateException ex)
 		{
 			System.out.println(ex);
-			return new ResponseEntity<HttpStatus>(HttpStatus.I_AM_A_TEAPOT);
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@DeleteMapping(path="/deleteSubscriberGroup/{id}")
+	@RequestMapping(path="/deleteSubscriberGroup/{id}", method = RequestMethod.GET)
 	public ResponseEntity<HttpStatus> deleteSubscriberGroup(@PathVariable Integer id)
 	{
 		try
@@ -177,11 +227,11 @@ public class MailingListController {
 		catch (HibernateException ex)
 		{
 			System.out.println(ex);
-			return new ResponseEntity<HttpStatus>(HttpStatus.I_AM_A_TEAPOT);
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
-	@DeleteMapping(path="/deleteSubscriberGroupMember/{groupId}/{subscriberId}")
+	@RequestMapping(path="/deleteSubscriberGroupMember/{groupId}/{subscriberId}", method = RequestMethod.GET)
 	public ResponseEntity<HttpStatus> deleteSubscriberGroupMember(@PathVariable Integer groupId, @PathVariable Integer subscriberId)
 	{
 		try
@@ -192,7 +242,7 @@ public class MailingListController {
 		catch (HibernateException ex)
 		{
 			System.out.println(ex);
-			return new ResponseEntity<HttpStatus>(HttpStatus.I_AM_A_TEAPOT);
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }

@@ -21,21 +21,19 @@
 *	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 *	SOFTWARE.
 **/
-package application;
+package application.exception;
 
 /**
  * @author Billy Bissic
  *
  */
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-public interface ContactTimesRepository extends CrudRepository<ContactTimes, Integer> {
-
-	@Transactional
-	@Modifying
-	@Query("DELETE FROM ContactTimes WHERE contact_timeframe_id = ?1")
-	void deleteById(Integer contact_timeframe_id);
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class SubscriberNotFoundException extends RuntimeException {
+	
+	public SubscriberNotFoundException() {
+		super("Subscriber not found.");
+	}
 }
