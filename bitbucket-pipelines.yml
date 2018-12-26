@@ -15,4 +15,4 @@ pipelines:
           - ls -la
           - mvn -version
           - echo "${BITBUCKET_BUILD_NUMBER}"
-          #- ./build-services.sh
+          - ./build-start.sh -f "OMNI-Services.build.1.0" -r $BITBUCKET_BUILD_NUMBER
