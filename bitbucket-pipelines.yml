@@ -16,6 +16,8 @@ pipelines:
           - mvn -version
           - echo "${BITBUCKET_BUILD_NUMBER}"
           - chmod +x *.sh
-          - echo "Environment Variable for package name is $SERVICES_PACKAGE_NAME"
+          - echo "Environment Variable for package name is ${SERVICES_PACKAGE_NAME}"
+          echo "------"
+          - echo $SERVICES_PACKAGE_NAME
           - ./build-start.sh -f $SERVICES_PACKAGE_NAME -r $BITBUCKET_BUILD_NUMBER
           #- curl -X POST --user "${BB_AUTH_STRING}" "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}/downloads" --form files=@"${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz"
