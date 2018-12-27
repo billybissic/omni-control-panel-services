@@ -209,5 +209,5 @@ then
 fi
 
 echo "Starting build process..."
-#startBuild
+startBuild
 echo "Done."
