@@ -18,7 +18,7 @@ pipelines:
           - chmod +x *.sh
           - ./build-start.sh -f $SERVICES_PACKAGE_NAME -r $BITBUCKET_BUILD_NUMBER
           - curl -X POST --user "${BB_AUTH_STRING}" "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}/downloads" --form files=@"${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz"
-      - step:
-         name: Stage deployment
-         script:
+    - step:
+        name: Stage deployment
+        script:
           - ls -la
