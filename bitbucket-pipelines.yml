@@ -22,3 +22,6 @@ pipelines:
         name: Stage deployment
         script:
           - ls -la
+          - echo Downloading package from repo downloads directory
+          - curl -s -L https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}/downloads/${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz
+          #- ./stage-package.sh -f $SERVICES_PACKAGE_NAME -r $BITBUCKET_BUILD_NUMBER
