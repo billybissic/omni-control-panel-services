@@ -22,14 +22,12 @@ pipelines:
         name: Stage deployment
         script:
           - ls -la
-          - apt-get update -y
-          - apt-get install -y ssh
-          - echo Downloading package from repo downloads directory
+          - ssh-add -l
           - curl -s -L --user "${BB_AUTH_STRING}" "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}/downloads/${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz" -o "${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz"
-          - mkdir -p ~/.ssh
-          - cat my_known_hosts >> ~/.ssh/known_hosts
-          - (umask 077 ; echo $MY_SSH_KEY | base64 --decode > ~/.ssh/id_rsa)
-          - ssh -t root@menageadultclub.com 
-          - ll -rt
-          - whoami
+          #- mkdir -p ~/.ssh
+          #- cat my_known_hosts >> ~/.ssh/known_hosts
+          #- (umask 077 ; echo $MY_SSH_KEY | base64 --decode > ~/.ssh/id_rsa)
+          #- ssh -t root@menageadultclub.com
+          #- ll -rt
+          #- whoami
           #- ./stage-package.sh -f $SERVICES_PACKAGE_NAME -r $BITBUCKET_BUILD_NUMBER
