@@ -29,8 +29,7 @@ pipelines:
           - mkdir -p ~/.ssh
           - cat my_known_hosts >> ~/.ssh/known_hosts
           - (umask 077 ; echo $MY_SSH_KEY | base64 --decode > ~/.ssh/id_rsa)
-          - ssh <user>@<host> 'echo "connected to `host` as $USER"'
-          - ssh -t root@menageadultclub.com
+          - ssh -t root@menageadultclub.com 
           - ll -rt
           - whoami
           #- ./stage-package.sh -f $SERVICES_PACKAGE_NAME -r $BITBUCKET_BUILD_NUMBER
