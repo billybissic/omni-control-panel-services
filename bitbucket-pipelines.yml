@@ -24,7 +24,7 @@ pipelines:
           - curl -s -L --user "${BB_AUTH_STRING}" "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}/downloads/${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz" -o "${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz"
           - mkdir -p ~/.ssh
           - cat my_known_hosts >> ~/.ssh/known_hosts
-          - chmod -R 0700 ~./ssh
+          - chmod -R 0700 ~/.ssh
           - ssh -t root@menageadultclub.com
           #- ll -rt
           #- whoami
