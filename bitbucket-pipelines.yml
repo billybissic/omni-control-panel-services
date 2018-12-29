@@ -25,7 +25,7 @@ pipelines:
           #- mkdir -p ~/.ssh
           #- cat my_known_hosts >> ~/.ssh/known_hosts
           #- chmod -R 0700 ~/.ssh
-          - chmod 0700 id_rsa.ppk
+          - chmod 0400 id_rsa.ppk
           - sftp -i id_rsa.ppk bitbucket-pipeline@menageadultclub.com
           #- ll -rt
           #- whoami
