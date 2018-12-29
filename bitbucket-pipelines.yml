@@ -27,7 +27,7 @@ pipelines:
           #- chmod -R 0700 ~/.ssh
           - chmod 0400 bitbucket-pipeline_rsa
           - ssh -o StrictHostKeyChecking=No -i bitbucket-pipeline_rsa bitbucket-pipeline@cs1.menageadultclub.com
-          - cd u/data/omni/sys/staging/
+          - cd /u/data/omni/sys/staging/
           - ls
           - pwd
           #- ls
