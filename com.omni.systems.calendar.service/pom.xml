@@ -4,7 +4,7 @@
   <artifactId>com.omni.systems.calendar.service</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
-  <name>calendar-services</name>
+  <name>calendar-service</name>
   <description>Omni MongoDB Calendar Services</description>
   
   <parent>
@@ -45,7 +45,7 @@
     </dependencies>
     
     <build>
-		<finalName>calendar-services</finalName>
+		<finalName>calendar-service</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
