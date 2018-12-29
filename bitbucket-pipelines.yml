@@ -26,12 +26,12 @@ pipelines:
           #- cat my_known_hosts >> ~/.ssh/known_hosts
           #- chmod -R 0700 ~/.ssh
           - chmod 0400 bitbucket-pipeline_rsa
-          - sftp -o StrictHostKeyChecking=No -i bitbucket-pipeline_rsa bitbucket-pipeline@cs1.menageadultclub.com
-          - mkdir staging
-          - cd staging
-          - pwd
+          - ssh -o StrictHostKeyChecking=No -i bitbucket-pipeline_rsa bitbucket-pipeline@cs1.menageadultclub.com
+          - cd u/data/omni/sys/staging/
           - ls
-          - put "${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz"
+          - pwd
+          #- ls
+          - curl -X POST --user "${BB_AUTH_STRING}" "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}/downloads" --form files=@"${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz"
           - ls
           - quit
           #- ll -rt
