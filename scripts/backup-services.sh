@@ -87,6 +87,13 @@ removeServices() {
          echo "Exiting..."
          exit 1
       fi
+      rm -rf *-services
+      if [ $? -eq 1 ]
+      then
+         echo "[ERROR] not able to delete the files from webapps. Investigate"
+         echo "Exiting..."
+         exit 1
+      fi
    else
       echo "[INFO] No files to remove. Installation may begin"
       exit 0
