@@ -25,8 +25,8 @@ pipelines:
           #- mkdir -p ~/.ssh
           #- cat my_known_hosts >> ~/.ssh/known_hosts
           #- chmod -R 0700 ~/.ssh
-          - chmod 0400 id_rsa.ppk
-          - sftp -i id_rsa.ppk bitbucket-pipeline@cs1.menageadultclub.com
+          - chmod 0400 bitbucket-pipeline_rsa
+          - sftp -i bitbucket-pipeline_rsa bitbucket-pipeline@cs1.menageadultclub.com
           #- ll -rt
           #- whoami
           #- ./stage-package.sh -f $SERVICES_PACKAGE_NAME -r $BITBUCKET_BUILD_NUMBER
