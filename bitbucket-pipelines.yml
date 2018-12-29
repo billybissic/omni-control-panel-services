@@ -26,7 +26,7 @@ pipelines:
           #- cat my_known_hosts >> ~/.ssh/known_hosts
           #- chmod -R 0700 ~/.ssh
           - chmod 0400 bitbucket-pipeline_rsa
-          - echo "cd /u/data/omni/sys/staging/; touch test_file.txt; ls -l; pwd; | ssh -o StrictHostKeyChecking=No -i bitbucket-pipeline_rsa bitbucket-pipeline@cs1.menageadultclub.com
+          - echo "cd /u/data/omni/sys/staging/; touch test_file.txt; echo ls -l; echo pwd;" | ssh -o StrictHostKeyChecking=No -i bitbucket-pipeline_rsa bitbucket-pipeline@cs1.menageadultclub.com
           - #cd /u/data/omni/sys/staging/
           - #ls
           - #pwd
