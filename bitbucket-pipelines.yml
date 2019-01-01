@@ -28,4 +28,4 @@ pipelines:
           # Extract the package in the staging area.
           - echo "cd /u/data/omni/sys/staging/; tar -xvzf "${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz""
           # Start install package script to run backup-services.sh, and install-services.sh, rollback-services.sh are an option from this script as well.
-          - echo "./install-package.sh;" | ssh -o StrictHostKeyChecking=No -i bitbucket-pipeline_rsa bitbucket-pipeline@cs1.menageadultclub.com
+          #- echo "./install-package.sh;" | ssh -o StrictHostKeyChecking=No -i bitbucket-pipeline_rsa bitbucket-pipeline@cs1.menageadultclub.com
