@@ -21,20 +21,11 @@ pipelines:
     - step:
         name: Stage deployment
         script:
-          - #curl -s -L --user "${BB_AUTH_STRING}" "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}/downloads/${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz" -o "${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz"
-          #- mkdir -p ~/.ssh
-          #- cat my_known_hosts >> ~/.ssh/known_hosts
-          #- chmod -R 0700 ~/.ssh
           - chmod 0400 bitbucket-pipeline_rsa
+          # Upload the package to staging area.
           - echo "cd /u/data/omni/sys/staging/;
             curl -s -L --user "${BB_AUTH_STRING}" "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}/downloads/${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz" -o "${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz"" | ssh -o StrictHostKeyChecking=No -i bitbucket-pipeline_rsa bitbucket-pipeline@cs1.menageadultclub.com
-          - #cd /u/data/omni/sys/staging/
-          - #ls
-          - #pwd
-          #- ls
-          - #curl -s -L --user "${BB_AUTH_STRING}" "https://api.bitbucket.org/2.0/repositories/${BITBUCKET_REPO_OWNER}/${BITBUCKET_REPO_SLUG}/downloads/${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz" -o "${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz"
-          - #ls
-          - #quit
-          #- ll -rt
-          #- whoami
-          #- ./stage-package.sh -f $SERVICES_PACKAGE_NAME -r $BITBUCKET_BUILD_NUMBER
+          # Extract the package in the staging area.
+          - echo "cd /u/data/omni/sys/staging/; tar -xvzf "${SERVICES_PACKAGE_NAME}.${BITBUCKET_BUILD_NUMBER}.tar.gz""
+          # Start install package script to run backup-services.sh, and install-services.sh, rollback-services.sh are an option from this script as well.
+          - echo "./install-package.sh;" | ssh -o StrictHostKeyChecking=No -i bitbucket-pipeline_rsa bitbucket-pipeline@cs1.menageadultclub.com
