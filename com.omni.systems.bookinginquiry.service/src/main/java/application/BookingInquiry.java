@@ -54,7 +54,7 @@ public class BookingInquiry extends SpringBootServletInitializer {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+				registry.addMapping("/**").allowedOrigins("http://cs1.menageadultclub.com:80");
 				/*registry.addMapping("/getInquiryTypes").allowedOrigins("http://localhost:80");
 				registry.addMapping("/getInquiryTypes").allowedMethods("GET");
 				registry.addMapping("/getContactTimes").allowedOrigins("http://localhost:80");

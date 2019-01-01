@@ -27,11 +27,11 @@ public class Reservation extends SpringBootServletInitializer {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/getInquiryTypes").allowedOrigins("http://localhost:80");
+				registry.addMapping("/getInquiryTypes").allowedOrigins("http://cs1.menageadultclub.com:80");
 				registry.addMapping("/getInquiryTypes").allowedMethods("GET");
-				registry.addMapping("/getContactTimes").allowedOrigins("http://localhost:80");
+				registry.addMapping("/getContactTimes").allowedOrigins("http://cs1.menageadultclub.com:80");
 				registry.addMapping("/getContactTimes").allowedMethods("GET");
-				registry.addMapping("/createInquiry").allowedOrigins("http://localhost:80");
+				registry.addMapping("/createInquiry").allowedOrigins("http://cs1.menageadultclub.com:80");
 				registry.addMapping("/createInquiry").allowedMethods("POST");
 			}
 		};
