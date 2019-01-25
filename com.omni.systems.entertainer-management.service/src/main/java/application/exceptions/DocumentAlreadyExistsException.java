@@ -21,30 +21,21 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application;
+package application.exceptions;
 
-import java.io.File;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-
-import controller.FileController;
+import application.domain.EntertainerContent;
 
 /**
  * @author Billy Bissic
  *
  */
-@SpringBootApplication
-@ComponentScan({"application", "controller"})
-public class Application {
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		new File(FileController.uploadDirectory).mkdir();
-		SpringApplication.run(Application.class, args);
+@ResponseStatus(HttpStatus.CONFLICT)
+public class DocumentAlreadyExistsException extends RuntimeException {
+	public DocumentAlreadyExistsException(EntertainerContent entertainerContent) {
+		super("Document already exists under document name '" + entertainerContent.getEntertainerName() + "'.");
 	}
 
 }

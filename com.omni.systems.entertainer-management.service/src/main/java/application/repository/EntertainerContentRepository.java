@@ -21,30 +21,18 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application;
+package application.repository;
 
-import java.io.File;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-
-import controller.FileController;
+import application.domain.EntertainerContent;
 
 /**
  * @author Billy Bissic
  *
  */
-@SpringBootApplication
-@ComponentScan({"application", "controller"})
-public class Application {
+public interface EntertainerContentRepository extends MongoRepository<EntertainerContent, String> {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		new File(FileController.uploadDirectory).mkdir();
-		SpringApplication.run(Application.class, args);
-	}
+	EntertainerContent findByEntertainerName(String entertainerName);
 
 }

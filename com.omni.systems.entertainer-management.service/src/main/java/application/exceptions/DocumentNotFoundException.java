@@ -21,30 +21,19 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
-package application;
+package application.exceptions;
 
-import java.io.File;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
-
-import controller.FileController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * @author Billy Bissic
  *
  */
-@SpringBootApplication
-@ComponentScan({"application", "controller"})
-public class Application {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		new File(FileController.uploadDirectory).mkdir();
-		SpringApplication.run(Application.class, args);
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class DocumentNotFoundException extends RuntimeException {
+	public DocumentNotFoundException() {
+		super("Document not found.");
 	}
-
 }
