@@ -21,40 +21,38 @@
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 **/
+
 package application;
+
+import javax.validation.constraints.NotNull;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 /**
  * @author Billy Bissic
  *
  */
-
-public class Resizable {
-
-	private boolean beforeStart;
-	private boolean afterEnd;
+@Component
+@ConfigurationProperties
+public class UploadProperties {
 	
+	/* Global Properties */
+	private String saveDirectory;
+
 	/**
-	 * @return the beforeStart
+	 * @return the saveDirectory
 	 */
-	public boolean isBeforeStart() {
-		return beforeStart;
+	public String getSaveDirectory() {
+		return saveDirectory;
 	}
+
 	/**
-	 * @param beforeStart the beforeStart to set
+	 * @param saveDirectory the saveDirectory to set
 	 */
-	public void setBeforeStart(boolean beforeStart) {
-		this.beforeStart = beforeStart;
-	}
-	/**
-	 * @return the afterEnd
-	 */
-	public boolean isAfterEnd() {
-		return afterEnd;
-	}
-	/**
-	 * @param afterEnd the afterEnd to set
-	 */
-	public void setAfterEnd(boolean afterEnd) {
-		this.afterEnd = afterEnd;
+	public void setSaveDirectory(String saveDirectory) {
+		this.saveDirectory = saveDirectory;
 	}
 }

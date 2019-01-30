@@ -23,20 +23,14 @@
 **/
 package application;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-//import lombok.AllArgsConstructor;
-//import lombok.Data;
 
 /**
  * @author Billy Bissic
  *
  */
 
-//@AllArgsConstructor
-//@Data
 @Document(collection = "calendar-events")
 public class CalendarEvent {
 

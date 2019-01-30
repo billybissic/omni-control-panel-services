@@ -26,6 +26,7 @@ package application;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -36,12 +37,29 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * @author Billy Bissic
  *
  */
-@SpringBootApplication
-public class Calendar extends SpringBootServletInitializer {
 
+@SpringBootApplication
+//@EnableConfigurationProperties(UploadProperties.class)
+public class Calendar extends SpringBootServletInitializer {
+	
 	public static void main(String[] args) {
+		//new File(CalendarEventController.uploadDirectory).mkdir();
 		SpringApplication.run(Calendar.class, args);
 	}
+	
+	/*@Service
+    static class Startup implements CommandLineRunner {
+
+        @Autowired
+        private UploadProperties properties;
+
+        @Override
+        public void run(String... strings) throws Exception {
+            System.out.println("-----------------------------------------");
+            System.out.println("Save Directory: " + this.properties.getSaveDirectory());
+            System.out.println("-----------------------------------------");
+        }
+	}*/
 	
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder)
@@ -55,6 +73,7 @@ public class Calendar extends SpringBootServletInitializer {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**").allowedOrigins("*");
+				registry.addMapping("/**").allowedOrigins("http://localhost:4200");
 			}
 		};
 	}
