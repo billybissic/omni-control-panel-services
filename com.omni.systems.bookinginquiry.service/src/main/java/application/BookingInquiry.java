@@ -55,12 +55,7 @@ public class BookingInquiry extends SpringBootServletInitializer {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**").allowedOrigins("http://cs1.menageadultclub.com:80");
-				/*registry.addMapping("/getInquiryTypes").allowedOrigins("http://localhost:80");
-				registry.addMapping("/getInquiryTypes").allowedMethods("GET");
-				registry.addMapping("/getContactTimes").allowedOrigins("http://localhost:80");
-				registry.addMapping("/getContactTimes").allowedMethods("GET");
-				registry.addMapping("/createInquiry").allowedOrigins("http://localhost:80");
-				registry.addMapping("/createInquiry").allowedMethods("POST");*/
+				registry.addMapping("/**").allowedOrigins("http://localhost:5055");
 			}
 		};
 	}
