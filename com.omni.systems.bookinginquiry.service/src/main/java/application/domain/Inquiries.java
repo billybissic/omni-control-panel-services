@@ -51,7 +51,7 @@ public class Inquiries {
 	private Integer inquiryStatusId;
 	private String inquiry_submission_timestamp;
 	private String message;
-	private Boolean confirmation_status;
+	//private Integer confirmation_status;
 	
 	/**
 	 * @return the inquiry_id
@@ -208,17 +208,5 @@ public class Inquiries {
 	 */
 	public void setMessage(String message) {
 		this.message = message;
-	}
-	/**
-	 * @return the confirmation_status
-	 */
-	public Boolean getConfirmation_status() {
-		return confirmation_status;
-	}
-	/**
-	 * @param confirmation_status the confirmation_status to set
-	 */
-	public void setConfirmation_status(Boolean confirmation_status) {
-		this.confirmation_status = confirmation_status;
 	}
 }
