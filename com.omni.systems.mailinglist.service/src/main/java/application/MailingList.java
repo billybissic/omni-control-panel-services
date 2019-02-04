@@ -53,8 +53,12 @@ public class MailingList extends SpringBootServletInitializer {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("http://cs1.menageadultclub.com:80");
-                registry.addMapping("/**").allowedOrigins("http://localhost:5055");
+				registry.addMapping("/MailingListServices/**").allowedOrigins(
+						"http://www.menageadultclub.com",
+						"http://www.menageadultclub.com:80",
+						"http://cs1.menageadultclub.com",
+						"http://cs1.menageadultclub.com:80",
+						"http://localhost:5055");
             }
         };
     }

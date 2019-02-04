@@ -72,8 +72,12 @@ public class Calendar extends SpringBootServletInitializer {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("*");
-				registry.addMapping("/**").allowedOrigins("http://localhost:4200");
+				registry.addMapping("/api/CalendarEvents/**").allowedOrigins(
+				"http://www.menageadultclub.com",
+				"http://www.menageadultclub.com:80",
+				"http://cs1.menageadultclub.com",
+				"http://cs1.menageadultclub.com:80",
+				"http://localhost:5055");
 			}
 		};
 	}

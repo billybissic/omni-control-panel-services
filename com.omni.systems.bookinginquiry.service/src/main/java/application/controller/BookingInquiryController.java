@@ -32,6 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -88,7 +89,8 @@ public class BookingInquiryController {
 		pendingStatusCode = inquiriesRepository.countByInquiryStatusId(pendingStatusCode);
 		return new ResponseEntity<Integer>(pendingStatusCode, HttpStatus.OK);
 	}
-	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+ 						 + "http://cs1.menageadultclub.com")
 	@GetMapping(path="/getInquiryTypes")
 	public @ResponseBody Iterable<InquiryTypes> getInquiryTypes()
 	{
@@ -101,6 +103,8 @@ public class BookingInquiryController {
 		return contactTimesRepository.findAll();
 	}
 	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+			 			 + "http://cs1.menageadultclub.com")
 	@GetMapping(path="/getInquiries")
 	public @ResponseBody Iterable<Inquiries> getInquiries()
 	{

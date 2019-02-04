@@ -37,6 +37,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -83,6 +84,8 @@ public class CalendarEventController {
 	@Autowired
 	private  CalendarEventRepository calendarEventRepository;
 	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+			 			 + "http://cs1.menageadultclub.com")
 	@GetMapping(path="/getCalendarEvents")
 	public @ResponseBody Iterable<CalendarEvent> getCalendarEvents() {
 		return calendarEventRepository.findAll();
@@ -108,6 +111,8 @@ public class CalendarEventController {
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+						 + "http://cs1.menageadultclub.com")
 	@RequestMapping(value="/uploadFlyer")
 	public ResponseEntity<?> uploadFlyer(@RequestParam("files") MultipartFile[] files) {
 		
@@ -130,6 +135,8 @@ public class CalendarEventController {
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+			 			+ "http://cs1.menageadultclub.com")
 	@RequestMapping(value = "/getEventFlyer", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> getEventFlyer(@RequestParam String imageName) throws IOException {
 		
