@@ -77,6 +77,7 @@ public class Calendar extends SpringBootServletInitializer {
 				"http://www.menageadultclub.com:80",
 				"http://cs1.menageadultclub.com",
 				"http://cs1.menageadultclub.com:80",
+				"http://localhost:4200",
 				"http://localhost:5055");
 			}
 		};

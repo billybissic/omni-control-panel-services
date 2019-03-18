@@ -46,6 +46,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.apache.commons.io.FilenameUtils;
 
 /**
  * @author Billy Bissic
@@ -60,6 +61,7 @@ public class CalendarEventController {
 
 	
 	private UploadProperties properties;
+	
 	
 	@Autowired
 	public void setApp(UploadProperties properties) {
@@ -85,7 +87,8 @@ public class CalendarEventController {
 	private  CalendarEventRepository calendarEventRepository;
 	
 	@CrossOrigin(origins = "http://www.menageadultclub.com,"
-			 			 + "http://cs1.menageadultclub.com")
+			 			 + "http://cs1.menageadultclub.com,"
+			 			 + "http://localhost:4200")
 	@GetMapping(path="/getCalendarEvents")
 	public @ResponseBody Iterable<CalendarEvent> getCalendarEvents() {
 		return calendarEventRepository.findAll();
@@ -137,8 +140,8 @@ public class CalendarEventController {
 	
 	@CrossOrigin(origins = "http://www.menageadultclub.com,"
 			 			+ "http://cs1.menageadultclub.com")
-	@RequestMapping(value = "/getEventFlyer", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-	public ResponseEntity<byte[]> getEventFlyer(@RequestParam String imageName) throws IOException {
+	@RequestMapping(value = "/getEventFlyerJpeg", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> getEventFlyerJpeg(@RequestParam String imageName) throws IOException {
 		
 		String uploadDirectory = this.properties.getSaveDirectory();
 		System.out.println(uploadDirectory);
@@ -146,10 +149,50 @@ public class CalendarEventController {
 		Path fileNameAndPath = Paths.get(uploadDirectory, imageName);
 		byte[] bytes = Files.readAllBytes(fileNameAndPath);
 		
+		String fileExt = FilenameUtils.getExtension(fileNameAndPath.toString());
+		
 		return ResponseEntity
 				.ok()
 				.contentType(MediaType.IMAGE_JPEG)
 				.body(bytes);
+	}
+	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+ 			+ "http://cs1.menageadultclub.com")
+	@RequestMapping(value = "/getEventFlyerGif", method = RequestMethod.GET, produces = MediaType.IMAGE_GIF_VALUE)
+	public ResponseEntity<byte[]> getEventFlyerGif(@RequestParam String imageName) throws IOException {
+	
+	String uploadDirectory = this.properties.getSaveDirectory();
+	System.out.println(uploadDirectory);
+	
+	Path fileNameAndPath = Paths.get(uploadDirectory, imageName);
+	byte[] bytes = Files.readAllBytes(fileNameAndPath);
+	
+	String fileExt = FilenameUtils.getExtension(fileNameAndPath.toString());
+	
+	return ResponseEntity
+		.ok()
+		.contentType(MediaType.IMAGE_GIF)
+		.body(bytes);
+	}
+	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+ 			+ "http://cs1.menageadultclub.com")
+	@RequestMapping(value = "/getEventFlyerPng", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
+	public ResponseEntity<byte[]> getEventFlyerPng(@RequestParam String imageName) throws IOException {
+	
+	String uploadDirectory = this.properties.getSaveDirectory();
+	System.out.println(uploadDirectory);
+	
+	Path fileNameAndPath = Paths.get(uploadDirectory, imageName);
+	byte[] bytes = Files.readAllBytes(fileNameAndPath);
+	
+	String fileExt = FilenameUtils.getExtension(fileNameAndPath.toString());
+	
+	return ResponseEntity
+		.ok()
+		.contentType(MediaType.IMAGE_PNG)
+		.body(bytes);
 	}
 	
 	@RequestMapping(value = "/removeEventFlyer", method = RequestMethod.POST)
