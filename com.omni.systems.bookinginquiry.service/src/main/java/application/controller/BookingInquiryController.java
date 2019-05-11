@@ -90,6 +90,7 @@ public class BookingInquiryController {
 		return new ResponseEntity<Integer>(pendingStatusCode, HttpStatus.OK);
 	}
 	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+						 + "http://menageadultclub.com,"
  						 + "http://cs1.menageadultclub.com")
 	@GetMapping(path="/getInquiryTypes")
 	public @ResponseBody Iterable<InquiryTypes> getInquiryTypes()
@@ -104,6 +105,7 @@ public class BookingInquiryController {
 	}
 	
 	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+						 + "http://menageadultclub.com,"
 			 			 + "http://cs1.menageadultclub.com")
 	@GetMapping(path="/getInquiries")
 	public @ResponseBody Iterable<Inquiries> getInquiries()

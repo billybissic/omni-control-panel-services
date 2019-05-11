@@ -41,6 +41,7 @@ public class EntertainerApplication {
 	private EntertainerInformation entertainerInformation;
 	private Iterable<EntertainerExperience> entertainerExperiences;
 	private EmployeeSignature employeeSignature;
+	private Integer applicationStatus;
 	
 	/**
 	 * @return the _id
@@ -137,5 +138,17 @@ public class EntertainerApplication {
 	 */
 	public void setEmployeeSignature(EmployeeSignature employeeSignature) {
 		this.employeeSignature = employeeSignature;
+	}
+	/**
+	 * @return the applicationStatus
+	 */
+	public Integer getApplicationStatus() {
+		return applicationStatus;
+	}
+	/**
+	 * @param applicationStatus the applicationStatus to set
+	 */
+	public void setApplicationStatus(Integer applicationStatus) {
+		this.applicationStatus = applicationStatus;
 	}
 }

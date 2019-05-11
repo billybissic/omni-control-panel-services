@@ -48,15 +48,18 @@ import application.UploadProperties;
 import application.domain.BartenderApplication;
 import application.domain.EntertainerApplication;
 import application.domain.EntertainerAudition;
+import application.domain.OpenPosition;
 import application.domain.StaffMember;
 import application.exception.BartenderApplicationNotFoundException;
 import application.exception.EntertainerApplicationNotFoundException;
 import application.exception.EntertainerAuditionNotFoundException;
 import application.exception.NoDataAvailableException;
+import application.exception.OpenPositionNotFoundException;
 import application.exception.StaffMemberNotFoundException;
 import application.repository.BartenderApplicationRepository;
 import application.repository.EntertainerApplicationRepository;
 import application.repository.EntertainerAuditionRepository;
+import application.repository.OpenPositionRepository;
 import application.repository.StaffMemberRepository;
 
 /**
@@ -85,6 +88,8 @@ public class EmployeeManagementController {
 	private EntertainerAuditionRepository entertainerAuditionRepository;
 	@Autowired
 	private StaffMemberRepository staffMemberRepository;
+	@Autowired
+	private OpenPositionRepository openPositionRepository;
 	
 	/* Bartender application */
 	@RequestMapping(path="/getAllBarTenderApplications", method = RequestMethod.GET)
@@ -151,60 +156,90 @@ public class EmployeeManagementController {
 			/* TODO: log the exception */
 		}
 	}
+	
+	@RequestMapping(path="/createNewPosition", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<?> createNewPosition(@RequestBody OpenPosition newOpenPosition) {
+		try 
+		{
+			openPositionRepository.insert(newOpenPosition);
+			return new ResponseEntity<HttpStatus>(HttpStatus.CREATED);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="/updatePosition", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<?> updatePosition(@RequestBody OpenPosition openPosition) {
+		try
+		{
+			OpenPosition position = openPositionRepository.findOne(openPosition.get_id());
+			
+			if(position == null) {
+				return new ResponseEntity<HttpStatus>(HttpStatus.NOT_FOUND);
+			}
+			openPositionRepository.save(openPosition);
+			return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="closePosition", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<?> closePosition(@RequestBody OpenPosition openPosition) {
+		try
+		{
+			OpenPosition position = openPositionRepository.findOne(openPosition.get_id());
+			
+			if(position == null) {
+				return new ResponseEntity<HttpStatus>(HttpStatus.NOT_FOUND);
+			}
+			openPositionRepository.save(openPosition);
+			return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="/deletePosition", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<?> deletePosition(@RequestBody OpenPosition openPosition) {
+		try
+		{
+			OpenPosition position = openPositionRepository.findOne(openPosition.get_id());
+			if(position == null) {
+				throw new OpenPositionNotFoundException();
+			}
+			openPositionRepository.delete(openPosition);
+			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
 
 	@RequestMapping(path="/createOrUpdateBartenderApplication", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<?> createOrUpdateBartenderApplication(@RequestBody BartenderApplication application) {
 		try {
 			BartenderApplication bartenderApplication = barTenderApplicationRepository.findOne(application.get_id());
 			
-			if (bartenderApplication == null) {
-				barTenderApplicationRepository.insert(bartenderApplication);
-				return new ResponseEntity<HttpStatus>(HttpStatus.OK);
-			}
-			else
-			{
-				barTenderApplicationRepository.save(bartenderApplication);
-				return new ResponseEntity<HttpStatus>(HttpStatus.OK);
-			}
-		}
-		catch (DataAccessException ex)
-		{
-			/* All other errors send generic message to browser */
-			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
-			
-			/* TODO: log the exception */
-		}
-	}
-	
-	/* Entertainer application */
-	@RequestMapping(path="/getAllEntertainerApplications", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<?> getAllEntertainerApplications() {
-		
-		try
-		{
-			Iterable<EntertainerApplication> applications = entertainerApplicationRepository.findAll();
-			if (applications == null) {
-				throw new NoDataAvailableException();
-			}
-			
-			return new ResponseEntity<Iterable<EntertainerApplication>>(applications, HttpStatus.OK);
-		}
-		catch (DataAccessException ex)
-		{
-			/* All other errors send generic message to browser */
-			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
-			
-			/* TODO: log the exception */
-		}
-		
-	}
-	
-	@RequestMapping(path="/getEntertainerApplicationById", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<?> getEntertainerApplicationById(@RequestParam String _id) {
-		
-		try
-		{
-			BartenderApplication bartenderApplication = barTenderApplicationRepository.findOne(_id);
 			if(bartenderApplication == null) {
 				throw new BartenderApplicationNotFoundException();
 			}

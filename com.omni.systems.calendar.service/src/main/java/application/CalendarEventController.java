@@ -87,6 +87,7 @@ public class CalendarEventController {
 	private  CalendarEventRepository calendarEventRepository;
 	
 	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+						 + "http://menageadultclub.com,"
 			 			 + "http://cs1.menageadultclub.com,"
 			 			 + "http://localhost:4200")
 	@GetMapping(path="/getCalendarEvents")
@@ -115,6 +116,7 @@ public class CalendarEventController {
 	}
 	
 	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+						 + "http://menageadultclub.com,"
 						 + "http://cs1.menageadultclub.com")
 	@RequestMapping(value="/uploadFlyer")
 	public ResponseEntity<?> uploadFlyer(@RequestParam("files") MultipartFile[] files) {
@@ -139,7 +141,8 @@ public class CalendarEventController {
 	}
 	
 	@CrossOrigin(origins = "http://www.menageadultclub.com,"
-			 			+ "http://cs1.menageadultclub.com")
+						 + "http://menageadultclub.com,"
+			 			 + "http://cs1.menageadultclub.com")
 	@RequestMapping(value = "/getEventFlyerJpeg", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> getEventFlyerJpeg(@RequestParam String imageName) throws IOException {
 		
@@ -158,7 +161,8 @@ public class CalendarEventController {
 	}
 	
 	@CrossOrigin(origins = "http://www.menageadultclub.com,"
- 			+ "http://cs1.menageadultclub.com")
+						 + "http://menageadultclub.com,"
+ 						 + "http://cs1.menageadultclub.com")
 	@RequestMapping(value = "/getEventFlyerGif", method = RequestMethod.GET, produces = MediaType.IMAGE_GIF_VALUE)
 	public ResponseEntity<byte[]> getEventFlyerGif(@RequestParam String imageName) throws IOException {
 	
@@ -177,7 +181,8 @@ public class CalendarEventController {
 	}
 	
 	@CrossOrigin(origins = "http://www.menageadultclub.com,"
- 			+ "http://cs1.menageadultclub.com")
+						 + "http://menageadultclub.com,"
+ 						 + "http://cs1.menageadultclub.com")
 	@RequestMapping(value = "/getEventFlyerPng", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
 	public ResponseEntity<byte[]> getEventFlyerPng(@RequestParam String imageName) throws IOException {
 	

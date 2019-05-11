@@ -73,6 +73,8 @@ public class Calendar extends SpringBootServletInitializer {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/api/CalendarEvents/**").allowedOrigins(
+				"http://menageadultclub.com",
+				"http://menageadultclub.com:80",
 				"http://www.menageadultclub.com",
 				"http://www.menageadultclub.com:80",
 				"http://cs1.menageadultclub.com",
