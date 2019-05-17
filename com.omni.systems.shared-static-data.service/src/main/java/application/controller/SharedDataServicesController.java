@@ -32,12 +32,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import application.domain.EmploymentApplicationType;
+import application.domain.EmploymentArrangementType;
 import application.domain.EmploymentPositionStatus;
 import application.domain.EmploymentPositionType;
 import application.exception.NoApplicationTypesFoundException;
 import application.exception.NoPositionStatusFoundException;
 import application.exception.NoPositionTypesFoundException;
 import application.repository.ApplicationTypeRepository;
+import application.repository.ArrangementTypeRepository;
 import application.repository.PositionStatusRepository;
 import application.repository.PositionTypeRepository;
 
@@ -58,6 +60,9 @@ public class SharedDataServicesController {
 	
 	@Autowired
 	private PositionTypeRepository positionTypeRepository;
+	
+	@Autowired
+	private ArrangementTypeRepository arrangementTypeRepository;
 	
 	@RequestMapping(value="/getApplicationTypes", method = RequestMethod.GET)
 	public ResponseEntity<?> getApplicationTypes() {
@@ -97,10 +102,10 @@ public class SharedDataServicesController {
 	}
 	
 	@RequestMapping(value="/deleteApplicationType", method = RequestMethod.POST)
-	public ResponseEntity<?> deleteApplicationType(EmploymentApplicationType applicationType) {
+	public ResponseEntity<?> deleteApplicationType(Integer id) {
 		try
 		{
-			EmploymentApplicationType appType = applicationTypeRepository.findOne(applicationType.getId());
+			EmploymentApplicationType appType = applicationTypeRepository.findOne(id);
 			if(appType == null) {
 				throw new NoApplicationTypesFoundException();
 			}
@@ -152,10 +157,10 @@ public class SharedDataServicesController {
 	}
 	
 	@RequestMapping(value="/deletePositionStatus", method = RequestMethod.POST)
-	public ResponseEntity<?> deletePositionStatus(EmploymentPositionStatus positionStatus) {
+	public ResponseEntity<?> deletePositionStatus(Integer id) {
 		try
 		{
-			EmploymentPositionStatus posStatus = positionStatusRepository.findOne(positionStatus.getId());
+			EmploymentPositionStatus posStatus = positionStatusRepository.findOne(id);
 			if(posStatus == null) {
 				throw new NoPositionStatusFoundException();
 			}
@@ -207,15 +212,70 @@ public class SharedDataServicesController {
 	}
 	
 	@RequestMapping(value="/deletePositionType", method = RequestMethod.POST)
-	public ResponseEntity<?> deletePositionType(EmploymentPositionType positionType) {
+	public ResponseEntity<?> deletePositionType(Integer id) {
 		try
 		{
-			EmploymentPositionStatus posType = positionStatusRepository.findOne(positionType.getId());
+			EmploymentPositionStatus posType = positionStatusRepository.findOne(id);
 			if(posType == null) {
 				throw new NoPositionTypesFoundException();
 			}
 			
 			positionStatusRepository.delete(posType);
+			return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+		}
+		catch (HibernateException ex)
+		{
+			System.out.println(ex);
+			return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@RequestMapping(value="/getArrangementTypes", method = RequestMethod.GET)
+	public ResponseEntity<?> getArrangementTypes() {
+		
+		try
+		{
+			Iterable<EmploymentArrangementType> arrangementTypes = arrangementTypeRepository.findAll();
+			
+			if(arrangementTypes == null) {
+				throw new NoPositionTypesFoundException();
+			}
+			
+			return new ResponseEntity<Iterable<EmploymentArrangementType>>(arrangementTypes, HttpStatus.OK);
+		}
+		catch (HibernateException ex)
+		{
+			System.out.println(ex);
+			return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@RequestMapping(value="/saveArrangementType", method = RequestMethod.POST)
+	public ResponseEntity<?> saveArrangementType(EmploymentArrangementType arrangementType) {
+		try
+		{
+			arrangementTypeRepository.save(arrangementType);
+			Iterable<EmploymentArrangementType> arrangementTypes = arrangementTypeRepository.findAll();
+			
+			return new ResponseEntity<Iterable<EmploymentArrangementType>>(arrangementTypes, HttpStatus.OK);
+		}
+		catch (HibernateException ex)
+		{
+			System.out.println(ex);
+			return new ResponseEntity<HttpStatus>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	@RequestMapping(value="/deleteArrangementType", method = RequestMethod.POST)
+	public ResponseEntity<?> deleteArrangementType(Integer id) {
+		try
+		{
+			EmploymentArrangementType arranType = arrangementTypeRepository.findOne(id);
+			if(arranType == null) {
+				throw new NoPositionTypesFoundException();
+			}
+			
+			arrangementTypeRepository.delete(arranType);
 			return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
 		}
 		catch (HibernateException ex)
