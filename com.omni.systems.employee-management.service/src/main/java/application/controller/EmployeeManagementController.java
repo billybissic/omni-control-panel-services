@@ -48,7 +48,7 @@ import application.UploadProperties;
 import application.domain.BartenderApplication;
 import application.domain.EntertainerApplication;
 import application.domain.EntertainerAudition;
-import application.domain.OpenPosition;
+import application.domain.Position;
 import application.domain.StaffMember;
 import application.exception.BartenderApplicationNotFoundException;
 import application.exception.EntertainerApplicationNotFoundException;
@@ -158,7 +158,7 @@ public class EmployeeManagementController {
 	}
 	
 	@RequestMapping(path="/createNewPosition", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<?> createNewPosition(@RequestBody OpenPosition newOpenPosition) {
+	public @ResponseBody ResponseEntity<?> createNewPosition(@RequestBody Position newOpenPosition) {
 		try 
 		{
 			openPositionRepository.insert(newOpenPosition);
@@ -174,10 +174,10 @@ public class EmployeeManagementController {
 	}
 	
 	@RequestMapping(path="/updatePosition", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<?> updatePosition(@RequestBody OpenPosition openPosition) {
+	public @ResponseBody ResponseEntity<?> updatePosition(@RequestBody Position openPosition) {
 		try
 		{
-			OpenPosition position = openPositionRepository.findOne(openPosition.get_id());
+			Position position = openPositionRepository.findOne(openPosition.get_id());
 			
 			if(position == null) {
 				return new ResponseEntity<HttpStatus>(HttpStatus.NOT_FOUND);
@@ -195,10 +195,10 @@ public class EmployeeManagementController {
 	}
 	
 	@RequestMapping(path="closePosition", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<?> closePosition(@RequestBody OpenPosition openPosition) {
+	public @ResponseBody ResponseEntity<?> closePosition(@RequestBody Position openPosition) {
 		try
 		{
-			OpenPosition position = openPositionRepository.findOne(openPosition.get_id());
+			Position position = openPositionRepository.findOne(openPosition.get_id());
 			
 			if(position == null) {
 				return new ResponseEntity<HttpStatus>(HttpStatus.NOT_FOUND);
@@ -216,10 +216,10 @@ public class EmployeeManagementController {
 	}
 	
 	@RequestMapping(path="/deletePosition", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<?> deletePosition(@RequestBody OpenPosition openPosition) {
+	public @ResponseBody ResponseEntity<?> deletePosition(@RequestBody Position openPosition) {
 		try
 		{
-			OpenPosition position = openPositionRepository.findOne(openPosition.get_id());
+			Position position = openPositionRepository.findOne(openPosition.get_id());
 			if(position == null) {
 				throw new OpenPositionNotFoundException();
 			}

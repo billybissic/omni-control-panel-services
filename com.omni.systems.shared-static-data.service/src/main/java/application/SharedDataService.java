@@ -35,7 +35,11 @@ public class SharedDataService extends SpringBootServletInitializer {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://www.menageadultclub.com:80");
+				registry.addMapping("/api/SharedStaticDataServices/**").allowedOrigins("http://www.menageadultclub.com",
+                		"http://www.menageadultclub.come:80",
+                		"http://cs1.menageadultclub.com",
+                		"http://cs1.menageadultclub.com:80",
+                		"http://localhost:5055");
 			}
 		};
 	}

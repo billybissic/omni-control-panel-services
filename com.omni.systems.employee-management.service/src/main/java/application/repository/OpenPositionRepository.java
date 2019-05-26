@@ -25,12 +25,12 @@ package application.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import application.domain.OpenPosition;
+import application.domain.Position;
 
 /**
  * @author Billy Bissic
  *
  */
-public interface OpenPositionRepository extends MongoRepository<OpenPosition, String> {
+public interface OpenPositionRepository extends MongoRepository<Position, String> {
 
 }

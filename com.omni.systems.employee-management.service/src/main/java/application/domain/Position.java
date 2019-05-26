@@ -32,7 +32,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 
 @Document(collection="open_positions")
-public class OpenPosition {
+public class Position {
 	@Id
 	private String _id;
 	private String positionTitle;
