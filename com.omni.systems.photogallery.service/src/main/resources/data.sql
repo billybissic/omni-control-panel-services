@@ -40,7 +40,7 @@ VALUES ('Video Sideshow', 'Single video group for each video file in the jumbotr
 (SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Videos" ));
 
 /* static data - gallery_group_type */
-INSERT INTO gallery_group_type (group_type_id,group_type_name,group_type_description,mime_type_group_id)
+INSERT INTO gallery_group_type (group_type_name,group_type_description,mime_type_group_id)
 VALUES ('Video Gallery','Video gallery, publicly open to site visitors.',
 (SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Videos" ));
 
@@ -48,37 +48,37 @@ INSERT INTO gallery_group_type (group_type_name, group_type_description, mime_ty
 VALUES ('Photo Gallery', 'Photo gallery, public open to site visitors.',
 (SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Images" ));
 
-INSERT INTO gallery_group_type (group_type_id,group_type_name,group_type_description,mime_type_group_id)
+INSERT INTO gallery_group_type (group_type_name,group_type_description,mime_type_group_id)
 VALUES ('Event Flyers','Flyer storage for the event calendar. Publicly available to site users from the event calendar.',
 (SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Images" ));
 );
 
-INSERT INTO gallery_group_type (group_type_id,group_type_name,group_type_description,mime_type_group_id)
+INSERT INTO gallery_group_type (group_type_name,group_type_description,mime_type_group_id)
 VALUES ('Celendar Headers','Photos for monthly calendar headers. Available to viewers with full calendar access.',
 (SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Images" ));
 );
 
-INSERT INTO gallery_group_type (group_type_id,group_type_name,group_type_description,mime_type_group_id)
+INSERT INTO gallery_group_type (group_type_name,group_type_description,mime_type_group_id)
 VALUES ('Landing Videos','Video gallery for landing page. Publicly available to site users upon verifying age.',
 (SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Images" ));
 );
 
-INSERT INTO gallery_group_type (group_type_id,group_type_name,group_type_description,mime_type_group_id)
+INSERT INTO gallery_group_type (group_type_name,group_type_description,mime_type_group_id)
 VALUES ('Landing Images','Image gallery for landing page. Publicly available to site users upon verifying age.',
 (SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Videos" ));
 );
 
-INSERT INTO gallery_group_type (group_type_id,group_type_name,group_type_description,mime_type_group_id)
+INSERT INTO gallery_group_type (group_type_name,group_type_description,mime_type_group_id)
 VALUES ('Entertainers','Entertainer profile photographs. Publicly available to site users via the entertainers section.',
 (SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Images" ));
 );
 
-INSERT INTO gallery_group_type (group_type_id,group_type_name,group_type_description,mime_type_group_id)
+INSERT INTO gallery_group_type (group_type_name,group_type_description,mime_type_group_id)
 VALUES ('Image Backgrounds','Image backgrounds for site pages. Publicly available to the site viewers via their respective pages.',
 (SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Images" ));
 );
 
-INSERT INTO gallery_group_type (group_type_id,group_type_name,group_type_description,mime_type_group_id)
+INSERT INTO gallery_group_type (group_type_name,group_type_description,mime_type_group_id)
 VALUES ('Video Backgrounds','Video backgrounds for site pages. Publicly available to the site viewers via their respective pages.',
 (SELECT mtg.mime_type_group_id FROM user_media.mime_type_groups AS mtg WHERE mtg.mime_type_group_name ="Videos" ));
 );

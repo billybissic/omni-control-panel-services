@@ -29,7 +29,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import controller.FileUploadController;
+import controller.FileController;
 
 /**
  * @author Billy Bissic
@@ -43,7 +43,7 @@ public class Application {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new File(FileUploadController.uploadDirectory).mkdir();
+		new File(FileController.uploadDirectory).mkdir();
 		SpringApplication.run(Application.class, args);
 	}
 

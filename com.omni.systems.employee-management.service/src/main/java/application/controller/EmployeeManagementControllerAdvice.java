@@ -37,6 +37,7 @@ import application.exception.EntertainerApplicationNotFoundException;
 import application.exception.EntertainerAuditionAlreadyExistsException;
 import application.exception.EntertainerAuditionNotFoundException;
 import application.exception.NoDataAvailableException;
+import application.exception.OpenPositionNotFoundException;
 import application.exception.StaffMemberAlreadyExistsException;
 import application.exception.StaffMemberNotFoundException;
 
@@ -82,6 +83,12 @@ public class EmployeeManagementControllerAdvice {
 	@ExceptionHandler(EntertainerAuditionNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	VndErrors entertainerAuditionNotFoundException(EntertainerAuditionNotFoundException ex) {
+		return new VndErrors("error", ex.getMessage());
+	}
+	
+	@ExceptionHandler(OpenPositionNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	VndErrors openPositionNotFoundException(OpenPositionNotFoundException ex) {
 		return new VndErrors("error", ex.getMessage());
 	}
 	

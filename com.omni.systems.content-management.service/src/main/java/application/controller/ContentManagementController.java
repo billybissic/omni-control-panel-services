@@ -42,6 +42,7 @@ import application.domain.SimpleContent;
 import application.exceptions.DocumentAlreadyExistsException;
 import application.exceptions.DocumentNotFoundException;
 import application.exceptions.MenuItemNotFoundException;
+import application.exceptions.NoDataAvailableException;
 import application.repository.DynamicMenuRepository;
 import application.repository.SimpleContentRepository;
 
@@ -180,35 +181,55 @@ public class ContentManagementController {
 		}
 	}
 	
-	@RequestMapping(path="/getAllMenuItems", method = RequestMethod.GET)
-	public ResponseEntity<?> getAllMenuItems()
+	@RequestMapping(path="/getAllMenus", method = RequestMethod.GET)
+	public ResponseEntity<?> getAllMenus()
 	{
 		try
 		{
-			Iterable<DynamicMenu> menuItems = dynamicMenuRepository.findAll();
-			if( menuItems == null )
+			Iterable<DynamicMenu> menus = dynamicMenuRepository.findAll();
+			if( menus == null )
+			{
+				throw new NoDataAvailableException();
+			}
+			return new ResponseEntity<Iterable<DynamicMenu>>(menus, HttpStatus.OK);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+		
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="/updateMenu", method = RequestMethod.POST)
+	public ResponseEntity<?> updateMenuItem(@RequestBody DynamicMenu menu)
+	{
+		try
+		{
+			dynamicMenuRepository.save(menu);
+			return new ResponseEntity<DynamicMenu>(menu, HttpStatus.OK);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+		
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="getMenuById/{_id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getMenuById(@PathVariable String _id)
+	{
+		try
+		{
+			DynamicMenu dynamicMenu = dynamicMenuRepository.findOne(_id);
+			if (dynamicMenu == null)
 			{
 				throw new MenuItemNotFoundException();
 			}
-			return new ResponseEntity<Iterable<DynamicMenu>>(menuItems, HttpStatus.OK);
-		}
-		catch (DataAccessException ex)
-		{
-			/* All other errors send generic message to browser */
-			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
-		
-			/* TODO: log the exception */
-		}
-		
-	}
-	
-	@RequestMapping(path="/updateMenuItem", method = RequestMethod.POST)
-	public ResponseEntity<?> updateMenuItem(@RequestBody DynamicMenu menuItem)
-	{
-		try
-		{
-			dynamicMenuRepository.save(menuItem);
-			return new ResponseEntity<DynamicMenu>(menuItem, HttpStatus.OK);
+			return new ResponseEntity<DynamicMenu>(dynamicMenu, HttpStatus.OK);
 		}
 		catch (DataAccessException ex)
 		{
@@ -219,57 +240,19 @@ public class ContentManagementController {
 		}
 	}
 	
-	@RequestMapping(path="getMenuItemById/{_id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getMenuItemById(@PathVariable String _id)
+	@RequestMapping(path="/deleteMenuById/{_id}", method = RequestMethod.DELETE)
+	public ResponseEntity<HttpStatus> deleteMenuById(@PathVariable String _id)
 	{
 		try
 		{
-			DynamicMenu dynamicMenuItem = dynamicMenuRepository.findOne(_id);
-			if (dynamicMenuItem == null)
-			{
-				throw new MenuItemNotFoundException();
-			}
-			return new ResponseEntity<DynamicMenu>(dynamicMenuItem, HttpStatus.OK);
-		}
-		catch (DataAccessException ex)
-		{
-			/* All other errors send generic message to browser */
-			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
-		
-			/* TODO: log the exception */
-		}
-	}
-	
-	@RequestMapping(path="addNewMenuItem", method = RequestMethod.POST)
-	public ResponseEntity<?> addNewMenuItem(@RequestBody DynamicMenu menuItem)
-	{
-		try
-		{
-			dynamicMenuRepository.save(menuItem);
-			return new ResponseEntity<DynamicMenu>(menuItem, HttpStatus.OK);
-		}
-		catch (DataAccessException ex)
-		{
-			/* All other errors send generic message to browser */
-			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
-		
-			/* TODO: log the exception */
-		}
-	}
-	
-	@RequestMapping(path="/deleteMenuItemById/{_id}", method = RequestMethod.DELETE)
-	public ResponseEntity<HttpStatus> deleteMenuItemById(@PathVariable String _id)
-	{
-		try
-		{
-			DynamicMenu dynamicMenuItem = dynamicMenuRepository.findOne(_id);
-			if (dynamicMenuItem == null)
+			DynamicMenu dynamicMenu = dynamicMenuRepository.findOne(_id);
+			if (dynamicMenu == null)
 			{
 				throw new MenuItemNotFoundException();
 			}
 			else
 			{
-				dynamicMenuRepository.delete(dynamicMenuItem);
+				dynamicMenuRepository.delete(dynamicMenu);
 				return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 			}
 		}

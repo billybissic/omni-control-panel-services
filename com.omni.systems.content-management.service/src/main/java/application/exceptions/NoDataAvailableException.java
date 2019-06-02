@@ -33,6 +33,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class NoDataAvailableException extends RuntimeException {
+	public NoDataAvailableException() {
+		super();
+	}
+	
 	public NoDataAvailableException(String message) {
 		super(message);
 	}

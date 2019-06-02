@@ -23,18 +23,17 @@
 **/
 package application;
 
+import java.util.List;
+
 import org.springframework.data.mongodb.core.index.IndexDirection;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.web.multipart.MultipartFile;
 
-//import lombok.AllArgsConstructor;
-//import lombok.Data;
 
 /**
  * @author Billy Bissic
  *
  */
-//@Data
-//@AllArgsConstructor
 public class Details {
 	private String description;
 	private String host;
@@ -43,7 +42,7 @@ public class Details {
 	private Integer event_type_id;
 	private Integer event_status_id;
 	private Integer event_frequency_id;
-	private Integer event_image_id;
+	private String image_names;
 	
 	/**
 	 * @return the description
@@ -118,51 +117,15 @@ public class Details {
 		this.event_frequency_id = event_frequency_id;
 	}
 	/**
-	 * @return the event_image_id
+	 * @return the image_names
 	 */
-	public Integer getEvent_image_id() {
-		return event_image_id;
+	public String getImage_names() {
+		return image_names;
 	}
 	/**
-	 * @param event_image_id the event_image_id to set
+	 * @param image_names the image_names to set
 	 */
-	public void setEvent_image_id(Integer event_image_id) {
-		this.event_image_id = event_image_id;
+	public void setImage_names(String image_names) {
+		this.image_names = image_names;
 	}
-	
-	/*protected Details() { }
-	
-	public Details(final String description, 
-				   final String host, 
-				   final String location, 
-				   final Integer event_type_id, 
-				   final Integer event_status_id, 
-				   final Integer event_frequency_id,
-				   final Integer event_image_id)
-	{
-		this.description = description;
-		this.host = host;
-		this.location = location;
-		this.event_type_id = event_type_id;
-		this.event_status_id = event_status_id;
-		this.event_frequency_id = event_frequency_id;
-		this.event_image_id = event_image_id;
-	}
-
-	/** @return the description */
-	//public String getDescription() { return description; }
-	/** @return the host */
-	//public String getHost() { return host; }
-	/** @return the location */
-	//public String getLocation() { return location; }
-	/** @return the event_type_id */
-	//public Integer getEvent_type_id() { return event_type_id; }
-	/** @return the event_status_id */
-	//public Integer getEvent_status_id() { return event_status_id; }
-	/** @return the event_frequency_id */
-	//public Integer getEvent_frequency_id() { return event_frequency_id; }
-	/** @return the event_image_id */
-	//public Integer getEvent_image_id() { return event_image_id; }
-	
-	
 }
