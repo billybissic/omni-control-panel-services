@@ -1,5 +1,5 @@
 /**
-* MIT License
+-* MIT License
 *
 * Copyright (c) 2018 Billy Bissic
 *
@@ -45,6 +45,7 @@ public class BartenderApplication {
 	private Iterable<EmployeeHistory> employeeHistory;
 	private Iterable<EmployeeReference> employeeReferences;
 	private EmployeeSignature employeeSignature;
+	private Integer applicationStatus;
 	/**
 	 * @return the _id
 	 */
@@ -165,4 +166,18 @@ public class BartenderApplication {
 	public void setEmployeeSignature(EmployeeSignature employeeSignature) {
 		this.employeeSignature = employeeSignature;
 	}
+	/**
+	 * @return the applicationStatus
+	 */
+	public Integer getApplicationStatus() {
+		return applicationStatus;
+	}
+	/**
+	 * @param applicationStatus the applicationStatus to set
+	 */
+	public void setApplicationStatus(Integer applicationStatus) {
+		this.applicationStatus = applicationStatus;
+	}
+	
+	
 }

@@ -31,14 +31,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
  *
  */
 
-@Document(collection = "menu-items")
+@Document(collection = "dynamic-menus")
 public class DynamicMenu {
 
 	@Id private String _id;
-	private String menuItemName;
-	private String menuItemType;
-	private String menuItemDocumentName;
-	private String menuItemDocumentType;
+	private String menuName;
+	private String menuDescription;
+	private MenuGroup menuGroups[];
+	private String menuVisibility;
+	private String menuStyle;
+	private String menuOrientation;
+	private String menuFunction;
 	
 	/**
 	 * @return the _id
@@ -53,51 +56,39 @@ public class DynamicMenu {
 		this._id = _id;
 	}
 	/**
-	 * @return the menuItemName
+	 * @return the menuName
 	 */
-	public String getMenuItemName() {
-		return menuItemName;
+	public String getMenuName() {
+		return menuName;
 	}
 	/**
-	 * @param menuItemName the menuItemName to set
+	 * @param menuName the menuName to set
 	 */
-	public void setMenuItemName(String menuItemName) {
-		this.menuItemName = menuItemName;
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
 	}
 	/**
-	 * @return the menuItemType
+	 * @return the menuDescription
 	 */
-	public String getMenuItemType() {
-		return menuItemType;
+	public String getMenuDescription() {
+		return menuDescription;
 	}
 	/**
-	 * @param menuItemType the menuItemType to set
+	 * @param menuDescription the menuDescription to set
 	 */
-	public void setMenuItemType(String menuItemType) {
-		this.menuItemType = menuItemType;
+	public void setMenuDescription(String menuDescription) {
+		this.menuDescription = menuDescription;
 	}
 	/**
-	 * @return the menuItemDocumentName
+	 * @return the menuGroups
 	 */
-	public String getMenuItemDocumentName() {
-		return menuItemDocumentName;
+	public MenuGroup[] getMenuGroups() {
+		return menuGroups;
 	}
 	/**
-	 * @param menuItemDocumentName the menuItemDocumentName to set
+	 * @param menuGroups the menuGroups to set
 	 */
-	public void setMenuItemDocumentName(String menuItemDocumentName) {
-		this.menuItemDocumentName = menuItemDocumentName;
-	}
-	/**
-	 * @return the menuItemDocumentType
-	 */
-	public String getMenuItemDocumentType() {
-		return menuItemDocumentType;
-	}
-	/**
-	 * @param menuItemDocumentType the menuItemDocumentType to set
-	 */
-	public void setMenuItemDocumentType(String menuItemDocumentType) {
-		this.menuItemDocumentType = menuItemDocumentType;
+	public void setMenuGroups(MenuGroup[] menuGroups) {
+		this.menuGroups = menuGroups;
 	}
 }

@@ -49,9 +49,9 @@ public class Inquiries {
 	private Integer inquiry_type_id;
 	@Column(name = "inquiry_status_id")
 	private Integer inquiryStatusId;
-	private String inquiry_submission_timestamp;
+	private String inquiry_timestamp;
 	private String message;
-	private Boolean confirmation_status;
+	//private Integer confirmation_status;
 	
 	/**
 	 * @return the inquiry_id
@@ -186,16 +186,16 @@ public class Inquiries {
 		this.inquiryStatusId = inquiryStatusId;
 	}
 	/**
-	 * @return the inquiry_submission_timestamp
+	 * @return the inquiry_timestamp
 	 */
-	public String getInquiry_submission_timestamp() {
-		return inquiry_submission_timestamp;
+	public String getInquiry_timestamp() {
+		return inquiry_timestamp;
 	}
 	/**
-	 * @param inquiry_submission_timestamp the inquiry_submission_timestamp to set
+	 * @param inquiry_timestamp the inquiry_timestamp to set
 	 */
-	public void setInquiry_submission_timestamp(String inquiry_submission_timestamp) {
-		this.inquiry_submission_timestamp = inquiry_submission_timestamp;
+	public void setInquiry_timestamp(String inquiry_timestamp) {
+		this.inquiry_timestamp = inquiry_timestamp;
 	}
 	/**
 	 * @return the message
@@ -208,17 +208,5 @@ public class Inquiries {
 	 */
 	public void setMessage(String message) {
 		this.message = message;
-	}
-	/**
-	 * @return the confirmation_status
-	 */
-	public Boolean getConfirmation_status() {
-		return confirmation_status;
-	}
-	/**
-	 * @param confirmation_status the confirmation_status to set
-	 */
-	public void setConfirmation_status(Boolean confirmation_status) {
-		this.confirmation_status = confirmation_status;
 	}
 }

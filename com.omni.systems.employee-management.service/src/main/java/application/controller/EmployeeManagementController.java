@@ -23,30 +23,43 @@
 **/
 package application.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import application.UploadProperties;
 import application.domain.BartenderApplication;
 import application.domain.EntertainerApplication;
 import application.domain.EntertainerAudition;
+import application.domain.Position;
 import application.domain.StaffMember;
 import application.exception.BartenderApplicationNotFoundException;
 import application.exception.EntertainerApplicationNotFoundException;
 import application.exception.EntertainerAuditionNotFoundException;
 import application.exception.NoDataAvailableException;
+import application.exception.OpenPositionNotFoundException;
 import application.exception.StaffMemberNotFoundException;
 import application.repository.BartenderApplicationRepository;
 import application.repository.EntertainerApplicationRepository;
 import application.repository.EntertainerAuditionRepository;
+import application.repository.OpenPositionRepository;
 import application.repository.StaffMemberRepository;
 
 /**
@@ -58,6 +71,15 @@ import application.repository.StaffMemberRepository;
 @RequestMapping(path="/api/EmployeeManagementService")
 public class EmployeeManagementController {
 
+	private UploadProperties properties;
+	
+	@Autowired
+	public void setApp(UploadProperties properties) {
+		this.properties = properties;
+		System.out.println("Application Save Directory: " + properties.getApplicationSaveDirectory());
+		System.out.println("Employee Image Save Directory: " + properties.getEmployeeSaveDirectory());
+	}
+	
 	@Autowired
 	private BartenderApplicationRepository barTenderApplicationRepository;
 	@Autowired
@@ -66,6 +88,8 @@ public class EmployeeManagementController {
 	private EntertainerAuditionRepository entertainerAuditionRepository;
 	@Autowired
 	private StaffMemberRepository staffMemberRepository;
+	@Autowired
+	private OpenPositionRepository openPositionRepository;
 	
 	/* Bartender application */
 	@RequestMapping(path="/getAllBarTenderApplications", method = RequestMethod.GET)
@@ -132,60 +156,90 @@ public class EmployeeManagementController {
 			/* TODO: log the exception */
 		}
 	}
+	
+	@RequestMapping(path="/createNewPosition", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<?> createNewPosition(@RequestBody Position newOpenPosition) {
+		try 
+		{
+			openPositionRepository.insert(newOpenPosition);
+			return new ResponseEntity<HttpStatus>(HttpStatus.CREATED);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="/updatePosition", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<?> updatePosition(@RequestBody Position openPosition) {
+		try
+		{
+			Position position = openPositionRepository.findOne(openPosition.get_id());
+			
+			if(position == null) {
+				return new ResponseEntity<HttpStatus>(HttpStatus.NOT_FOUND);
+			}
+			openPositionRepository.save(openPosition);
+			return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="closePosition", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<?> closePosition(@RequestBody Position openPosition) {
+		try
+		{
+			Position position = openPositionRepository.findOne(openPosition.get_id());
+			
+			if(position == null) {
+				return new ResponseEntity<HttpStatus>(HttpStatus.NOT_FOUND);
+			}
+			openPositionRepository.save(openPosition);
+			return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
+	
+	@RequestMapping(path="/deletePosition", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<?> deletePosition(@RequestBody Position openPosition) {
+		try
+		{
+			Position position = openPositionRepository.findOne(openPosition.get_id());
+			if(position == null) {
+				throw new OpenPositionNotFoundException();
+			}
+			openPositionRepository.delete(openPosition);
+			return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+		}
+		catch (DataAccessException ex)
+		{
+			/* All other errors send generic message to browser */
+			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
+			
+			/* TODO: log the exception */
+		}
+	}
 
 	@RequestMapping(path="/createOrUpdateBartenderApplication", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<?> createOrUpdateBartenderApplication(@RequestBody BartenderApplication application) {
 		try {
 			BartenderApplication bartenderApplication = barTenderApplicationRepository.findOne(application.get_id());
 			
-			if (bartenderApplication == null) {
-				barTenderApplicationRepository.insert(bartenderApplication);
-				return new ResponseEntity<HttpStatus>(HttpStatus.OK);
-			}
-			else
-			{
-				barTenderApplicationRepository.save(bartenderApplication);
-				return new ResponseEntity<HttpStatus>(HttpStatus.OK);
-			}
-		}
-		catch (DataAccessException ex)
-		{
-			/* All other errors send generic message to browser */
-			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
-			
-			/* TODO: log the exception */
-		}
-	}
-	
-	/* Entertainer application */
-	@RequestMapping(path="/getAllEntertainerApplications", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<?> getAllEntertainerApplications() {
-		
-		try
-		{
-			Iterable<EntertainerApplication> applications = entertainerApplicationRepository.findAll();
-			if (applications == null) {
-				throw new NoDataAvailableException();
-			}
-			
-			return new ResponseEntity<Iterable<EntertainerApplication>>(applications, HttpStatus.OK);
-		}
-		catch (DataAccessException ex)
-		{
-			/* All other errors send generic message to browser */
-			return new ResponseEntity<HttpStatus>(HttpStatus.INTERNAL_SERVER_ERROR);
-			
-			/* TODO: log the exception */
-		}
-		
-	}
-	
-	@RequestMapping(path="/getEntertainerApplicationById", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<?> getEntertainerApplicationById(@RequestParam String _id) {
-		
-		try
-		{
-			BartenderApplication bartenderApplication = barTenderApplicationRepository.findOne(_id);
 			if(bartenderApplication == null) {
 				throw new BartenderApplicationNotFoundException();
 			}
@@ -430,6 +484,184 @@ public class EmployeeManagementController {
 			
 			/* TODO: log the exception */
 		}
+	}
+	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+			 + "http://cs1.menageadultclub.com")
+	@RequestMapping(value="/uploadApplicationImage")
+	public ResponseEntity<?> uploadApplicationImage(@RequestParam("files") MultipartFile[] files) {
+	
+	String uploadDirectory = this.properties.getApplicationSaveDirectory();
+	System.out.println(uploadDirectory);
+	
+	StringBuilder fileNames = new StringBuilder();
+	
+	for(MultipartFile file: files) {
+	Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
+	System.out.println(fileNameAndPath);
+	
+	fileNames.append(file.getOriginalFilename() + " ");
+	try {
+		Files.write(fileNameAndPath, file.getBytes());
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	}
+	return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+			 			 + "http://cs1.menageadultclub.com")
+	@RequestMapping(value="/uploadEmployeeImage")
+	public ResponseEntity<?> uploadEmployeeImage(@RequestParam("files") MultipartFile[] files) {
+	
+		String uploadDirectory = this.properties.getEmployeeSaveDirectory();
+		System.out.println(uploadDirectory);
+	
+		StringBuilder fileNames = new StringBuilder();
+	
+		for(MultipartFile file: files) {
+			Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
+			System.out.println(fileNameAndPath);
+	
+			fileNames.append(file.getOriginalFilename() + " ");
+			try {
+				Files.write(fileNameAndPath, file.getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+	}
+	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+						 + "http://cs1.menageadultclub.com")
+	@RequestMapping(value = "/getEmployeeImageJpeg", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> getEmployeeImageJpeg(@RequestParam String imageName) throws IOException {
+		String uploadDirectory = this.properties.getEmployeeSaveDirectory();
+		System.out.println(uploadDirectory);
+	
+		Path fileNameAndPath = Paths.get(uploadDirectory, imageName);
+		byte[] bytes = Files.readAllBytes(fileNameAndPath);
+	
+		String fileExt = FilenameUtils.getExtension(fileNameAndPath.toString());
+	
+		return ResponseEntity
+				.ok()
+				.contentType(MediaType.IMAGE_JPEG)
+				.body(bytes);
+	}
+	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+			 + "http://cs1.menageadultclub.com")
+	@RequestMapping(value = "/getEmployeeImageGif", method = RequestMethod.GET, produces = MediaType.IMAGE_GIF_VALUE)
+	public ResponseEntity<byte[]> getEmployeeImageGif(@RequestParam String imageName) throws IOException {
+	String uploadDirectory = this.properties.getEmployeeSaveDirectory();
+	System.out.println(uploadDirectory);
+	
+	Path fileNameAndPath = Paths.get(uploadDirectory, imageName);
+	byte[] bytes = Files.readAllBytes(fileNameAndPath);
+	
+	String fileExt = FilenameUtils.getExtension(fileNameAndPath.toString());
+	
+	return ResponseEntity
+		.ok()
+		.contentType(MediaType.IMAGE_GIF)
+		.body(bytes);
+	}
+	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+			 + "http://cs1.menageadultclub.com")
+	@RequestMapping(value = "/getEmployeeImagePng", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
+	public ResponseEntity<byte[]> getEmployeeImagePng(@RequestParam String imageName) throws IOException {
+	String uploadDirectory = this.properties.getEmployeeSaveDirectory();
+	System.out.println(uploadDirectory);
+	
+	Path fileNameAndPath = Paths.get(uploadDirectory, imageName);
+	byte[] bytes = Files.readAllBytes(fileNameAndPath);
+	
+	String fileExt = FilenameUtils.getExtension(fileNameAndPath.toString());
+	
+	return ResponseEntity
+		.ok()
+		.contentType(MediaType.IMAGE_PNG)
+		.body(bytes);
+	}
+	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+			 + "http://cs1.menageadultclub.com")
+	@RequestMapping(value = "/getApplicationImageJpeg", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	public ResponseEntity<byte[]> getApplicationImageJpeg(@RequestParam String imageName) throws IOException {
+	String uploadDirectory = this.properties.getEmployeeSaveDirectory();
+	System.out.println(uploadDirectory);
+	
+	Path fileNameAndPath = Paths.get(uploadDirectory, imageName);
+	byte[] bytes = Files.readAllBytes(fileNameAndPath);
+	
+	String fileExt = FilenameUtils.getExtension(fileNameAndPath.toString());
+	
+	return ResponseEntity
+		.ok()
+		.contentType(MediaType.IMAGE_JPEG)
+		.body(bytes);
+	}
+	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+	+ "http://cs1.menageadultclub.com")
+	@RequestMapping(value = "/getApplicationImageGif", method = RequestMethod.GET, produces = MediaType.IMAGE_GIF_VALUE)
+	public ResponseEntity<byte[]> getApplicationImageGif(@RequestParam String imageName) throws IOException {
+	String uploadDirectory = this.properties.getEmployeeSaveDirectory();
+	System.out.println(uploadDirectory);
+	
+	Path fileNameAndPath = Paths.get(uploadDirectory, imageName);
+	byte[] bytes = Files.readAllBytes(fileNameAndPath);
+	
+	String fileExt = FilenameUtils.getExtension(fileNameAndPath.toString());
+	
+	return ResponseEntity
+	.ok()
+	.contentType(MediaType.IMAGE_GIF)
+	.body(bytes);
+	}
+	
+	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+	+ "http://cs1.menageadultclub.com")
+	@RequestMapping(value = "/getApplicationImagePng", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
+	public ResponseEntity<byte[]> getApplicationImagePng(@RequestParam String imageName) throws IOException {
+	String uploadDirectory = this.properties.getEmployeeSaveDirectory();
+	System.out.println(uploadDirectory);
+	
+	Path fileNameAndPath = Paths.get(uploadDirectory, imageName);
+	byte[] bytes = Files.readAllBytes(fileNameAndPath);
+	
+	String fileExt = FilenameUtils.getExtension(fileNameAndPath.toString());
+	
+	return ResponseEntity
+	.ok()
+	.contentType(MediaType.IMAGE_PNG)
+	.body(bytes);
+	}
+
+	@RequestMapping(value = "/removeEmployeeImage", method = RequestMethod.POST)
+	public ResponseEntity<?> removeEmployeeImage(@RequestParam String imageName) throws IOException {
+		String uploadDirectory = this.properties.getEmployeeSaveDirectory();
+		System.out.println(uploadDirectory);
+	
+		Path fileNameAndPath = Paths.get(uploadDirectory, imageName);
+		Files.deleteIfExists(fileNameAndPath);
+	
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/removeApplicationImage", method = RequestMethod.POST)
+	public ResponseEntity<?> removeApplicationImage(@RequestParam String imageName) throws IOException {
+		String uploadDirectory = this.properties.getEmployeeSaveDirectory();
+		System.out.println(uploadDirectory);
+	
+		Path fileNameAndPath = Paths.get(uploadDirectory, imageName);
+		Files.deleteIfExists(fileNameAndPath);
+	
+		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
 }

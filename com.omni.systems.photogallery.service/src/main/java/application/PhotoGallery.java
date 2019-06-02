@@ -58,11 +58,12 @@ public class PhotoGallery extends SpringBootServletInitializer {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowedHeaders("*")
-                .allowedMethods("*")
-                .allowCredentials(true);
+            	registry.addMapping("/api/GalleryServices/**").allowedOrigins(
+						"http://www.menageadultclub.com",
+						"http://www.menageadultclub.com:80",
+						"http://cs1.menageadultclub.com",
+						"http://cs1.menageadultclub.com:80",
+						"http://localhost:5055");
             }
         };
     }
