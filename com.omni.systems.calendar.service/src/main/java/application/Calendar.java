@@ -23,6 +23,8 @@
 **/
 package application;
 
+import java.util.Collections;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -33,6 +35,13 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 /**
  * @author Billy Bissic
  *
@@ -40,6 +49,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @SpringBootApplication
 //@EnableConfigurationProperties(UploadProperties.class)
+@EnableSwagger2
 public class Calendar extends SpringBootServletInitializer {
 	
 	public static void main(String[] args) {
@@ -67,20 +77,35 @@ public class Calendar extends SpringBootServletInitializer {
 		return builder.sources(Calendar.class);
 	}
 	
+    @Bean
+    public Docket swaggerConfiguration() {
+    
+    	return new Docket(DocumentationType.SWAGGER_2)
+    			.select()
+    			.paths(PathSelectors.any())
+    			.apis(RequestHandlerSelectors.any())
+    			.build()
+    			.apiInfo(apiDetails());
+    }
+    
+    private ApiInfo apiDetails() {
+    	return new ApiInfo(
+    			"Calendar Service",
+    			"API for managing calendar events.",
+    			"1.0",
+    			"Demo",
+    			new springfox.documentation.service.Contact("Billy Bissic", "https://github.com/billybissic", "billy@magnificenteyes.com"),
+    			"API License",
+    			"http://magnificenteyes.com",
+    			Collections.emptyList());
+    }
+	
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/api/CalendarEvents/**").allowedOrigins(
-				"http://menageadultclub.com",
-				"http://menageadultclub.com:80",
-				"http://www.menageadultclub.com",
-				"http://www.menageadultclub.com:80",
-				"http://cs1.menageadultclub.com",
-				"http://cs1.menageadultclub.com:80",
-				"http://localhost:4200",
-				"http://localhost:5055");
+				registry.addMapping("/**").allowedOrigins("*");
 			}
 		};
 	}

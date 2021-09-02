@@ -38,7 +38,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import application.domain.EntertainerContent;
 import application.exceptions.DocumentAlreadyExistsException;
 import application.exceptions.DocumentNotFoundException;
-import application.repository.EntertainerContentRepository;
 
 /**
  * @author Billy Bissic

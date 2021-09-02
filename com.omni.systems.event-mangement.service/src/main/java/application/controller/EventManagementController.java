@@ -49,7 +49,7 @@ import application.repository.EventTypesRepository;
  */
 
 @Controller
-@RequestMapping(path="/api/EventManagementService")
+@RequestMapping(path="demo/api/EventManagementService")
 public class EventManagementController {
 
 	@Autowired

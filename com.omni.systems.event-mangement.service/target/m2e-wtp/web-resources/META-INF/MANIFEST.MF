@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: laura
+Build-Jdk: 15.0.2
+Implementation-Title: event-management-service
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.omni.systems
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/com.omni.syste
+ ms.event-mangement.service/
+Created-By: Maven Integration for Eclipse
+

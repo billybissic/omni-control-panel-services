@@ -23,6 +23,7 @@
 **/
 package application.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -35,7 +36,7 @@ import application.domain.EventStatus;
  *
  */
 
-public interface EventStatusRepository extends CrudRepository<EventStatus, Integer> {
+public interface EventStatusRepository extends JpaRepository<EventStatus, Integer> {
 
 	/**
 	 * @param id

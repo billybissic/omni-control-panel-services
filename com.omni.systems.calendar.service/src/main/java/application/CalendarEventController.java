@@ -54,7 +54,7 @@ import org.apache.commons.io.FilenameUtils;
  */
 
 @Controller
-@RequestMapping(path="/api/CalendarEvents")
+@RequestMapping(path="demo/api/CalendarEvents")
 public class CalendarEventController {
 
 	//private static final String CALENDAR_EVENT_UPLOADS = "CALENDAR_EVENT_UPLOADS";
@@ -86,10 +86,10 @@ public class CalendarEventController {
 	@Autowired
 	private  CalendarEventRepository calendarEventRepository;
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+	/*@CrossOrigin(origins = "http://www.menageadultclub.com,"
 						 + "http://menageadultclub.com,"
 			 			 + "http://cs1.menageadultclub.com,"
-			 			 + "http://localhost:4200")
+			 			 + "http://localhost:4200")*/
 	@GetMapping(path="/getCalendarEvents")
 	public @ResponseBody Iterable<CalendarEvent> getCalendarEvents() {
 		return calendarEventRepository.findAll();
@@ -115,9 +115,9 @@ public class CalendarEventController {
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+	/*@CrossOrigin(origins = "http://www.menageadultclub.com,"
 						 + "http://menageadultclub.com,"
-						 + "http://cs1.menageadultclub.com")
+						 + "http://cs1.menageadultclub.com")*/
 	@RequestMapping(value="/uploadFlyer")
 	public ResponseEntity<?> uploadFlyer(@RequestParam("files") MultipartFile[] files) {
 		
@@ -140,9 +140,9 @@ public class CalendarEventController {
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+	/*@CrossOrigin(origins = "http://www.menageadultclub.com,"
 						 + "http://menageadultclub.com,"
-			 			 + "http://cs1.menageadultclub.com")
+			 			 + "http://cs1.menageadultclub.com")*/
 	@RequestMapping(value = "/getEventFlyerJpeg", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> getEventFlyerJpeg(@RequestParam String imageName) throws IOException {
 		
@@ -160,9 +160,9 @@ public class CalendarEventController {
 				.body(bytes);
 	}
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+	/*@CrossOrigin(origins = "http://www.menageadultclub.com,"
 						 + "http://menageadultclub.com,"
- 						 + "http://cs1.menageadultclub.com")
+ 						 + "http://cs1.menageadultclub.com")*/
 	@RequestMapping(value = "/getEventFlyerGif", method = RequestMethod.GET, produces = MediaType.IMAGE_GIF_VALUE)
 	public ResponseEntity<byte[]> getEventFlyerGif(@RequestParam String imageName) throws IOException {
 	
@@ -180,9 +180,9 @@ public class CalendarEventController {
 		.body(bytes);
 	}
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
+	/*@CrossOrigin(origins = "http://www.menageadultclub.com,"
 						 + "http://menageadultclub.com,"
- 						 + "http://cs1.menageadultclub.com")
+ 						 + "http://cs1.menageadultclub.com")*/
 	@RequestMapping(value = "/getEventFlyerPng", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
 	public ResponseEntity<byte[]> getEventFlyerPng(@RequestParam String imageName) throws IOException {
 	

@@ -25,6 +25,7 @@ package application.repository;
 
 import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -35,7 +36,7 @@ import application.domain.EventFrequency;
  * @author Billy Bissic
  *
  */
-public interface EventFrequencyRepository extends CrudRepository<EventFrequency, Integer> {
+public interface EventFrequencyRepository extends JpaRepository<EventFrequency, Integer> {
 
 	/**
 	 * @param id

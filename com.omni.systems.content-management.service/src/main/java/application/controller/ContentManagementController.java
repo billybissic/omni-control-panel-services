@@ -52,7 +52,7 @@ import application.repository.SimpleContentRepository;
  */
 
 @Controller
-@RequestMapping(path="/api/ContentManagement")
+@RequestMapping(path="demo/api/ContentManagement")
 public class ContentManagementController {
 
 	@Autowired

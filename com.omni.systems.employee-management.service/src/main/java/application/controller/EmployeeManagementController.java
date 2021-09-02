@@ -68,7 +68,7 @@ import application.repository.StaffMemberRepository;
  */
 
 @Controller
-@RequestMapping(path="/api/EmployeeManagementService")
+@RequestMapping(path="demo/api/EmployeeManagementService")
 public class EmployeeManagementController {
 
 	private UploadProperties properties;
@@ -215,7 +215,7 @@ public class EmployeeManagementController {
 		}
 	}
 	
-	@RequestMapping(path="/deletePosition", method = RequestMethod.POST)
+	@RequestMapping(path="/deletePosition", method = RequestMethod.DELETE)
 	public @ResponseBody ResponseEntity<?> deletePosition(@RequestBody Position openPosition) {
 		try
 		{
@@ -486,9 +486,7 @@ public class EmployeeManagementController {
 		}
 	}
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
-			 + "http://cs1.menageadultclub.com")
-	@RequestMapping(value="/uploadApplicationImage")
+	@RequestMapping(value="/uploadApplicationImage", method = RequestMethod.POST)
 	public ResponseEntity<?> uploadApplicationImage(@RequestParam("files") MultipartFile[] files) {
 	
 	String uploadDirectory = this.properties.getApplicationSaveDirectory();
@@ -510,8 +508,6 @@ public class EmployeeManagementController {
 	return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
-			 			 + "http://cs1.menageadultclub.com")
 	@RequestMapping(value="/uploadEmployeeImage")
 	public ResponseEntity<?> uploadEmployeeImage(@RequestParam("files") MultipartFile[] files) {
 	
@@ -534,8 +530,6 @@ public class EmployeeManagementController {
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
-						 + "http://cs1.menageadultclub.com")
 	@RequestMapping(value = "/getEmployeeImageJpeg", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> getEmployeeImageJpeg(@RequestParam String imageName) throws IOException {
 		String uploadDirectory = this.properties.getEmployeeSaveDirectory();
@@ -552,8 +546,6 @@ public class EmployeeManagementController {
 				.body(bytes);
 	}
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
-			 + "http://cs1.menageadultclub.com")
 	@RequestMapping(value = "/getEmployeeImageGif", method = RequestMethod.GET, produces = MediaType.IMAGE_GIF_VALUE)
 	public ResponseEntity<byte[]> getEmployeeImageGif(@RequestParam String imageName) throws IOException {
 	String uploadDirectory = this.properties.getEmployeeSaveDirectory();
@@ -570,8 +562,6 @@ public class EmployeeManagementController {
 		.body(bytes);
 	}
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
-			 + "http://cs1.menageadultclub.com")
 	@RequestMapping(value = "/getEmployeeImagePng", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
 	public ResponseEntity<byte[]> getEmployeeImagePng(@RequestParam String imageName) throws IOException {
 	String uploadDirectory = this.properties.getEmployeeSaveDirectory();
@@ -588,8 +578,6 @@ public class EmployeeManagementController {
 		.body(bytes);
 	}
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
-			 + "http://cs1.menageadultclub.com")
 	@RequestMapping(value = "/getApplicationImageJpeg", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
 	public ResponseEntity<byte[]> getApplicationImageJpeg(@RequestParam String imageName) throws IOException {
 	String uploadDirectory = this.properties.getEmployeeSaveDirectory();
@@ -606,8 +594,6 @@ public class EmployeeManagementController {
 		.body(bytes);
 	}
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
-	+ "http://cs1.menageadultclub.com")
 	@RequestMapping(value = "/getApplicationImageGif", method = RequestMethod.GET, produces = MediaType.IMAGE_GIF_VALUE)
 	public ResponseEntity<byte[]> getApplicationImageGif(@RequestParam String imageName) throws IOException {
 	String uploadDirectory = this.properties.getEmployeeSaveDirectory();
@@ -624,8 +610,6 @@ public class EmployeeManagementController {
 	.body(bytes);
 	}
 	
-	@CrossOrigin(origins = "http://www.menageadultclub.com,"
-	+ "http://cs1.menageadultclub.com")
 	@RequestMapping(value = "/getApplicationImagePng", method = RequestMethod.GET, produces = MediaType.IMAGE_PNG_VALUE)
 	public ResponseEntity<byte[]> getApplicationImagePng(@RequestParam String imageName) throws IOException {
 	String uploadDirectory = this.properties.getEmployeeSaveDirectory();
@@ -642,7 +626,7 @@ public class EmployeeManagementController {
 	.body(bytes);
 	}
 
-	@RequestMapping(value = "/removeEmployeeImage", method = RequestMethod.POST)
+	@RequestMapping(value = "/removeEmployeeImage", method = RequestMethod.DELETE)
 	public ResponseEntity<?> removeEmployeeImage(@RequestParam String imageName) throws IOException {
 		String uploadDirectory = this.properties.getEmployeeSaveDirectory();
 		System.out.println(uploadDirectory);
@@ -653,7 +637,7 @@ public class EmployeeManagementController {
 		return new ResponseEntity<HttpStatus>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/removeApplicationImage", method = RequestMethod.POST)
+	@RequestMapping(value = "/removeApplicationImage", method = RequestMethod.DELETE)
 	public ResponseEntity<?> removeApplicationImage(@RequestParam String imageName) throws IOException {
 		String uploadDirectory = this.properties.getEmployeeSaveDirectory();
 		System.out.println(uploadDirectory);
